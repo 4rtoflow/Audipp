@@ -7,7 +7,14 @@ Androidスマートフォン・Android搭載DAP向けのオーディオプレー
 
 JDK 17とAndroid SDKを用意し、Android Studioでこのディレクトリを開いてGradle Syncを実行します。SDKの導入、OS別のビルドコマンド、実機・エミュレーターでの起動方法は [開発ガイド](docs/development.md) を参照してください。
 
-macOS / Linux：
+Linuxの補助手順で環境を構築した場合は、ターミナルを開くたびに環境設定を読み込みます：
+
+```bash
+source scripts/linux/android-env.sh
+./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+```
+
+macOS / Linux（JDK 17・SDK設定済み）：
 
 ```sh
 ./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
@@ -18,6 +25,8 @@ Windows（PowerShell）：
 ```powershell
 .\gradlew.bat :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
 ```
+
+これらはビルド・テスト用のコマンドです。アプリを画面で確認するには、開発ガイドの手順でエミュレーターを起動し、アプリをインストール・実行します。
 
 ## 資料と構成
 

@@ -22,7 +22,17 @@ SDKの場所はAndroid Studioが生成する `local.properties` の `sdk.dir`、
 
 `JAVA_HOME` をJDK 17に設定します。Android Studioで選択したGradle JDKとターミナルのJDKは別設定です。`java -version` とWrapperの `--version` で確認してください。
 
-macOS / Linux：
+Linuxの補助手順で環境を構築した場合は、新しいターミナルごとに次を実行します：
+
+```bash
+source scripts/linux/android-env.sh
+java -version
+./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+```
+
+`java -version` は17であることを確認します。Gradleが `What went wrong: 27` で失敗する場合は、既定のJDK 27が選ばれています。上記の環境設定を読み込んで再実行してください。
+
+macOS / Linux（JDK 17・SDK設定済み）：
 
 ```sh
 ./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
@@ -35,6 +45,8 @@ Windows（PowerShell）：
 ```
 
 Debug APKは `app/build/outputs/apk/debug/app-debug.apk`、テスト結果は `app/build/reports/tests/testDebugUnitTest/`、Lint結果は `app/build/reports/lint-results-debug.html` に出力されます。
+
+ビルド・テストのコマンドではエミュレーターは起動しません。GUIで確認するには、Android StudioのRunか、エミュレーターの起動後に下記のADB手順を使います。
 
 依存を更新した場合だけ同じコマンドに `--write-locks` を追加し、カタログとlockfileを一緒に更新します。新たにReleaseなどの構成を使う場合は、その構成も検証・ロックします。初回の依存取得にはネットワーク接続が必要です。
 
