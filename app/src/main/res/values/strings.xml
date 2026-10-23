@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Audipp</string>
+    <string name="welcome_title">音楽を聴く、その前に。</string>
+    <string name="welcome_body">Audippへようこそ。\n音楽の再生機能は、これから追加していきます。</string>
+</resources>
