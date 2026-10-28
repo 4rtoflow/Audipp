@@ -3,7 +3,7 @@
 | 項目 | 内容 |
 |---|---|
 | 文書ID | AUD-HLD-001 |
-| 文書版・作成日・更新日 | 1.0.0-draft.6 / 2026-10-26 / 2026-10-28 |
+| 文書版・作成日・更新日 | 1.0.0-draft.8 / 2026-10-26 / 2026-10-28 |
 | 準拠 | [要件定義書](01_requirements.md)、原典 `docs/audio_app_feature_list.md` |
 | 対象 | PoCを拡張して招待した個人間で使う**完成版Androidアプリ** |
 | 設計状態 | **提案アーキテクチャ**。外部権利・Native DSD/USB構成・同期基盤は決定ゲートを要する。機能採否は全機能必須で確定しており、ゲートは省略の許可ではなく完成判定保留条件である。 |
@@ -385,3 +385,7 @@ Android公式：<https://developer.android.com/training/data-storage/shared/docu
 2026-10-28追補：DSP/USBの採用先、音声順序・QLT基準、LAN/タグ方式、私用認証とPUBLIC延期は[順次レビュー](09_private_completion_review.md)に従う。全領域の外部条件解決を待ってローカル実装を止めない。
 
 2026-10-28 Apple Music追加：Apple Musicも直接再生必須、検索は可能時とする。Provider AdapterはMusicKit for Androidの再生とApple Music APIのカタログ検索を使い、Coordinatorの所有者管理・取消・状態反映へ接続する。Apple専用Playerを共通PCM Playerと同一視せず、developer tokenの署名鍵は自前サーバーに置く。詳細はDD-PROV-06。個人間利用優先とPUBLIC延期は維持する。
+
+2026-10-28サービス範囲改訂：Amazon Music/SoundCloudを実装・完成条件から除外。qobine参考Qobuz、librespot PCM Sink、Cider参考Apple独自PCMを調査候補へ追加した。詳細は[添付候補の照合](10_provider_proposal_review.md)。公式SDK再生と自前PCM供給を区別し、Provider障害をローカル再生へ波及させない。添付の独立モジュール案は責務境界として扱い、単一app方針やNative導入時期を無断変更しない。
+
+2026-10-28 yt-dlp方式決定：[サーバー中継・保存選択](11_ytdlp_delivery.md)を採用。サーバーで音声取得/中継し端末で再生する。既定は保存しないstream、希望時はAudippがSAFの選択フォルダへ保存する。音声の再圧縮は原則行わず、再生/保存状態とcache/確定音源を分離。端末のyt-dlp内蔵は後段候補で、API23引上げの前提にしない。サーバー解決URLだけを返す案と音声の中継を区別する。

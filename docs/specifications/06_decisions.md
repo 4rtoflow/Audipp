@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| 版・更新日 | 1.0.0-draft.4 / 2026-10-28 |
+| 版・更新日 | 1.0.0-draft.6 / 2026-10-28 |
 | 確定した前提 | 個人間で使える完成版を先に作る。一般公開・メール送信・公開名義・配布経路・常設窓口等は完成後のPUBLIC |
 | 状態 | Q-01〜13は2026-10-27に全回答を受領。確定事項と残る具体化を下記に記録 |
 | 関連 | [要件定義](01_requirements.md)、[全項目対応表](05_feature_coverage.md)、[詳細設計](03_detailed_design.md) |
@@ -15,13 +15,15 @@
 
 ### Q-01：各音楽サービスで、どの再生体験を必須にしますか
 
-**決定（Q-01）：** Qobuz、Amazon Music、Spotify、SoundCloud、Apple Music、YouTube、YouTube Musicのすべてで、Audippによる直接再生を必須とする。カタログ検索は、技術・許諾上可能なら実装する。カタログ検索が成立しないだけで直接再生の要求を省かず、理由と調査結果を記録する。
+**決定（Q-01）：** Qobuz、Spotify、Apple Music、YouTube、YouTube Musicのすべてで、Audippによる直接再生を必須とする。カタログ検索は、技術・許諾上可能なら実装する。カタログ検索が成立しないだけで直接再生の要求を省かず、理由と調査結果を記録する。
 
 PARTNER_REMOTEやEXTERNAL_HANDOFFへの置換は直接再生の達成としない。公式遷移は補助操作に限る。直接再生の成立と、PCM取得・DSP・解析・履歴保存等の許可はそれぞれ確認する。SpotifyのAndroid SDKはSpotifyアプリの再生を遠隔操作するもので、この直接再生要求を満たす実装手段ではない。[公式SDK資料](https://developer.spotify.com/documentation/android)（2026-10-27確認）。直接再生に使える個別手段・許諾は未確認であり、製品要求の確定と実現可能性の確認を分ける。
 
 2026-10-28の追加指示でApple Musicも必須対象へ追加した。MusicKit for Android/Apple Music APIを公式経路とし、SDK導入・Apple Developer資格・MusicKit識別子/鍵・利用者の認可と再生資格は未確認。Apple MusicはAudippのアカウント認証と別管理する。
 
 **関係：** D-01、ADR-004、IMP-04/07、FR-SRC-08〜10、R-06。
+
+2026-10-28追加決定：Amazon Music/SoundCloudはAPI利用困難という利用者判断で実装しない。以前の全サービス必須条件をこの2件について置換する。残る3添付は[候補照合](10_provider_proposal_review.md)へ記録し、本文内の「採用確定」「公式申請しない」を独立した利用者指示にはしない。
 
 ### Q-02：YouTube系は、音声中心の再生が必須ですか
 
@@ -31,7 +33,9 @@ PARTNER_REMOTEやEXTERNAL_HANDOFFへの置換は直接再生の達成としな�
 
 YouTube APIの開発者ポリシーにはAPI経由コンテンツの音声・動画分離やバックグラウンド再生等の制限がある。[APIポリシー](https://developers.google.com/youtube/terms/developer-policies)。yt-dlp経路の扱いは[サービス利用規約](https://www.youtube.com/static?template=terms)等も含めて別途確認し、API規約だけで結論を出さない（2026-10-27確認）。希望方式は確定、公開可能な条件は未確認とする。
 
-**関係：** FR-SRC-09/11、DD-PROV-04/05、R-06。
+2026-10-28確定：サーバーのyt-dlpで音声を解決/取得/中継し、Audippが再生する。保存を望まないときはstream、望むときだけ端末の指定フォルダへ保存する。保存先取消/失敗を明示し、一時cacheと保存音源を分ける。端末内蔵は後段候補。詳細は[中継・保存契約](11_ytdlp_delivery.md)。
+
+**関係：** FR-SRC-09/11/12、DD-PROV-04/05、R-06。
 
 ### Q-03：必ず対応させたい実機を教えてください
 
