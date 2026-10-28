@@ -1,12 +1,12 @@
-# Audipp 完成・一般公開版 基本設計書（System Architecture / HLD）
+# Audipp 個人間利用の完成版 基本設計書（System Architecture / HLD）
 
 | 項目 | 内容 |
 |---|---|
 | 文書ID | AUD-HLD-001 |
-| 文書版・作成日 | 1.0.0-draft / 2026-10-26 |
+| 文書版・作成日・更新日 | 1.0.0-draft.6 / 2026-10-26 / 2026-10-28 |
 | 準拠 | [要件定義書](01_requirements.md)、原典 `docs/audio_app_feature_list.md` |
-| 対象 | PoCを拡張して一般公開する**完成版Androidアプリ** |
-| 設計状態 | **提案アーキテクチャ**。外部権利・Native DSD/USB構成・同期基盤は決定ゲートを要する。 |
+| 対象 | PoCを拡張して招待した個人間で使う**完成版Androidアプリ** |
+| 設計状態 | **提案アーキテクチャ**。外部権利・Native DSD/USB構成・同期基盤は決定ゲートを要する。機能採否は全機能必須で確定しており、ゲートは省略の許可ではなく完成判定保留条件である。 |
 
 ## 1. 設計目標と基本方針
 
@@ -18,6 +18,8 @@
 6. **将来機能を見越しつつ過剰設計しない**。現状の `app` 単一Gradleモジュールを維持し、責務の境界をパッケージで作る。分離が必要になった実測上の理由でモジュール化する。
 7. **正式公開可能な権利の範囲で動作**。外部ストリーミングの非公式なPCM取得を共通再生エンジンの前提としない。
 
+主要検証機はGalaxy S25（Android 16）・FiiO M21（OS版未確認）、DAC候補はiFi audio ZEN DAC V2・水月雨ECHO-B/ECHO-A。PCMは384 kHz/32-bit、DSDはDSD256を上限とし、通常2ch・最大5.1chは試験機能とする。上限超・機器非対応PCMは対応形式へ変換する。未確認のOS/firmware・実能力は実機で記録する（DD-AUD-05、DD-TEST-04）。無料・広告なし、日本公開、日本語/英語UI、自前サーバーという製品方針を採用する。
+
 ## 2. 開発基盤（確認済み現状と採用案）
 
 | レイヤ | 現状 | 完成版の採用案 |
@@ -25,11 +27,13 @@
 | OS | Android、minSdk 23、targetSdk 36 | Androidスマートフォン／DAP（最低OS最終確定は互換試験後） |
 | 言語／UI | Kotlin 2.3.10、Compose Material 3 | Kotlin、Compose、Navigation、ViewModel＋StateFlow |
 | ビルド | Gradle 8.13、AGP 8.13.2、JDK17 | 既存Wrapperとバージョンカタログ／lockfileを維持 |
-| 再生 | 未実装 | **Media3 ExoPlayer + MediaSessionService/MediaLibraryService（採用提案）** |
-| 永続化 | 未実装 | Room（曲・キュー・履歴）＋DataStore（小規模設定）。認証情報は適切な保護ストレージ |
-| 同期／バックエンド | 未実装 | 必要になった場合のみ別途API／DBを設計（クラウド基盤は未選定） |
+| 再生 | 未実装 | Media3 1.11.1 ExoPlayer + MediaLibraryServiceを設計採用 |
+| 永続化 | 未実装 | Room 2.8.5（曲・キュー・履歴）＋Preferences DataStore 1.2.1（小規模設定）。認証情報は適切な保護ストレージ |
+| 同期／バックエンド | 未実装 | 個人間利用版必須。認証・同期・フレンド・機器共有を実装し、Debian/Docker上でKeycloak認証、Kotlin/Ktorの業務API、PostgreSQLを分離。論理契約は08_design_decisions.md、配備詳細はP-02/03 |
 | 高度なPCM/DSD/USB | 未実装 | ハード能力・公式API・配布許諾の成立後に専用バックエンドを追加 |
 | 自動検証 | ユニットテスト3件、ビルド手順あり | CI: Unit/Integration/Lint/Release Build、実機音声検査は別経路 |
+
+**選定根拠・未検証範囲**：[技術設計決定記録](08_design_decisions.md)に依存版のAAR下限確認とサーバー構成・同期規則を記録する。依存追加・実ビルド・配備は未実施。
 
 **Media3採用理由**：Android向けメディア再生・セッション・OS統合の既存実装を再利用できる。Media3だけでNative DSD／全DAC Bit-perfectを実現できるという意味ではない。形式のサポートは端末デコーダー等に依存する。参照：<https://developer.android.com/media/media3/exoplayer/supported-formats>。
 
@@ -43,7 +47,7 @@ flowchart LR
     DAC[内蔵 / BT / USB DAC]
     Services[正規API・SDK・外部プレーヤー]
     Renderer[NAS / MPD / UPnP / OpenHome]
-    Backend[任意の同期・ソーシャルバックエンド]
+    Backend[個人間利用版必須の同期・ソーシャルバックエンド]
     User --> App
     Storage <--> App
     App --> DAC
@@ -87,7 +91,7 @@ flowchart TB
       Output[AudioManager / USB Host / optional native output]
       Provider[Authorized Stream / Remote / Handoff adapters]
       Lan[SMB / WebDAV / DLNA / MPD]
-      Sync[Optional Sync / Scrobble]
+      Sync[Sync / Scrobble / Sharing]
     end
     UI --> Application --> Domain
     Application --> Room
@@ -103,27 +107,29 @@ flowchart TB
 
 ## 5. 音源モデルと統合ソース戦略
 
-### 5.1 再生方式（4種類）
+### 5.1 再生方式（5種類）
 
 | モード | 所有する再生主体 | 典型例 | Audippが可能なこと | 制限 |
 |---|---|---|---|---|
 | `LOCAL_DIRECT` | Audipp | 端末内音源、許可されたネットワーク音源 | デコード／再生、キュー、可能ならDSP・Visualizer | OS・DRM・形式・出力機器制約 |
 | `PARTNER_DIRECT` | Audipp（権利がある場合） | 許諾済みストリーミング | 契約範囲で同エンジン制御・DSP等 | API認証、ストリーム形式、契約上のDSP可否 |
-| `PARTNER_REMOTE` | 提供元公式アプリ／SDK | Spotify App Remote候補 | 公式SDKが許す再生操作と情報表示 | PCMへのアクセス不可、外部キュー操作制限 |
+| `PARTNER_REMOTE` | 提供元公式アプリ／SDK | 遠隔制御の参考分類（Q-01の達成には不採用） | 公式SDKが許す再生操作と情報表示 | PCMへのアクセス不可、外部キュー操作制限 |
 | `EXTERNAL_HANDOFF` | 提供元公式アプリ／Web | サービスへのdeep link | 遷移、対応情報表示 | Audippから状態取得・連続制御できない場合あり |
 | `NETWORK_REMOTE` | 外部レンダラー | MPD / OpenHome / UPnP | 許可された遠隔制御・状態参照 | 実際の音声出力は外部機器。音声解析不可の場合あり |
 
-`PARTNER_DIRECT` は公式規約に基づいて独立評価する。`yt-dlp`のような許諾のない抽出手段をリリース経路として設計しない。
+Q-01により全ストリーミングサービスの要求方式はPARTNER_DIRECTとし、REMOTE/HANDOFFを直接再生の代替にしない。これらの分類は補助遷移やエラー説明のために残す。Q-02によりYouTube系はyt-dlp経由の音声のみとし、映像のRenderer・動画UIを設けない。実装手段・用途別許諾・配布条件はR-06で確認する。
 
 ### 5.2 統合キューの意味
 
 統合キューは**曲の順序と実行可能性を管理する論理オブジェクト**。すべての曲をAudippのPCMパイプラインで再生する保証ではない。
 
-- 各`QueueItem`は`SourceRef`と`executionMode`、`capabilities`、`availability`を持つ。
+- 各`QueueItem`は一意なVariant参照を持ち、音源の`SourceRef`と、選択出力先・許諾から求める`ExecutionPlan`を分ける。modeとcapabilitiesはPlanに属し、出力先変更で再評価する。曲長・収録曲順・形式は版ごとに保持する。
 - `PARTNER_REMOTE`曲へ切替時は公式プレーヤーの同期完了・許諾・必要なユーザー操作を確認する。
 - `EXTERNAL_HANDOFF`は自動で次曲へ進める前提にしない。ユーザー確認を促し、時間予測の不確かさを表示する。
 - `LOCAL_DIRECT`内など連続制御できるグループのみギャップレスを検証する。
 - 提供元やキューの内部状態に関する齟齬は、明示的な再同期で回復する。
+- 再生主体の切替はCoordinatorで直列化する。旧主体の停止を確認できなければ次の自動開始を保留し、手動停止と継続確認を提示する。取消後の遅延成功にも停止を要求し、未確認状態を表示する（DD-QUEUE-04）。
+- Providerの技術能力と用途別許諾は別に記録する。混在表示・キュー、履歴・統計・推薦・外部送信、PCM加工・解析は該当用途の許諾を確認したときだけ有効化する。未確認を許可にしない。
 
 ## 6. 再生・信号処理の基本設計
 
@@ -136,7 +142,7 @@ flowchart LR
   Router[Output Policy/Backend]
   Std[Android Standard Audio]
   Direct[Android Supported Direct/Bit-perfect]
-  Native[Optional Proprietary USB/Native]
+  Native[Proprietary USB/Native]
   Dev[DAC / Headphone / Speaker]
   Source --> Decoder --> DSP --> Resample --> Router
   Router --> Std --> Dev
@@ -173,12 +179,12 @@ Android 14以降のUSB優先Mixer属性は、対応HALによるBit-perfect属性
 
 ```mermaid
 erDiagram
-  MEDIA_SOURCE ||--o{ TRACK : contains
+  MEDIA_SOURCE ||--o{ TRACK_VARIANT : provides
   TRACK ||--o{ TRACK_VARIANT : has
-  TRACK ||--o{ QUEUE_ITEM : scheduled
+  TRACK_VARIANT ||--o{ QUEUE_ITEM : scheduled
   QUEUE ||--o{ QUEUE_ITEM : contains
   PLAYLIST ||--o{ PLAYLIST_ITEM : contains
-  TRACK ||--o{ PLAYLIST_ITEM : linked
+  TRACK_VARIANT ||--o{ PLAYLIST_ITEM : linked
   TRACK ||--o{ PLAY_EVENT : played
   DEVICE_PROFILE ||--o{ PROFILE_COMPONENT : includes
   DEVICE_PROFILE ||--o{ AUDIO_PRESET : owns
@@ -189,13 +195,14 @@ erDiagram
 
 - **Track**：楽曲メタデータ。再生可能な物理ファイルまたは権利許諾済みの配信アイテムとは1対1に固定しない。
 - **TrackVariant**：ファイル形式・マスター・解像度・サービス版を識別。誤同定を修正できる。
+- **PlaybackCheckpoint**：現在キューrevision・現在エントリー・最後に保存した位置を同じDBで保持。確定イベントと再生中の定期保存で更新し、プロセス終了通知には依存しない。復元後は再生操作を待つ。
 - **MediaSource**：URIアクセス・公式SDK・ネットワーク取得の種類、可否と期限を持つ。
 - **Queue / QueueItem**：履歴として並びを保存し、進行中のエントリーIDを追跡。順番は再生とは別管理。
 - **Playlist / PlaylistItem**：キューとは異なり、永続的にユーザーが保存したコレクション。
 - **PlayEvent**：再生回数と時間の集計元。後で再計算可能な事実のみ保存。
 - **DeviceProfile / AudioPreset**：デバイス組合せと音声設定の論理分離。
 - **ProviderAccount / RemoteMapping**：サービス固有IDと権限、期限、同一曲紐付け。
-- **SyncAccount / SyncCursor**：同期を使う場合のみ使用。バックエンド導入は未決定。
+- **SyncAccount / SyncCursor**：個人間利用版に必須の同期状態。基盤はKeycloak/Ktor/PostgreSQL。私用の配備先詳細は未確認。利用者が同期を使うかどうかは任意で、ローカル再生のログイン必須化を意味しない。
 
 正規化・主キー・制約・永続化／マイグレーションは[詳細設計書](03_detailed_design.md)で定める。
 
@@ -226,6 +233,7 @@ flowchart TD
 - **Visualizer**：対象はAudippがアクセスできる許諾済みPCMのみ。外部アプリの内部音声を取得したかのようなUIを禁止。
 - **Settings**：一般設定と高度な音声設定を分け、危険操作を確認する。
 - **Accessibility**：主要アクションはTalkBackラベル／状態読み上げ、文字拡大、非色情報で区別。
+- **段階差**：PoCのトップレベルは`docs/design.md`のLibrary中心案を用い、ここで示すHomeは完成版の案とする。FR-UI-03のテーマ3モードとFR-UI-06の共通ミニプレイヤーは両段階に適用する。
 
 ## 9. 動作シーケンス（基本）
 
@@ -281,10 +289,10 @@ sequenceDiagram
 |---|---|---|
 | 端末ファイル | Storage Access Framework / MediaStore | URIの許可・永続化・失効処理。Android 11以降の制限を遵守 |
 | Android OS | Media3 Session, AudioManager, AudioTrack系, AudioDevice callback | `mediaPlayback` foreground serviceと適切なManifest。出力観測できるAPI範囲内 |
-| USB DAC | UsbManager / OS Audio API / 任意の承認済み独自Backend | 接続・通信時の許可。OSドライバーとの競合回避は実機検証 |
+| USB DAC | UsbManager / OS Audio API / 承認済み独自Backend | 接続・通信時の許可。OSドライバーとの競合回避は実機検証 |
 | Streaming | OAuth・公式SDK・公式API | PKCE等の公式フロー、利用規約、DRM、データ制限、トークン保護 |
 | LAN | SMB/WebDAV / UPnP / OpenHome / MPD | ユーザー明示設定、ネットワークと資格情報保護 |
-| Backend | 将来のHTTPS API | 最小データ、認証、退会・削除、可監査な契約 |
+| Backend | 個人間利用版用HTTPS API | 最小データ、認証、退会・削除、可監査な契約 |
 
 Android公式：<https://developer.android.com/training/data-storage/shared/documents-files>、<https://developer.android.com/media/media3/session/background-playback>、<https://developer.android.com/develop/connectivity/usb/host>。
 
@@ -310,9 +318,10 @@ Android公式：<https://developer.android.com/training/data-storage/shared/docu
 
 ### 11.4 リリース・CI
 
-- **高音質価値の公開ゲート案**：ロスレス音源の実機再生に加え、ReplayGain／PEQ／検証済みDirect経路のいずれか1つ以上を実装・測定。一般的なOS再生をBit-perfectと呼ばない。
+- **高音質価値の公開ゲート**：原典の全PCM/DSD・DSP・USB・解析方式を、定義した対応環境で実装・測定する。いずれか1方式で他方式を代替しない。一般的なOS再生をBit-perfectと呼ばない。
+- **統合価値の公開ゲート**：全サービスの直接再生と混在キューを必須とし、カタログ検索は可能なら実装する。YouTube系はyt-dlp・音声のみとする。Q-01/02の方式をリモート制御・外部遷移で代替せず、実装手段・許諾・実証が不足すれば該当機能を未完了とする。
 - `main`はPR経由、Debug Build/Unit Test/Lint/Release BuildをCIで実行。
-- 公式署名鍵・OAuth秘密情報はGitHubに平文コミットしない。ストア提出AAB、SBOM、第三者ライセンス一覧を作成。
+- 公式署名鍵・OAuth秘密情報はGitHubに平文コミットしない。個人間版は署名APK、SBOM、第三者ライセンス一覧を作成。ストア提出AABはPUBLIC。
 - 自動テストと、USB DAC／高感度イヤホン／ビット忠実性等の実機検査は別判定。
 - ストア公開前は`targetSdk`、権限、プライバシーポリシー、SDK規約を再確認する。
 
@@ -336,25 +345,27 @@ Android公式：<https://developer.android.com/training/data-storage/shared/docu
 |---|---|---|
 | W1 | ローカル音源、Session、ライブラリ、キュー | エラーを含むローカル再生が安定 |
 | W2 | 出力観測、安全性、Signal Path、実機マトリクス | 不明値を正しく扱い、切断で安全 |
-| W3 | 正規サービス連携、統合キューの能力制約 | 権利確認済みの1〜複数サービス連携を検証 |
+| W3 | 正規サービス連携、統合キューの能力制約 | 全サービスの直接再生・許諾・キュー、可能なサービスの検索を検証 |
 | W4 | DSP・PCM/DSD・USB高度機能の個別バックエンド | 機種別に実証されたものだけ提供 |
 | W5 | ネットワーク再生、Visualizer、履歴／推薦、機器プロファイル | 各種統合・電力・プライバシー試験 |
-| W6 | 同期・アカウント・ソーシャル（採用時） | 本人データ管理・バックエンド運用準備 |
-| W7 | 性能・アクセシビリティ・セキュリティ・公開手続 | UAT＋端末実測＋ストア審査を満たす |
+| W6 | 同期・アカウント・ソーシャル・機器共有 | 本人データ管理・バックエンド運用準備 |
+| W7 | 性能・アクセシビリティ・セキュリティ・私用配備 | UAT＋端末実測＋署名APK更新・復旧を満たす。ストア審査等は完成後 |
 
-これは**作業順序であり、「W1までが完成製品」という意味ではない**。
+これは開発順序であり、W1〜W7すべてが個人間利用版の前提である。未採用機能を設けて工程を省略しない。原典の適用条件とOS対象外方針を維持し、未達は完成判定保留とする。
+
+全箇条書きの対応は[個人間利用版機能対応表](05_feature_coverage.md)、判断の質問は[判断事項・回答シート](06_decisions.md)を参照する。
 
 ## 14. 設計の決定ゲート（ADR）
 
 | ADR ID | 判断を要する内容 | 現時点の推奨 |
 |---|---|---|
-| ADR-001 | MediaSessionService vs MediaLibraryService | 公開版で外部ブラウズが必要ならLibraryServiceを選ぶ。最初はSessionServiceで着手可 |
-| ADR-002 | USB Direct／Nativeバックエンド | Android標準の能力検証を先行し、成功しないものだけ独自実装を審査 |
+| ADR-001 | 再生Service | MediaLibraryServiceを設計採用。MediaLibrarySession/PlayerをServiceで所有 |
+| ADR-002 | USB Direct／Nativeバックエンド | 標準経路とlibusb 1.0.29のUAC経路を分離。Native/DoPは09の転送契約と機器試験で判定 |
 | ADR-003 | DSP・リサンプラーのライブラリ | 処理品質・電池・ライセンス・ソースPCM取得可能性で比較 |
-| ADR-004 | Streaming provider別の連携形態 | 契約に従い `DIRECT/REMOTE/HANDOFF/UNAVAILABLE` を確定 |
-| ADR-005 | Backend採用と運用責任 | アカウント・同期要件が確定した時点でAPIを定義 |
-| ADR-006 | DB競合・曲の一意性 | Provider ID と Local URI を分離し、誤同定を避ける |
-| ADR-007 | OS/ABI互換性維持 | minSdk23のコストと検証結果で変更判断 |
+| ADR-004 | Streaming provider別の直接再生手段 | Q-01でDIRECT必須と確定。実装手段・用途別許諾はR-06。REMOTE/HANDOFFへの置換はしない |
+| ADR-005 | Backend採用と運用責任 | 個人間利用版に必須。Q-06〜12回答に基づき自前サーバー、メール/Google等認証・削除までの履歴保持を採用。構成・同期は08、招待/復旧/保持は09。私用配備の実環境だけP-02で確認 |
+| ADR-006 | DB競合・曲の一意性 | 08_design_decisions.mdの所有権・event_id・revision・cursor・原子的バッチ規則を採用。誤同定は解除可能 |
+| ADR-007 | OS/ABI互換性維持 | API23/compile36を維持し、Media3 1.11.1/Room 2.8.5/DataStore 1.2.1を設計採用。推移依存と実ビルドは導入時に確認 |
 | ADR-008 | 観測結果・Bit-perfect表示基準 | 実証された端末とテスト条件を公開一覧に紐づける |
 
 ## 15. 要件への対応表
@@ -370,3 +381,7 @@ Android公式：<https://developer.android.com/training/data-storage/shared/docu
 | FR-OBS | SignalPathSnapshot, VisualizerPipeline | DD-OBS |
 | FR-UI | Compose Screen/ViewModel | DD-UI |
 | FR-PLT / NFR | CI、互換性・品質マトリクス、リリースゲート | DD-TEST、DD-RELEASE |
+
+2026-10-28追補：DSP/USBの採用先、音声順序・QLT基準、LAN/タグ方式、私用認証とPUBLIC延期は[順次レビュー](09_private_completion_review.md)に従う。全領域の外部条件解決を待ってローカル実装を止めない。
+
+2026-10-28 Apple Music追加：Apple Musicも直接再生必須、検索は可能時とする。Provider AdapterはMusicKit for Androidの再生とApple Music APIのカタログ検索を使い、Coordinatorの所有者管理・取消・状態反映へ接続する。Apple専用Playerを共通PCM Playerと同一視せず、developer tokenの署名鍵は自前サーバーに置く。詳細はDD-PROV-06。個人間利用優先とPUBLIC延期は維持する。
