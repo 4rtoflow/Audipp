@@ -1,7 +1,7 @@
 # Audipp — UI/UX Design System & Design Principles
 
-> **Status:** Draft / proposed design rules (not yet approved)  
-> **Version:** 0.2.4-draft\
+> **Status:** Review Complete / Approved implementation baseline (2026-10-28)\
+> **Version:** 1.0.0\
 > **Updated:** 2026-10-28\
 > **Scope:** Android smartphones and Android-based DAPs; initial PoC: local-file playback.  
 > **Intent:** Design specification for human contributors and AI coding agents.
@@ -10,7 +10,7 @@
 
 この文書はAudippのビジュアル・インタラクション・画面構成・UI品質を規定する。機能そのものの採否、音声エンジンの詳細仕様、Android版以外の開発計画はPRD・機能要件・非機能要件を優先する。競合製品のUIは**参照**であり、画面や固有アセットを模倣・複製しない。
 
-2026-10-27のレビュー修正では、利用者から委任された判断の範囲で、既存のテーマ3モード・ミニプレイヤー・モーション削減方針を要件定義FR-UI-03/06と詳細設計TEST-UI-01へ対応付けた。これは本書全体の正式承認や実装完了を意味しない。承認・保留の記録は要件定義§9.1を正本とする。
+2026-10-27のレビュー修正では、利用者から委任された判断の範囲で、既存のテーマ3モード・ミニプレイヤー・モーション削減方針を要件定義FR-UI-03/06と詳細設計TEST-UI-01へ対応付けた。当時は本書全体の正式承認や実装完了を意味しなかった。2026-10-28の利用者指示により、本書を含む全レビューをCompleteとし、正式版1.0.0へ移行した。実装・実機検証は別に行う。承認・保留の記録は要件定義§9.1を正本とする。
 
 **製品の二つの中心価値（同等の重要度）：**
 1. 高品質な音声再生と、信号経路・再生状態の透明性。
@@ -309,10 +309,12 @@ AudippTheme
 
 この優先度は開発中の作業順である。2026-10-27の利用者指示により、個人間利用版ではP0〜P2に加え、原典のカスタムテーマ・Androidホーム画面ウィジェット・全Visualizer・高度設定をすべて必須とする。PoCの完成を公開条件にしない。全機能対応表と判断事項は`docs/specifications/05_feature_coverage.md`と`06_decisions.md`を参照する。
 
-## 13. 未決定事項（レビュー対象）
+## 13. 実装時に具体化・検証する項目
+
+以下の未チェック項目は実装時の作業であり、今回の設計レビューの未完了を示すものではない。
 
 - [x] Q-13により現行のAudipp名称・暫定配色を起点に案を作る方針を採用。最終の見た目はUIレビューで確認する。
-- [x] テーマ3モードを初期要件に採用（System / Dark / Light、Systemを初期値）。2026-10-27、修正裁量の委任に基づきFR-UI-03へ反映。実装・実機検証と文書全体の正式承認は未完了。
+- [x] テーマ3モードを初期要件に採用（System / Dark / Light、Systemを初期値）。2026-10-27、修正裁量の委任に基づきFR-UI-03へ反映。文書全体のレビューはComplete。実装・実機検証は未実施。
 - [ ] トップナビゲーション最終構成（Visualizerを独立タブにするか）。
 - [ ] 最小対応画面幅・Androidバージョン・DAP実機マトリクス。
 - [ ] 全Visualizerは個人間利用版で必須。開発中PoCの導入順と、信号取得経路・精度はR-02/03/05で具体化。
