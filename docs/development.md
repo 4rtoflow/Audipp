@@ -50,6 +50,40 @@ Debug APKは `app/build/outputs/apk/debug/app-debug.apk`、テスト結果は `a
 
 依存を更新した場合だけ同じコマンドに `--write-locks` を追加し、カタログとlockfileを一緒に更新します。新たにReleaseなどの構成を使う場合は、その構成も検証・ロックします。初回の依存取得にはネットワーク接続が必要です。
 
+## CIとPRの品質ゲート
+
+[Issue #15](https://github.com/4rtoflow/Audipp/issues/15) のCIは `.github/workflows/ci.yml` で定義します。main宛てのPR（本文編集を含む）、mainへのpush、手動実行が対象です。資料のみのPRも同じチェックを実行します。
+
+- `PR requirements`: PR本文に「対応要件」「変更範囲」「成果」「証跡」「安全・権利・プライバシー」「未確認」の記入を求めます。「対応要件」にはFR/NFR・DD・TESTの各IDが必要です。テンプレートのコメントは記入扱いにしません。IDの実在と対応の妥当性、証跡の内容はレビューで確認します。
+- `Android build, unit tests, lint, release`: Ubuntu 24.04、JDK 17、既存Wrapperで次を実行します。minSdk 23・compileSdk 36を維持します。
+
+```sh
+./gradlew --no-daemon --console=plain :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:assembleRelease
+```
+
+Gradle設定・カタログ・Wrapper・lockfileを変更した場合だけ、CIでも `--write-locks` を追加し、再生成したlockfileとコミット済みの内容が一致することを検査します。依存変更時は同じコマンドに `--write-locks` を付けてローカル検証し、生成差分をコミットしてください。解決結果が変わらなければlockfileの差分は不要です。CIの通常実行でlockfileを更新することはありません。
+
+ビルド・テスト・Lint・lock検証が失敗した場合はジョブが失敗し、APKはアップロードしません。テスト・Lintレポートは失敗時も取得可能なものを7日保存します。成功時の `ci-apks-not-for-distribution` にはDebug APKと**未署名Release APK**を7日保存します。配布用の署名鍵・API秘密・個人SDKパスをCIへ渡す必要はありません。実署名APKと同一鍵更新の検証は #151 の責務です。
+
+PR本文チェックのローカル検証:
+
+```sh
+python3 -m unittest discover -s scripts/ci -p 'test_*.py'
+```
+
+### main保護の管理者向け設定依頼
+
+2026-10-29の確認ではrulesetはなく、接続アカウントの権限はpushまででadmin/maintainはありません。管理者はCIの初回実行後、Settings → Branchesのmain保護、または同等のrulesetで次を設定してください。この設定が確認できるまでは、CI成功をマージ強制の導入完了とは扱いません。
+
+1. PR経由の変更と承認レビュー1件を必須にし、追加コミットで古い承認を無効化する。
+2. 必須チェックに `PR requirements` と `Android build, unit tests, lint, release`（GitHub Actions）を指定し、マージ前に最新のmainとの整合を要求する。
+3. 未解決のレビュー会話があるマージ、force push、main削除を禁止し、管理者にも同じルールを適用する。
+4. 未記入のPR、失敗するビルド/テスト/Lint、承認前のPRがマージ不可で、チェック成功・承認後にマージ可能になることを確認する。
+
+### Issue #15の要求・検証の対応
+
+対象は NFR-MAINT-01 / NFR-TEST-01 / NFR-TEST-02 → DD-TEST-01 / DD-RELEASE-02 → TEST-GOV-01（CI・PRゲート部分）、およびTEST-COMP-01（API設定・ビルド部分）です。結果・対象commit・実行URLは対応PRの「証跡」に記録します。API 23での実行、スマートフォン/DAP/DAC実機、音声品質、管理権限が必要なmain保護設定は、ビルド成功から推定しません。これらの試験ファミリー全体の完了を表すものではありません。
+
 ## ADBでインストールする
 
 SDKの `platform-tools` をPATHに追加します。`adb devices -l` で接続・認証状態を確認し、以下の `SERIAL` を対象のシリアルに置き換えます。
