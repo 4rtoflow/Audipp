@@ -31,11 +31,7 @@ jobs:
         run: python3 scripts/ci/check_pr.py
 
   android:
-    name: Failure injection (${{ matrix.failure }})
-    strategy:
-      fail-fast: false
-      matrix:
-        failure: [build, unit, lint]
+    name: Android build, unit tests, lint, release
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
@@ -63,22 +59,6 @@ jobs:
             fi
           fi
           echo "changed=$changed" >> "$GITHUB_OUTPUT"
-      - name: Inject expected failure
-        env:
-          FAILURE_CASE: ${{ matrix.failure }}
-        run: |
-          case "$FAILURE_CASE" in
-            build)
-              printf '%s\n' 'package com.audipp' 'val ciFailure: MissingCiType = error("Expected build failure")' > app/src/main/java/com/audipp/CiFailure.kt
-              ;;
-            unit)
-              printf '%s\n' 'package com.audipp' 'class CiFailureTest { @org.junit.Test fun fails() { org.junit.Assert.fail("Expected unit failure") } }' > app/src/test/java/com/audipp/CiFailureTest.kt
-              ;;
-            lint)
-              mkdir -p app/src/main/res/layout
-              printf '%s\n' '<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent"><View android:id="@+id/ci_duplicate" android:layout_width="1dp" android:layout_height="1dp"/><View android:id="@+id/ci_duplicate" android:layout_width="1dp" android:layout_height="1dp"/></LinearLayout>' > app/src/main/res/layout/ci_failure.xml
-              ;;
-          esac
       - name: Debug build, unit tests, lint, unsigned Release build
         env:
           DEPENDENCIES_CHANGED: ${{ steps.dependencies.outputs.changed }}
@@ -94,7 +74,7 @@ jobs:
         if: ${{ always() && !cancelled() }}
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: verification-reports-${{ matrix.failure }}
+          name: verification-reports
           path: |
             app/build/reports/tests/
             app/build/test-results/
@@ -104,7 +84,7 @@ jobs:
       - name: Upload CI APKs
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: ci-apks-not-for-distribution-${{ matrix.failure }}
+          name: ci-apks-not-for-distribution
           path: |
             app/build/outputs/apk/debug/*.apk
             app/build/outputs/apk/release/*-unsigned.apk
