@@ -3,7 +3,7 @@
 | 項目 | 内容 |
 |---|---|
 | レビュー状態 | **Complete**（2026-10-28、利用者による全レビュー完了・正式版承認） |
-| 版・調査日・更新日 | 1.0.0 / 2026-10-27 / 2026-10-28 |
+| 版・調査日・更新日 | 1.0.1 / 2026-10-27 / 2026-10-29 |
 | 製品要求 | 全サービスの直接再生。カタログ検索は可能なら実装。YouTube系はyt-dlp・音声のみ |
 | 状態 | 公開資料の一次調査。実装手段・個別許諾・認証・実機再生は未確定 |
 
@@ -11,7 +11,7 @@
 
 2026-10-28追記：まず招待した個人間で使うアプリを完成させ、一般公開準備は完成後へ移す。利用者の開発者登録・API許可は「未取得または不明」。個人利用で適用される条件は残る。今回の再確認・技術選別は[順次レビュー①](09_private_completion_review.md)を参照。
 
-2026-10-28範囲更新：Amazon Music/SoundCloudは利用者判断で実装対象外。現在の調査・問い合わせ対象から除外する。以下の一次資料欄に残る過去の参照は再実装の予定ではない。qobine/librespot/Ciderの追加調査は[候補照合](10_provider_proposal_review.md)を参照。
+2026-10-29範囲更新：Apple Music/Amazon Music/SoundCloudは利用者判断で実装対象外。現在の調査・問い合わせ対象から除外する。以下の一次資料欄に残る過去の参照は再実装の予定ではない。qobine/librespotの追加調査と対象外Apple Musicの過去調査は[候補照合](10_provider_proposal_review.md)を参照。
 
 ## サービス別の確認結果
 
@@ -19,7 +19,7 @@
 |---|---|---|---|
 | Qobuz | 公式ドメインにAPI利用条件文書があり、Qobuz発行のApplication ID/secretを必要とする。ただし取得した文書は2011年発効の旧資料 | 現在有効な開発者契約、Android直接再生の方式・高音質範囲、検索・統合・DSP・履歴等の利用条件 | qobine参考の非公式候補をDD-PROV-07/10で照合。認証/取得と用途条件を分けて確認し、旧PDFだけで現在の利用許可を判断しない |
 | Spotify | 公開Android SDKはSpotifyアプリへの再生指示・状態取得。Developer Policyには他サービスとの統合、指標・統計生成等の制限がある | AndroidでAudippが再生主体になれる正式な提供手段、混在キュー等の必要用途の許諾 | App Remoteで代替しない。librespot v0.8.0のPCM Sink候補を10で照合し、Android導入・認証/取得・用途条件を確認 |
-| Apple Music | AppleはMusicKit for Androidによるアプリ内音楽再生と、Apple Music APIのカタログ検索を案内。developer tokenとMusic User Tokenを区別し、Androidは利用者tokenを明示管理 | Audipp向けの開発者資格・識別子/鍵、現行Android SDK版/最低OS/ABI、利用者認可・再生契約、PCM/用途別能力・利用条件 | MusicKit Android＋Apple Music APIを採用経路とする。資格/SDKを取得してDD-PROV-06の契約試験。iOS/公式アプリの音質・DSP機能をSDKへ転記しない |
+| Apple Music | EXCLUDED（2026-10-29利用者決定） | MusicKit/Apple Music API・Cider参考の独自PCM研究は対象外 | 資格取得・問い合わせ・実装・試験・完成条件から除外 |
 | YouTube / YouTube Music | yt-dlpは音声専用フォーマット選択を持つ。YouTube APIのポリシーはAPI経由コンテンツの音声分離・バックグラウンド再生等を制限し、一般利用規約にも取得・自動アクセスの制限がある | yt-dlp経路の技術的適合、サービス条件・音源の権利・配布可否。YouTube Music側も別に確認が必要 | 音声専用形式・映像なしの契約を維持し、利用可能な条件を確認して検証する。公式動画UI・遠隔操作へ無断変更しない |
 
 いずれもAudippが利用許諾を取得した証拠はない。現時点の判定は全サービスで「製品要求確定／実現手段・公開条件の確認未完了」である。Spotifyの現在確認したAndroid SDKで要件を満たせないことと、あらゆる契約・方式で不可能であるという断定は区別する。
@@ -45,11 +45,11 @@
 外部への問い合わせ、契約、APIキー発行、ログイン、音声取得・再生、機器操作は本調査では行っていない。具体の契約・資格情報・実機結果が必要な段階では、対象と作業を示して確認する。
 
 
-8. [MusicKit公式案内](https://developer.apple.com/musickit/)、[Developer token](https://developer.apple.com/documentation/applemusicapi/generating-developer-tokens)、[Music User Token](https://developer.apple.com/documentation/applemusicapi/user-authentication-for-musickit) — 2026-10-28追加。Android内再生・検索経路と開発者/本人認証の分離。
+8. [MusicKit公式案内](https://developer.apple.com/musickit/)、[Developer token](https://developer.apple.com/documentation/applemusicapi/generating-developer-tokens)、[Music User Token](https://developer.apple.com/documentation/applemusicapi/user-authentication-for-musickit) — 2026-10-28追加。Android内再生・検索経路と開発者/本人認証の分離。2026-10-29に対象外へ変更したため過去調査の参照のみ。採用・追加調査・問い合わせの予定ではない。
 
 ## 提供元への確認案（未送信）
 
-Amazon Music/SoundCloudへの問い合わせ案は撤回。残る問い合わせも必要性を候補検証と合わせて判断し、資料の提供だけで送信や公式申請を実行しない。
+Apple Music/Amazon Music/SoundCloudへの問い合わせ案は撤回。残る問い合わせも必要性を候補検証と合わせて判断し、資料の提供だけで送信や公式申請を実行しない。
 
 以下は問い合わせの準備資料である。受領済みの許可や回答ではない。送信先・申請主体・本文を確認し、利用者から送信の明示指示を受けた場合にのみ連絡する。APIの利用申請、契約締結、料金支払はそれぞれ別の行為として扱う。
 
@@ -61,7 +61,7 @@ Amazon Music/SoundCloudへの問い合わせ案は撤回。残る問い合わせ
 |---|---|---|
 | Qobuz | 現行API契約とAndroid直接再生、対応音質、App ID/secretを安全に扱う正式方式 | 現行文書・申請資格・SDK/プロトコル・資格情報の扱い。2011年資料だけで判断しない |
 | Spotify | Spotifyアプリを再生主体としないAndroid向け直接再生手段、他サービス/ローカルとの混在キュー、履歴・個人統計の許否 | App Remote以外の正式手段が提供されるか、必要な個別契約、用途別の可否。公開Android SDKで代替した回答にしない |
-| Apple Music | Android SDKの現行版・資格/契約、アプリ内音声再生、混在キュー/メタデータ/統計等の用途、PCMと音質の公開範囲 | 正式SDKの対応OS/ABIと機能・適用条件。developer token署名と本人認証の手順。資格取得済みとは扱わない |
+| Apple Music | EXCLUDED（2026-10-29利用者決定） | 公式SDK/API・独自PCM研究とも実装対象外。資格取得・問い合わせ・試験を行わず、完成条件に数えない |
 | YouTube / YouTube Music | yt-dlpで音声専用形式を扱い、映像表示なし・画面OFFでも再生する構想について、利用できる条件・許可手順の有無 | 両サービスそれぞれの用途・取得方法・配布条件。技術的に取得可能という回答だけで許可済みとしない |
 
 各提供元には、直接再生とカタログ検索のほか、混在キュー、メタデータ表示/キャッシュ、PCMアクセス、DSP、波形/解析表示、履歴、個人統計、推薦、Last.fm送信、端末間同期を**用途ごと**に確認する。利用不可の用途があれば制限条項・例外の有無を記録する。すべての用途を包括的な「API利用可能」の一言で許可済みにしない。提供元に音源や秘密を不要に送らない。

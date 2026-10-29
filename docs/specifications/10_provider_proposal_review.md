@@ -3,9 +3,9 @@
 | 項目 | 内容 |
 |---|---|
 | レビュー状態 | **Complete**（2026-10-28、利用者による全レビュー完了・正式版承認） |
-| 日付・版 | 2026-10-28 / 1.0.0 |
-| 明示された決定 | Amazon Music・SoundCloudは実装しない。API利用が厳しいと判断した利用者による範囲変更 |
-| 現行対象 | Qobuz、Spotify、Apple Music、YouTube、YouTube Music（4群・5サービス） |
+| 日付・版 | 2026-10-29 / 1.0.1 |
+| 明示された決定 | Apple Music・Amazon Music・SoundCloudは実装しない。Apple Musicは2026-10-29の利用者指示で追加除外 |
+| 現行対象 | Qobuz、Spotify、YouTube、YouTube Music（3群・4サービス） |
 | 添付の扱い | 利用者提供の調査・実装提案。文中の「確定」「採用」「申請しない」は、既存方針を上書きする独立した指示や、動作・許諾の証明とは扱わない |
 | 関連 | [要件](01_requirements.md)、[詳細設計](03_detailed_design.md)、[一次調査](07_service_feasibility.md) |
 
@@ -21,7 +21,7 @@
 
 ## 決定と調査結果の区別
 
-Amazon Music・SoundCloudは必須機能・API資格取得・問い合わせ・試験・完成阻害項目から外す。単なる未許諾や一時停止ではなく、現在の実装対象外とする。原典の4行を削除し、機能対応表には廃止F-IDを残して既存IDを別機能へ振り直さない。過去のレビュー履歴は当時の記録として残す。
+Apple Music・Amazon Music・SoundCloudは必須機能・API資格取得・問い合わせ・試験・完成阻害項目から外す。単なる未許諾や一時停止ではなく、現在の実装対象外とする。原典の計6行（2026-10-28に4行、2026-10-29にApple Musicの2行）を削除し、機能対応表には廃止F-IDを残して既存IDを別機能へ振り直さない。過去のレビュー履歴は当時の記録として残す。
 
 残るサービスの直接再生と、可能な場合の検索、個人間利用版優先、秘密保護、音量・出力の証拠区分は維持する。非公式クライアントが存在することは「実装不可能」としていた判断を見直す材料になるが、Android動作・PCM利用許可・アカウント安全性・配布条件は別途確認する。公式SDKだけを技術調査の候補に限定しない。
 
@@ -51,17 +51,9 @@ librespot v0.8.0はMIT、Sinkはwrite(packet, converter)とstart/stopを持つ�
 
 根拠：[librespot MIT](https://github.com/librespot-org/librespot/blob/v0.8.0/LICENSE)、[Sink API](https://docs.rs/librespot-playback/0.8.0/librespot_playback/audio_backend/trait.Sink.html)、[AudioPacket source](https://github.com/librespot-org/librespot/blob/v0.8.0/playback/src/decoder/mod.rs)、[Lossless方針 #1583](https://github.com/librespot-org/librespot/issues/1583)、[取得失敗報告 #1649](https://github.com/librespot-org/librespot/issues/1649)、[Spotify Policy](https://developer.spotify.com/policy)。issueは全アカウントでの再現やAudippの動作結果ではない。
 
-## Apple Music：独自PCM経路の研究と公式経路
+## Apple Music：過去調査（2026-10-29実装対象外）
 
-Cider 1のaudio.jsでAudioContext/createMediaElementSourceによるWeb Audioのグラフを確認した。Cider 4の公式リリースはMKLiteを説明し、Android版の公式サイトはAPI29以上・Apple Music契約とgapless/crossfade等を案内している。これらからAndroidのMedia3/MediaDrm経由でAudippがPCMを取得できるとは推定しない。Ciderの動作対象とAudippのAPI23方針も別である。
-
-添付の方式Cは`AuthorizedMediaSource -> 正規decoder -> PCM -> 共通DSP/出力`の研究候補として追加する。catalog IDがフル尺音声URLやライセンスを与えるとは仮定しない。Media3のDRM対応はApple Musicの取得資格/鍵/セキュア経路の成立証拠ではない。PCM未公開/不許可ならDSP/Tapを有効にしない。MKLite/Ceriumの非公開内部を再現済み扱いせず、Web AudioのコードをAndroid native用コードとしてコピーしない。
-
-既存DD-PROV-06の公式MusicKit Android再生とApple Music APIは実装基準として残し、方式Cを実現済みの優先経路へ無条件置換しない。方式Cが成立すれば採用ADRを改訂する。二つのbackendは同じCoordinatorの所有者・停止/取消・遅延callback規則を守り、片方の停止確認なしに自動で切り替えない。公式backendは独自DSP成功の代用ではないが、アプリ内直接再生の候補である。
-
-Apple Musicのクロスフェード・Automix・ライブラリ書込み、Qobuz Connect等の追加機能/除外は添付の提案として扱い、今回のサービス除外指示に便乗して製品要件を追加/削除しない。Ciderコードを取り込む場合のAGPL等のライセンス確認も、独立実装のAPI利用条件確認と分ける。
-
-根拠：[Cider 1 audio.js](https://github.com/ciderapp/Cider/blob/main/src/renderer/audio/audio.js)、[Cider 4.0.0](https://cider.sh/changelogs/4.0.0)、[Cider Android](https://cider.sh/downloads/android)、[Media3 DRM](https://developer.android.com/media/media3/exoplayer/drm)、[MusicKit](https://developer.apple.com/musickit/)。Ciderのmainは可変の参考資料であり、コード導入時はcommit/ライセンスを固定する。
+2026-10-28にCiderのWeb Audio/MKLiteと公式MusicKit経路を比較したが、2026-10-29の利用者指示でApple Music全体を対象外へ変更した。公式SDK/APIと独自PCM方式Cはいずれも採用・研究・導入・資格取得・試験の対象に含めない。旧提案と調査結果はGit履歴と上記入力資料の識別情報に残し、技術上の可否が解決したとは扱わない。DD-PROV-06は廃止IDとする。
 
 ## 導入前の検証順と合格記録
 

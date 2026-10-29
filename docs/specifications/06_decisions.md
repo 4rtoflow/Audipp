@@ -3,7 +3,7 @@
 | 項目 | 内容 |
 |---|---|
 | レビュー状態 | **Complete**（2026-10-28、利用者による全レビュー完了・正式版承認） |
-| 版・更新日 | 1.0.0 / 2026-10-28 |
+| 版・更新日 | 1.0.1 / 2026-10-29 |
 | 確定した前提 | 個人間で使える完成版を先に作る。一般公開・メール送信・公開名義・配布経路・常設窓口等は完成後のPUBLIC |
 | 状態 | Q-01〜13は2026-10-27に全回答を受領。確定事項と残る具体化を下記に記録 |
 | 関連 | [要件定義](01_requirements.md)、[全項目対応表](05_feature_coverage.md)、[詳細設計](03_detailed_design.md) |
@@ -16,11 +16,11 @@
 
 ### Q-01：各音楽サービスで、どの再生体験を必須にしますか
 
-**決定（Q-01）：** Qobuz、Spotify、Apple Music、YouTube、YouTube Musicのすべてで、Audippによる直接再生を必須とする。カタログ検索は、技術・許諾上可能なら実装する。カタログ検索が成立しないだけで直接再生の要求を省かず、理由と調査結果を記録する。
+**決定（Q-01）：** Qobuz、Spotify、YouTube、YouTube Musicのすべてで、Audippによる直接再生を必須とする。カタログ検索は、技術・許諾上可能なら実装する。カタログ検索が成立しないだけで直接再生の要求を省かず、理由と調査結果を記録する。
 
 PARTNER_REMOTEやEXTERNAL_HANDOFFへの置換は直接再生の達成としない。公式遷移は補助操作に限る。直接再生の成立と、PCM取得・DSP・解析・履歴保存等の許可はそれぞれ確認する。SpotifyのAndroid SDKはSpotifyアプリの再生を遠隔操作するもので、この直接再生要求を満たす実装手段ではない。[公式SDK資料](https://developer.spotify.com/documentation/android)（2026-10-27確認）。直接再生に使える個別手段・許諾は未確認であり、製品要求の確定と実現可能性の確認を分ける。
 
-2026-10-28の追加指示でApple Musicも必須対象へ追加した。MusicKit for Android/Apple Music APIを公式経路とし、SDK導入・Apple Developer資格・MusicKit識別子/鍵・利用者の認可と再生資格は未確認。Apple MusicはAudippのアカウント認証と別管理する。
+2026-10-29の利用者指示でApple Musicを実装対象外へ変更した。2026-10-28の追加決定と公式MusicKit/Apple Music API経路・Cider参考の独自PCM研究を撤回し、資格取得・問い合わせ・実装・試験・完成条件から除外する。現行対象はQobuz、Spotify、YouTube、YouTube Music（3群・4サービス）。
 
 **関係：** D-01、ADR-004、IMP-04/07、FR-SRC-08〜10、R-06。
 

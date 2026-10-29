@@ -4,7 +4,7 @@
 |---|---|
 | レビュー状態 | **Complete**（2026-10-28、利用者による全レビュー完了・正式版承認） |
 | 文書ID | AUD-LLD-001 |
-| 文書版・作成日・更新日 | 1.0.0 / 2026-10-26 / 2026-10-28 |
+| 文書版・作成日・更新日 | 1.0.1 / 2026-10-26 / 2026-10-29 |
 | 対応文書 | [要件定義書](01_requirements.md)・[基本設計書](02_basic_design.md) |
 | 実装状態 | **設計系レビュー終了・実装着手用仕様**（2026-10-28利用者指定）。本設計のコード実装・依存導入・端末試験は未実施であり、該当領域で検証して差分を改訂する。 |
 | 適用範囲 | 完成版のローカル／高音質／統合ソース／ネットワーク／統計／私用同期・共有（PUBLICは完成後） |
@@ -599,7 +599,7 @@ requestPauseOrStop/cancelPendingPlaybackがSDKで実行できなければUNSUPPO
 
 ### DD-PROV-04 サービス別成立台帳・YouTube検証
 
-現行4サービス群（Qobuz/Spotify/Apple Music/YouTube系。YouTubeとYouTube Musicは両方を検証）について、サービス名、直接再生の実装手段、カタログ検索可否、認証・再生・キュー・履歴等の用途別許諾、採用API/SDK/ツール版、個別許諾証跡、期限、試験ケースと結果を台帳へ記録する。カタログ検索は可能なら実装し、不可能なら理由を残す。YouTubeとYouTube Musicは同一方式が使えると仮定せず、両者の成立条件を別行で記録する。台帳に必要な直接再生機能のBLOCKEDが残れば公開しない。
+現行3サービス群（Qobuz/Spotify/YouTube系。YouTubeとYouTube Musicは両方を検証）について、サービス名、直接再生の実装手段、カタログ検索可否、認証・再生・キュー・履歴等の用途別許諾、採用API/SDK/ツール版、個別許諾証跡、期限、試験ケースと結果を台帳へ記録する。カタログ検索は可能なら実装し、不可能なら理由を残す。YouTubeとYouTube Musicは同一方式が使えると仮定せず、両者の成立条件を別行で記録する。台帳に必要な直接再生機能のBLOCKEDが残れば公開しない。
 
 FR-SRC-11の技術検証は製品コードへの採用と分け、音源・検証アカウント・利用条件・取得方式・事前保存量・URL有効期限を記録する。逐次読込、失効、シーク、認証失敗、通信切断を再現し、成功・失敗と回復動作を残す。利用条件上実行できない試験はBLOCKEDとして理由を残し、許諾を得るまで実施しない。技術的成功、利用許諾、配布許可は別の判定欄を持つ。
 
@@ -611,29 +611,17 @@ Playerは全体保存を待たず逐次再生する。seekは上流Range/segment
 
 私用API、実行版の固定/更新、資源上限、認証情報、初期の認証不要試料と本人認証必要ケースの分離は[中継契約](11_ytdlp_delivery.md)に従う。端末内蔵/Python/JSのAndroid対応とAPI24ラッパー問題は後段候補へ移し、現在の完成条件にしない。提供元の利用条件・権利と技術成功は別判定のまま保持する。
 
-### DD-PROV-06 Apple Music（MusicKit for Android）
+### DD-PROV-06 Apple Music（廃止）
 
-FR-SRC-09の追加対象。直接音声再生は公式MusicKit for Android、カタログ検索はApple Music APIを採用経路とする。検索APIが音声URLを返すとは仮定せず、再生用IDをSDKへ渡す。Apple Music公式アプリへの遷移・遠隔操作・preview再生だけで直接フル再生を達成した扱いにしない。動画・music videoを再生対象へ混ぜない。[MusicKit公式案内](https://developer.apple.com/musickit/)。
-
-自前サーバーはMusicKit用private keyを秘密保管し、認証した私用クライアントへ有効期限付きdeveloper tokenを発行する。署名はES256、鍵はAPK・Git・同期・ログへ入れない。Team/Key ID、期限・鍵更新と失効手順を管理し、誰でも署名要求できるAPIにしない。Apple側の開発者登録・Media/MusicKit識別子・鍵取得は未実施として扱い、アプリ無料/私用利用を資格取得の代用にしない。[Developer token](https://developer.apple.com/documentation/applemusicapi/generating-developer-tokens)。
-
-利用者の認可はAndroid用の正規認証フローでMusic User Tokenを取得し、端末内の暗号化保存へ置く。developer tokenとMusic User Tokenを別管理し、後者を署名サーバーや端末間同期へ送らない。Audipp本人アカウントとApple Musicアカウントを文字列一致で結合しない。AndroidにAppleプラットフォーム/Webと同じ自動token管理があると仮定しない。[利用者認証](https://developer.apple.com/documentation/applemusicapi/user-authentication-for-musickit)。
-
-Adapterはstorefront/地域、楽曲ID種別（catalog/library）、利用者認証、契約・再生資格と楽曲の利用可否を検査し、結果をキューと画面へ返す。developer token期限切れと利用者の認可取消を区別し、前者は有界の再取得、後者はAUTH_REQUIREDとして未送信処理を停止する。検索はquery/種別/ページとstorefrontを使い、music videoを除外し、地域差や利用不可を空検索結果と混同しない。
-
-SDKがPlayerを所有する経路もService/Coordinatorからだけ開始し、SDK callbackを共通PlaybackSnapshotへ反映する。停止/取消と遅延callbackはDD-QUEUE-04に従い、旧所有者の停止確認前に次の音源を自動開始しない。実機でアプリ内再生主体・pause/seek/stop・状態通知・画面OFFと混在キューを確認する。
-
-SDK版・最低OS/ABI・同梱native・ライセンス・依存互換性は、取得したAndroid SDKを導入する時点で固定し、現在のAPI23方針と照合する。canAccessPcmは証拠がなければfalse、用途別許諾はUNREVIEWEDとする。DSP/Visualizer/統計/推薦/同期/Last.fmの可否とlossless/hi-res/DSD/Direct出力はそれぞれ別検査し、iOS版やApple Music公式アプリの機能をSDKの能力として転記しない。ログアウト時はSDK再生・保留開始を止め、本人tokenと未送信処理を破棄/取消する。
-
-TEST-PROV-01/TEST-RESEARCH-01へ、正規認可/取消、二種tokenの期限・失効、秘密漏洩、契約なし、storefront差、検索/ページング、previewとフル再生の区別、SDK再生/Stop/遅延callback、混在キュー、画面OFF、PCMなし・用途未許可時の拒否を追加する。Galaxy S25/FiiO M21を主要対象、Galaxy S20を追加検証対象とする。SDK導入・資格取得・実機成功は未実施。
+2026-10-29の利用者指示によりApple Musicは実装対象外。公式MusicKit for Android/Apple Music API、developer token署名API、本人認証、検索・再生AdapterとCider参考の独自PCM方式Cの研究・試験を実施しない。資格未取得・未実装・未検証を完成阻害に数えない。旧設計はGit履歴を参照し、このIDを別機能へ再利用しない。
 
 ### DD-PROV-07 添付からの追加候補・対象外サービス
 
-Amazon Music/SoundCloudは実装しない。Adapter/ログイン/検索・再生UI/申請・UATの対象を現行4群へ絞る。除外した2サービスの停止・未許諾をアプリの未完成理由にしない。以前の調査結果は履歴として保持する。
+Apple Music/Amazon Music/SoundCloudは実装しない。Adapter/ログイン/検索・再生UI/申請・UATの対象を現行3群・4サービスへ絞る。除外した3サービスの停止・未許諾をアプリの未完成理由にしない。以前の調査結果は履歴として保持する。
 
-添付のQobuz非公式接続、Spotify librespot PCM供給、Apple方式Cの主張・一次ソース・未検証箇所は[候補照合](10_provider_proposal_review.md)に記録した。これらを技術調査対象へ追加し、「正式SDK以外は候補がない」とは扱わない。一方、資料に書かれた採用/申請不要/機能追加を、そのままユーザー決定や動作保証へ昇格しない。
+添付のQobuz非公式接続、Spotify librespot PCM供給の主張・一次ソース・未検証箇所は[候補照合](10_provider_proposal_review.md)に記録した。これらを技術調査対象へ追加し、「正式SDK以外は候補がない」とは扱わない。一方、資料に書かれた採用/申請不要/機能追加を、そのままユーザー決定や動作保証へ昇格しない。
 
-Qobuzはcommit固定qobineを参考にブラウザー認証、FileBased/SessionBased、報告と回復を分離して検証する。Spotifyはlibrespot v0.8.0のSamples(Vec<f64>)だけをPCM候補とし、Rawと区別して共通bufferへ渡す。callback生存期間・Stop/seek世代・cancel可能なbackpressure・正規化の二重適用を検査する。Apple独自PCMは研究候補とし、DD-PROV-06の公式backendを維持。正規のメディア/DRM条件とPCMアクセスを確認できなければ共通DSPへ接続しない。
+Qobuzはcommit固定qobineを参考にブラウザー認証、FileBased/SessionBased、報告と回復を分離して検証する。Spotifyはlibrespot v0.8.0のSamples(Vec<f64>)だけをPCM候補とし、Rawと区別して共通bufferへ渡す。callback生存期間・Stop/seek世代・cancel可能なbackpressure・正規化の二重適用を検査する。正規のメディア/DRM条件とPCMアクセスを確認できなければ共通DSPへ接続しない。
 
 TEST-PROV-01/RESEARCH-01は現行対象だけで、版/ABI・認証/契約・取得失敗・報告・callback・秘密漏洩・用途別拒否を確認する。TEST-QUEUE-01/TAP-01/SEC-01も候補導入時に適用する。生の添付コード・Rust/Gradleモジュール・新たな依存を先に取り込まない。未実装のcrossfade/AutomixやConnectの採否は今回の製品変更に追加しない。
 
@@ -902,7 +890,7 @@ Android向け全機能をRB必須とし、各試験ファミリーの私用ケ�
 | TEST-AUD-01 | FR-AUD-01, FR-OBS-01 | ソース44.1k、OS48k等の差異を模擬 | 差異・証拠区分が正しく表示 |
 | TEST-AUD-02 | FR-AUD-03〜07 | DAC別Direct/DSD/DSP検査 | 対応していない経路は無効、検証ログあり |
 | TEST-AUD-03 | FR-AUD-08, FR-DEV-05 | 高感度イヤホン、音量急増シナリオ | 想定外の急増を生じない |
-| TEST-PROV-01 | FR-SRC-08〜10 | 対象外2サービスを除く現行対象の直接再生・認証・失効・キュー、カタログ検索可否、補助操作。再生のみ許可・他用途不許可を模擬 | REMOTE/HANDOFFを直接再生と判定せず、検索可能時は実装・不可時は根拠を記録。不許可データ処理を入口で拒否 |
+| TEST-PROV-01 | FR-SRC-08〜10 | 対象外3サービスを除く現行対象の直接再生・認証・失効・キュー、カタログ検索可否、補助操作。再生のみ許可・他用途不許可を模擬 | REMOTE/HANDOFFを直接再生と判定せず、検索可能時は実装・不可時は根拠を記録。不許可データ処理を入口で拒否 |
 | TEST-QUEUE-01 | FR-PLY-07〜09, FR-NET-03 | LOCAL↔REMOTE/NETWORK_REMOTE/HANDOFF、開始待ち中のStop・別曲・削除・遅延成功 | 旧主体の停止未確認で次を自動開始しない。取消後の開始通知は状態を戻さず停止要求 |
 | TEST-NET-01 | FR-NET-01〜03 | LAN切断・再接続・MPD再生状態不整合 | 状態が一致しなければ明示 |
 | TEST-VIS-01 | FR-OBS-02〜04 | FFT入力比較、ステレオ相関、CPU高負荷 | 正しい計測結果、再生影響を制御 |
@@ -995,7 +983,7 @@ CI結果 / Unit / Instrumented / 実機（機種、OS、DAC、サンプル）
 | IMP-01 | Media3版とService種別 | Media3 1.11.1 / MediaLibraryServiceを設計採用 | 導入時の推移依存・実ビルド確認を必須とする |
 | IMP-02 | DB版とURI権限 | 初期schema v1、Room 2.8.5、SAF、DataStore 1.2.1を設計採用 | 物理migration/FKとAPI23を導入PRで確認 |
 | IMP-03 | Audio DSP/native実装ライブラリ | 09の②で採用先・処理順を選定。導入/実測待ち | STANDARDで開発継続できるが、全方式を満たすまで完成判定保留 |
-| IMP-04 | 現行4サービス群（Qobuz/Spotify/Apple Music/YouTube系。YouTubeとYouTube Musicは両方を検証）の許諾と再生方式 | 直接再生が確定。実装手段と用途別許諾はR-06で審査 | 他領域は開発継続。未達サービスがあれば完成判定保留 |
+| IMP-04 | 現行3サービス群（Qobuz/Spotify/YouTube系。YouTubeとYouTube Musicは両方を検証）の許諾と再生方式 | 直接再生が確定。実装手段と用途別許諾はR-06で審査 | 他領域は開発継続。未達サービスがあれば完成判定保留 |
 | IMP-05 | Sync backend運用とデータ管理 | 自前サーバー・認証/同期方針は確定。構成・運用詳細はR-04/P-02/03 | ローカル開発は継続。同期・共有等が未達なら完成判定保留 |
 | IMP-06 | 目標値と検証機種 | 09の③のQLT-01〜14を採用し実機で検査 | 未測定を実測合格にしない |
 | IMP-07 | 原典の全機能の公開成立 | D-01/03/04/09確定：全機能必須。方式等はQ/Rで具体化 | 1件基準・1方式基準・G/O除外では公開しない |

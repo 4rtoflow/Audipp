@@ -4,8 +4,8 @@
 |---|---|
 | レビュー状態 | **Complete**（2026-10-28、利用者による全レビュー完了・正式版承認） |
 | 文書ID | AUD-REQ-001 |
-| 文書版 | 1.0.0 |
-| 更新日 | 2026-10-28 |
+| 文書版 | 1.0.1 |
+| 更新日 | 2026-10-29 |
 | 作成日 | 2026-10-26 |
 | 対象 | **PoCから開発する完成版 Audipp**（Androidスマートフォン／Android搭載DAP） |
 | 原典 | `docs/audio_app_feature_list.md`（14分野の構想を保持） |
@@ -69,7 +69,7 @@
 |---|---|---|
 | Core Playback | ローカル再生、キュー、バックグラウンド、切断復帰、エラー回復が対応端末で成立 | 条件は本書で提案 |
 | Audio Trust | ロスレスPCM、原典のPCM/DSD各方式、Bit-perfect、ReplayGain/R128/PEQ/FIR/Crossfeed等すべてを対応環境で実証する。表示根拠を分離し、原典の適用条件を試験へ記録する | **全方式の個人間利用版必須はCONFIRMED**。機器能力は未実測。処理方式/初期測定基準は09で選定 |
-| Integration | Qobuz、Spotify、Apple Music、YouTubeとYouTube Musicのすべてで直接再生と混在キューを満たす。カタログ検索は技術・許諾上可能なら実装する。遠隔操作・外部遷移で直接再生を代替しない | **全サービス直接再生はCONFIRMED（Q-01）**。実装手段と用途別許諾はR-06で確認 |
+| Integration | Qobuz、Spotify、YouTubeとYouTube Musicのすべてで直接再生と混在キューを満たす。カタログ検索は技術・許諾上可能なら実装する。遠隔操作・外部遷移で直接再生を代替しない | **全サービス直接再生はCONFIRMED（Q-01）**。実装手段と用途別許諾はR-06で確認 |
 | Quality | 無クラッシュ率、ANR、音切れ、操作応答、電力、アクセシビリティ | 初期基準は09のQLT-01〜14。達成は実機試験で判定 |
 | Completion / PUBLIC | 個人間版は音源/API条件・秘密保護・依存ライセンス・署名更新・復旧を満たす。ストア審査/常設窓口は完成後 | 段階ごとに判定 |
 
@@ -104,7 +104,7 @@
 | FR-SRC-06 | C/RB | MusicBrainz/AcoustID等との照合、タグ修正、アルバムアート取得・差替を提供する。元ファイルを変更する場合は明示同意を要する。 |
 | FR-SRC-07 | C/RB | 重複、異なる音質版、同一曲・異マスターを関連付け、誤同定時に解除できる。 |
 | FR-SRC-08 | C/RB | 外部サービス別に認証・再生方式・メタデータ取得範囲・利用可能機能を明示し、権限外の音源は再生しない。検索、混在表示・キュー、履歴保存、統計、推薦、Scrobble、同期、PCM加工・解析は用途別に許諾を確認し、未確認・不許可の処理へデータを渡さない。 |
-| FR-SRC-09 | C/RB | Qobuz、Spotify、Apple Music、YouTubeとYouTube MusicのすべてでAudippによる直接再生を実装・検証する。Amazon MusicとSoundCloudは実装対象外とする。提供元ごとに用途別許諾を確認する。REMOTE/HANDOFFは補助操作に限り、直接再生の達成とは扱わない。 |
+| FR-SRC-09 | C/RB | Qobuz、Spotify、YouTubeとYouTube MusicのすべてでAudippによる直接再生を実装・検証する。Apple Music、Amazon Music、SoundCloudは実装対象外とする。提供元ごとに用途別許諾を確認する。REMOTE/HANDOFFは補助操作に限り、直接再生の達成とは扱わない。 |
 | FR-SRC-10 | C/RB | 技術・許諾上可能なサービスについてカタログ検索・横断検索と関連付けを実装する。検索不可のサービスは理由を表示し、直接再生まで省略しない。ローカル検索は引き続き必須。 |
 | FR-SRC-11 | C/RB | YouTubeとYouTube Musicは自前サーバーのyt-dlpで音声を解決/取得・HTTPS中継し、Audippで音声のみの逐次再生を必須とし、映像再生・動画UIを設けない。事前全体保存を必須にせず、URL失効、シーク、認証、通信断を処理する。技術検証、利用条件、音源の権利、配布可否を別々に記録する。 |
 | FR-SRC-12 | C/RB | YouTube系の音声は利用者が端末保存を希望した場合だけ、許可された保存用途と保存先を確認して端末の指定フォルダへ保存する。既定は保存しないストリーミング。一時キャッシュを保存曲として扱わず、中断・容量不足・権限失効を表示し、検証/確定後だけ保存済みとする。サーバーは端末の任意pathへ直接書き込まない。 |
@@ -242,13 +242,13 @@ Google Playの公式要件では**2026-08-31以降、新規Androidスマート�
 | Qobuz | 高音質カタログ・直接再生 | qobine参考の非公式接続を調査候補に追加。Android認証、app identity、メディア取得と用途条件は未検証。旧公式PDFだけで可否を決めない | DD-PROV-07/候補照合の認証・取得・報告・ライセンス検証 |
 | Amazon Music | 実装対象外 | EXCLUDED：利用者がAPI利用困難と判断し2026-10-28に実装しないと決定 | API申請・再生/検索・UAT・完成阻害から除外。自動で再採用しない |
 | Spotify | Audippによる直接再生（必須） | App Remoteでは代替せず、librespot v0.8.0のPCM Sink候補を追加。Android導入・本人/契約・音源取得・用途条件は未確認。Lossless対応を候補の実績としない | DD-PROV-07/候補照合。library MITとサービス利用条件を区別 |
-| Apple Music | Audipp内の直接音声再生（必須）、可能時のカタログ検索 | 公式MusicKit for AndroidとApple Music APIを採用経路とする。開発者資格・SDK導入・利用者認証・契約/地域・実機再生は未確認。Cider参考の独自PCMは研究候補として追加し、PCM取得/DSP/音質は別判定 | Apple Developer Program、MusicKit識別子/署名鍵、developer tokenとMusic User Token、用途別条件 |
+| Apple Music | 実装対象外 | EXCLUDED：利用者が2026-10-29に実装しないと決定。公式MusicKit/Apple Music APIとCider参考の独自PCM研究を含めて対象外 | 資格取得・API申請・認証・検索/再生・UAT・完成阻害から除外。自動で再採用しない |
 | SoundCloud | 実装対象外 | EXCLUDED：利用者がAPI利用困難と判断し2026-10-28に実装しないと決定 | API申請・再生/検索・UAT・完成阻害から除外。自動で再採用しない |
 | YouTube / YouTube Music | yt-dlp経由の音声のみの直接再生（必須） | `BLOCKED`（許諾・検証未完了）: 公式API規約は音声の分離やバックグラウンド再生に制限。yt-dlp経路はサービス利用規約と音源の権利も別途確認し、利用可能な条件を確定する | 正規の認可経路が成立した形態のみ |
 
 公式確認先：<https://developer.spotify.com/documentation/android>、<https://developers.google.com/youtube/terms/developer-policies>、<https://developers.soundcloud.com/docs/api/guide>。これらは各社が**Audippにライセンスした証明ではない**。
 
-**確定した完成条件（Q-01/02、Apple Music追加、Amazon Music/SoundCloud除外を反映）**：現行4サービス群（Qobuz/Spotify/Apple Music/YouTube系。YouTubeとYouTube Musicは両方を検証）の直接再生と混在キューを必須とする。カタログ検索は技術・許諾上可能なら実装し、不可の場合は根拠を残す。REMOTE/HANDOFF、動画UIでは直接再生・音声のみの要求を代替しない。YouTube系はyt-dlpを用いる要求が確定したが、技術上の成立・規約上の扱い・音源の権利・配布可否は未確認である。必要な実装手段・許諾・試験が不足する直接再生機能があれば完成判定を保留し、要件を勝手に格下げしない。
+**確定した完成条件（Q-01/02、Apple Music/Amazon Music/SoundCloud除外を反映）**：現行3サービス群（Qobuz/Spotify/YouTube系。YouTubeとYouTube Musicは両方を検証）の直接再生と混在キューを必須とする。カタログ検索は技術・許諾上可能なら実装し、不可の場合は根拠を残す。REMOTE/HANDOFF、動画UIでは直接再生・音声のみの要求を代替しない。YouTube系はyt-dlpを用いる要求が確定したが、技術上の成立・規約上の扱い・音源の権利・配布可否は未確認である。必要な実装手段・許諾・試験が不足する直接再生機能があれば完成判定を保留し、要件を勝手に格下げしない。
 
 Spotifyは[Developer Policy](https://developer.spotify.com/policy) III.5/III.13の統合・指標生成等の制限を用途別に審査する（確認日：2026-10-27）。公式SDKの動作確認を許諾の代用にしない。詳細な用途別判定はDD-PROV-01を参照する。
 
@@ -260,7 +260,7 @@ Spotifyは[Developer Policy](https://developer.spotify.com/policy) III.5/III.13�
 | UAT-02 | FR-PLY-01〜06 | キュー編集、連続再生、通知操作、画面消灯、音声フォーカス・出力切断の実機試験 |
 | UAT-03 | FR-AUD-01〜10, FR-OBS-01/07 | 原典の全PCM/DSD・DSP・出力・プリセット、PCM384 kHz/32-bit境界と上限超・機器非対応時の変換、DSD256、通常2ch/試験5.1chを対応環境で実機試験し、Bit-perfectの外部証跡、処理応答と安全性、情報の出典分類を検証 |
 | UAT-04 | FR-AUD-08, FR-DEV-01 | USB／Bluetooth切断・再接続・高感度イヤホンで危険な急増を防止 |
-| UAT-05 | FR-SRC-08〜12, FR-PLY-07 | 現行4サービス群（Qobuz/Spotify/Apple Music/YouTube系。YouTubeとYouTube Musicは両方を検証）の権限・認証・用途別許諾・直接再生・混在キューを確認。カタログ検索は可否と実装または不可根拠を検証し、YouTube系は映像なし・サーバーyt-dlp中継と、保存希望なし/あり・保存先/失敗復旧・保存後のローカル再生を確認。一部サービスだけの合格を全体合格にしない |
+| UAT-05 | FR-SRC-08〜12, FR-PLY-07 | 現行3サービス群（Qobuz/Spotify/YouTube系。YouTubeとYouTube Musicは両方を検証）の権限・認証・用途別許諾・直接再生・混在キューを確認。カタログ検索は可否と実装または不可根拠を検証し、YouTube系は映像なし・サーバーyt-dlp中継と、保存希望なし/あり・保存先/失敗復旧・保存後のローカル再生を確認。一部サービスだけの合格を全体合格にしない |
 | UAT-06 | FR-USE-01〜06, NFR-PRIV-* | 履歴・全期間ランキング・推薦・スマートプレイリスト、アカウント・端末間同期・フレンド・Last.fm、削除・同意・公開範囲をすべて検証 |
 | UAT-07 | FR-OBS-02〜07 | 原典にある全Visualizer・分析・ABX方式の取得信号、測定方式、精度、負荷、外部音声非公開時の制限を検証 |
 | UAT-08 | NFR-REL-*, NFR-PERF-* | 端末／音源／出力別の長時間・負荷・クラッシュ・ANR評価結果を記録 |
@@ -320,6 +320,7 @@ Spotifyは[Developer Policy](https://developer.spotify.com/policy) III.5/III.13�
 | 2026-10-28 | 1.0.0-draft.7 | 利用者の2サービス除外・調査資料提供 | Amazon Music/SoundCloudを実装対象外へ変更。qobine/librespot/Ciderの提案を10で一次資料へ照合し、候補と確定事項を分離。原典4行を廃止し229項目へ更新 |
 | 2026-10-28 | 1.0.0-draft.8 | 利用者がサーバー方式と保存希望による分岐を承認 | yt-dlpはサーバー解決/取得/中継。端末保存の希望なしはstream、希望ありは選択フォルダへ保存。FR-SRC-12/専用試験を追加し、端末内蔵は後段候補へ移した。実装/実機は未検証 |
 | 2026-10-28 | 1.0.0 | 利用者が全レビューをCompleteとしcommit/pushを指定 | 要件・基本・詳細設計、UI/UXと関連記録を正式版1.0.0・Review Completeへ統一。実装・導入・外部条件・実測の未確認事項は検証対象として引き継ぐ |
+| 2026-10-29 | 1.0.1 | 利用者のApple Music除外指示 | Apple Musicの公式経路・独自PCM研究・資格取得・実装・試験を対象外へ変更。現行3群・4サービス、原典229項目へ更新。F-01-02.06/F-14-13とDD-PROV-06は廃止IDとして保持 |
 
 承認は対象文書版・Gitコミット・判断者・日付・対象範囲・保留IDを記録する。CONFIRMEDは当該方針の決定を表し、全資料の承認や実装・試験合格を表さない。本改訂のUI方針は利用者から委任された裁量で採用し、過去の個別承認があったとは扱わない。
 
