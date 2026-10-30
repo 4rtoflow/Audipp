@@ -98,6 +98,10 @@ Source・Variant・再生Snapshot・Evidenceの公開型、版付きJSON、後�
 
 Issue #17の生成音源・Float64独立比較・版付き測定結果の使い方、要求/試験との対応と未検証範囲は [音声試験基盤 v1](../tests/audio/README.md) を参照してください。Python標準ライブラリのホスト検査をCIでも実行します。音声処理や実機測定の成功とは区別します。
 
+## 端末内の秘密保管
+
+Issue #28のAndroid Keystore / AES-GCM、アカウント別の秘密と失効・取消、要求/試験と未検証範囲は [秘密保管 v1](contracts/secrets-v1.md) を参照してください。実providerの認可・期限監視との接続は各AdapterのIssueで行います。
+
 ## ADBでインストールする
 
 SDKの `platform-tools` をPATHに追加します。`adb devices -l` で接続・認証状態を確認し、以下の `SERIAL` を対象のシリアルに置き換えます。
