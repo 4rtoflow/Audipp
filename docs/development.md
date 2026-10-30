@@ -102,6 +102,10 @@ Issue #17の生成音源・Float64独立比較・版付き測定結果の使い�
 
 Issue #27のDataStore、用途別の同意版、読取/保存エラーと再試行、保存範囲と検証の追跡は [設定保存 v1](contracts/preferences-v1.md) を参照してください。画面との接続は担当UI Issueで行います。
 
+## 再生計画の解決
+
+Issue #31のアダプター登録、出力先ごとのPlan、許諾・経路・期限の再検査と後続接続の責務は [再生計画の解決 v1](contracts/source-resolution-v1.md) を参照してください。
+
 ## ADBでインストールする
 
 SDKの `platform-tools` をPATHに追加します。`adb devices -l` で接続・認証状態を確認し、以下の `SERIAL` を対象のシリアルに置き換えます。
