@@ -22,6 +22,10 @@ android {
         compose = true
     }
 
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -45,4 +49,7 @@ dependencies {
     testImplementation(libs.junit)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.session)
+    testImplementation(libs.robolectric)
 }
