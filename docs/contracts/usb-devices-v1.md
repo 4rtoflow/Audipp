@@ -4,7 +4,7 @@
 
 ## 入口と所有権
 
-`Context.createUsbDeviceMonitor(scope)` が実 `UsbManager` に接続する。呼出側のscopeに寿命を結び付け、`snapshot: StateFlow<UsbDevicesSnapshot>` で接続中の機器・許可・読取状態を購読する。終了時は `close()`、終了処理の待機には `awaitClosed()` を使う。親scopeの取消でもreceiverとPendingIntentを解放する。生成・列挙・属性読取・descriptor解析はIO workerで行う。
+`Context.createUsbDeviceMonitor(scope)` が実 `UsbManager` に接続する。呼出側のscopeに寿命を結び付け、`snapshot: StateFlow<UsbDevicesSnapshot>` で接続中の機器・許可・読取状態を購読する。終了時は `close()`、終了処理の待機には `awaitClosed()` を使う。後者は同期読取の終了・connection解放まで待機する。親scopeの取消でもreceiverとPendingIntentを解放し、worker開始前の取消でも空の `STOPPED` を公開する。生成・列挙・属性読取・descriptor解析はIO workerで行う。
 
 初期列挙と接続イベントで許可ダイアログを自動表示しない。UIの利用者操作から `requestPermission(connectionId)` を呼ぶ。既にOSの許可がある機器は初期列挙で読取できる。拒否・取消・タイムアウト後は新しい明示操作で再試行する。`retryInspection(connectionId)` は許可済みの属性読取だけを再実行し、許可ダイアログは出さない。`refresh()` は列挙失敗や許可失効後の再検査用。
 
@@ -48,7 +48,7 @@ UAC2のclock controlによるレート、UAC3、Type II/III、vendor独自形式
 | FR-DEV-02 / TEST-DEVICE-01 | UAC1離散/連続レート、UAC2不明レート、構成/alternate分離、非audio・入力・feedback除外 | `UsbAudioDescriptorParserTest` |
 | FR-DEV-02 / TEST-DEVICE-01 | 切り詰め、不正長・無効値、1MiB上限、固定seedによる不正入力2000件、取消 | `UsbAudioDescriptorParserTest` |
 | FR-DEV-02 / TEST-DEVICE-01 | 無断promptなし、拒否・取消・timeout・再試行、古い返答、読取途中の抜去/同じパスへの再接続 | `UsbDeviceMonitorTest`（実monitor＋FakeHost） |
-| FR-DEV-02 / TEST-DEVICE-01 | open失敗・読取例外・許可失効・再列挙、停止・PendingIntent取消、host非対応、gain手動 | `UsbDeviceMonitorTest` |
+| FR-DEV-02 / TEST-DEVICE-01 | open失敗・読取例外・許可失効・再列挙、停止・PendingIntent取消、同期読取の資源解放待ち・worker開始前の親scope取消、host非対応、gain手動 | `UsbDeviceMonitorTest` |
 | NFR-SEC-01 / TEST-SEC-01 | 公開Snapshot/JSONにserial・機器パス・例外本文を出さない、OSの許可を再検査、実AudioRoute/Bit-perfectを変更しない | `UsbDeviceMonitorTest`＋AndroidUsbHostのコード確認 |
 
 上記はホストJUnitでの単体・契約試験である。Androidのpermission dialog/receiver/PendingIntentと実UsbManagerを通すAPI23/API36 instrumented試験は **NOT_RUN**（接続された試験環境・明示ADBシリアルなし）。Galaxy S25 / FiiO M21 / S20、ZEN DAC V2 / ECHO-B / ECHO-Aの取得・抜去試験も **NOT_RUN**（指定シリアル・実機fixtureなし）。実機接続、USB転送、音声出力・品質やBit-perfectの実測成功を示さない。CIのbuild/unit/lint成功でもこの制約は解消しない。

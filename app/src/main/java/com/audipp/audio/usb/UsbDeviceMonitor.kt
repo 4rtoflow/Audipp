@@ -49,16 +49,16 @@ class UsbDeviceMonitor internal constructor(
     private val permissionTimeoutMs: Long = 30_000,
     private val clock: () -> Long = System::currentTimeMillis,
 ) : AutoCloseable {
-    private val scope = CoroutineScope(parentScope.coroutineContext + SupervisorJob(parentScope.coroutineContext[Job]) + worker)
+    private val lifetime = SupervisorJob(parentScope.coroutineContext[Job])
+    private val scope = CoroutineScope(parentScope.coroutineContext + lifetime + worker)
     private val commands = Channel<Command>(Channel.UNLIMITED)
     private val mutableSnapshot = MutableStateFlow(UsbDevicesSnapshot())
     val snapshot: StateFlow<UsbDevicesSnapshot> = mutableSnapshot.asStateFlow()
     private val entries = linkedMapOf<String, Entry>()
-    private val actor: Job
 
     init {
         require(permissionTimeoutMs > 0)
-        actor = scope.launch {
+        scope.launch {
             try {
                 val available = try {
                     host.start { commands.trySend(Command.Host(it)) }
@@ -97,6 +97,12 @@ class UsbDeviceMonitor internal constructor(
                 }
             }
         }
+        lifetime.invokeOnCompletion {
+            val current = mutableSnapshot.value
+            if (current.discovery != UsbDiscoveryState.STOPPED) {
+                mutableSnapshot.value = UsbDevicesSnapshot(current.revision + 1, UsbDiscoveryState.STOPPED)
+            }
+        }
     }
 
     fun refresh() { commands.trySend(Command.Refresh) }
@@ -109,7 +115,7 @@ class UsbDeviceMonitor internal constructor(
 
     override fun close() { scope.cancel() }
 
-    suspend fun awaitClosed() { actor.join() }
+    suspend fun awaitClosed() { lifetime.join() }
 
     private suspend fun handle(command: Command) {
         when (command) {

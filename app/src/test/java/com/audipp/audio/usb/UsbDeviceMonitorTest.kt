@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
@@ -223,6 +224,49 @@ class UsbDeviceMonitorTest {
             assertTrue(monitor.snapshot.value.devices.isEmpty())
             assertTrue(host.requests.isEmpty())
         }
+    }
+
+    @Test
+    fun awaitClosedWaitsForAnUninterruptibleReadToReleaseItsResources() = runBlocking {
+        val started = CountDownLatch(1)
+        val release = CountDownLatch(1)
+        try {
+            fixture { host, monitor ->
+                val id = monitor.device { true }.connectionId
+                host.granted += host.device.key
+                host.reader = {
+                    started.countDown()
+                    check(release.await(3, TimeUnit.SECONDS))
+                    UsbInspection("Fixture", "Fixture DAC", uac1)
+                }
+                monitor.retryInspection(id)
+                assertTrue(started.await(3, TimeUnit.SECONDS))
+                monitor.close()
+                monitor.state { it.discovery == UsbDiscoveryState.STOPPED }
+                val closed = async { monitor.awaitClosed() }
+                delay(10)
+                assertFalse(closed.isCompleted)
+                release.countDown()
+                withTimeout(3000) { closed.await() }
+                assertTrue(host.closed)
+                assertTrue(monitor.snapshot.value.devices.isEmpty())
+            }
+        } finally { release.countDown() }
+    }
+
+    @Test
+    fun parentCancellationBeforeWorkerStartsPublishesAnEmptyStoppedSnapshot() = runBlocking {
+        val worker = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+        val parent = CoroutineScope(SupervisorJob() + worker)
+        parent.cancel()
+        val host = FakeHost(true)
+        val monitor = UsbDeviceMonitor(host, parent, worker)
+        try {
+            withTimeout(3000) { monitor.awaitClosed() }
+            assertEquals(UsbDiscoveryState.STOPPED, monitor.snapshot.value.discovery)
+            assertTrue(monitor.snapshot.value.devices.isEmpty())
+            assertTrue(host.requests.isEmpty())
+        } finally { worker.close() }
     }
 
     private suspend fun fixture(timeout: Long = 5000, available: Boolean = true,
