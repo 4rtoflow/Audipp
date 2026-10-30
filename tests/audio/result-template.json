@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "session_test_id": "replace-with-unique-test-run-id",
+  "test_ids": [
+    "TEST-AUD-02"
+  ],
+  "requirement_ids": [
+    "NFR-AUD-04",
+    "NFR-TEST-01"
+  ],
+  "app_commit": null,
+  "recorded_at_utc": "2026-10-30T00:00:00Z",
+  "outcome": "NOT_RUN",
+  "reason": "Template only; no measurement performed",
+  "known_limitations": "No device or DAC measured",
+  "device": {
+    "ABI": null,
+    "API_level": null,
+    "Android_version": null,
+    "DAC_vendor/product": null,
+    "DSP_state": null,
+    "USB_VID/PID": null,
+    "audio_output_type": null,
+    "bitDepth": null,
+    "build_fingerprint_hash": null,
+    "codec": null,
+    "device_vendor": null,
+    "model": null,
+    "playback_mode": null,
+    "sampleRate": null
+  },
+  "fixture": null,
+  "capture_point": null,
+  "evidence_type": "UNKNOWN",
+  "instrument": null,
+  "settings": null,
+  "result": null
+}

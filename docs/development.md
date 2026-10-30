@@ -94,6 +94,10 @@ python3 -m unittest discover -s scripts/ci -p 'test_*.py'
 
 Source・Variant・再生Snapshot・Evidenceの公開型、版付きJSON、後続Issueとの責務分担と契約試験の対応は [共通domain契約 v1](contracts/domain-model-v1.md) を参照してください。
 
+## 音声試験の生成信号と証跡
+
+Issue #17の生成音源・Float64独立比較・版付き測定結果の使い方、要求/試験との対応と未検証範囲は [音声試験基盤 v1](../tests/audio/README.md) を参照してください。Python標準ライブラリのホスト検査をCIでも実行します。音声処理や実機測定の成功とは区別します。
+
 ## ADBでインストールする
 
 SDKの `platform-tools` をPATHに追加します。`adb devices -l` で接続・認証状態を確認し、以下の `SERIAL` を対象のシリアルに置き換えます。
