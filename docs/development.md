@@ -110,6 +110,10 @@ Issue #28のAndroid Keystore / AES-GCM、アカウント別の秘密と失効・
 
 Issue #31のアダプター登録、出力先ごとのPlan、許諾・経路・期限の再検査と後続接続の責務は [再生計画の解決 v1](contracts/source-resolution-v1.md) を参照してください。
 
+## Provider用途別許諾
+
+Issue #33の用途別台帳、証跡・scope・期限と技術能力の分離、処理入口での再検査、403・失効・保存失敗と後続接続の責務は [Provider用途別許諾 v1](contracts/provider-policy-v1.md) を参照してください。
+
 ## ADBでインストールする
 
 SDKの `platform-tools` をPATHに追加します。`adb devices -l` で接続・認証状態を確認し、以下の `SERIAL` を対象のシリアルに置き換えます。
