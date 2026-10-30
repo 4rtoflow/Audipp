@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Audipp</string>
+    <string name="welcome_title">Before you press play.</string>
+    <string name="welcome_body">Welcome to Audipp.\nMusic playback is coming soon.</string>
+    <string name="settings">Settings</string>
+    <string name="appearance">Appearance</string>
+    <string name="theme">Theme</string>
+    <string name="theme_system">Use device settings</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_loading">Loading settings…</string>
+    <string name="theme_saving">Saving…</string>
+    <string name="theme_read_failed">Cannot read settings. Check storage and try again.</string>
+    <string name="theme_write_failed">Cannot save theme. Your selection has not changed. Try again.</string>
+    <string name="retry">Retry</string>
+    <string name="back">Back</string>
+</resources>
