@@ -98,6 +98,10 @@ Source・Variant・再生Snapshot・Evidenceの公開型、版付きJSON、後�
 
 Issue #17の生成音源・Float64独立比較・版付き測定結果の使い方、要求/試験との対応と未検証範囲は [音声試験基盤 v1](../tests/audio/README.md) を参照してください。Python標準ライブラリのホスト検査をCIでも実行します。音声処理や実機測定の成功とは区別します。
 
+## 小規模設定と同意の保存
+
+Issue #27のDataStore、用途別の同意版、読取/保存エラーと再試行、保存範囲と検証の追跡は [設定保存 v1](contracts/preferences-v1.md) を参照してください。画面との接続は担当UI Issueで行います。
+
 ## 端末内の秘密保管
 
 Issue #28のAndroid Keystore / AES-GCM、アカウント別の秘密と失効・取消、要求/試験と未検証範囲は [秘密保管 v1](contracts/secrets-v1.md) を参照してください。実providerの認可・期限監視との接続は各AdapterのIssueで行います。
