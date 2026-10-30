@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "generator_version": "audipp-fixtures-1",
+  "seed": 1096107081,
+  "fixtures": [
+    {
+      "file": "prng-16-stereo.wav",
+      "sha256": "c9aef77e32f840bf3e01e7ff9f6e5428ec49cec0c10874fb0ee51943e366711a",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 16,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "impulse-16-stereo.wav",
+      "sha256": "63217a48633107c6bc2603b1818473cfc425767ef22ea536c3b5b439f52ed981",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 16,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "sweep-16-stereo.wav",
+      "sha256": "551546f6362ac4114033a94966b13bfab1ca98a2554a35d3d2c759859c6fc493",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 16,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "silence-16-stereo.wav",
+      "sha256": "677058435e98faa0bb5df0c577361ff77a624ffc68c363b031c6dda1d5737fa0",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 16,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "prng-24-stereo.wav",
+      "sha256": "a182b9d5e8e8e0dc5fb3ab406c9f40b4fb9175286a9cf961a09c70aad6896a9c",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 24,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "impulse-24-stereo.wav",
+      "sha256": "1ac3990b326cbd545093775a59abb2d7e4f5d2751e73acfbb885eefeb72db80e",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 24,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "sweep-24-stereo.wav",
+      "sha256": "5a2d4b1f368407fb054610aa3047d6de31d905aecc0c1de015d41450e2f9fc87",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 24,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "silence-24-stereo.wav",
+      "sha256": "a16dc297e2601542ddaa5ef97d506f3abcc111ef2660da29cbfccaaccad3c8d0",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 24,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "prng-32-stereo.wav",
+      "sha256": "ecbbd0522a339dfa1f36f6f6b263758ee0c8cc13c45f36365cba0cedc87feace",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 32,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "impulse-32-stereo.wav",
+      "sha256": "60a551d1337aeb98fd129bae0fdb13c038034d5bd54353d74b4c61aba316abd9",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 32,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "sweep-32-stereo.wav",
+      "sha256": "de8c25d38e784feabc0bf985f8f889a007e1ab34f89c8b1d38b7c8e0c9b25ba2",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 32,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "silence-32-stereo.wav",
+      "sha256": "4962a3cbedbeba6b71f4f3ac139e7710e0153a66b81dbbb46de847463e3f3405",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 32,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "DECODE_EXACT_PCM",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "impulse-24-5point1.wav",
+      "sha256": "18f8c32f6f0f65bdcbd4b95a8486735c9a5c3805739a854db9eb8f85b5ae0cab",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 24,
+      "sample_rate_hz": 48000,
+      "channels": 6,
+      "channel_order": [
+        "FL",
+        "FR",
+        "FC",
+        "LFE",
+        "BL",
+        "BR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "CHANNEL_IMPULSES_AT_32_TIMES_CHANNEL_INDEX_PLUS_ONE",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "truncated.wav",
+      "sha256": "c719021c3b792d491264157e75732ae5cc29b65ee270f670eaf085b927510432",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 16,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 4096,
+      "duration_seconds": 0.08533333333333333,
+      "expected": "REJECT_TRUNCATED_DATA",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    },
+    {
+      "file": "invalid-header.wav",
+      "sha256": "3d9684b015c9eb08ce17ce34f5713d811390159fa85607c7abe0533294eeb43c",
+      "container": "WAV",
+      "codec": "PCM_SIGNED_LE",
+      "bit_depth": 16,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "channel_order": [
+        "FL",
+        "FR"
+      ],
+      "frames": 0,
+      "duration_seconds": 0.0,
+      "expected": "REJECT_INVALID_HEADER",
+      "rights": {
+        "origin": "Synthetic mathematical signals; no third-party recordings",
+        "license": "CC0-1.0",
+        "permission": "Generate, use, modify and redistribute the generated signal files"
+      }
+    }
+  ]
+}
