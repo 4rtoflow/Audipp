@@ -1,0 +1,22 @@
+[
+  {
+    "case_id": "E00-05-host-traceability-2026-10-31",
+    "requirement_ids": [
+      "NFR-MAINT-01",
+      "NFR-TEST-01"
+    ],
+    "test_ids": [
+      "TEST-GOV-01"
+    ],
+    "commit": "a46726184ee8ccedb669454b708451795b64e09e",
+    "stage": "CURRENT",
+    "outcome": "PASS",
+    "execution": "EXECUTED",
+    "permission": "NOT_REQUIRED",
+    "reason": "固定原文と518 IDの一致、90要求/229原典/43試験の増減・参照欠落・対象外/廃止/PUBLIC区分、未実施/不成立/用途未許可のPASS拒否をホスト検査17件と台帳検査で確認した。",
+    "evidence": [
+      "docs/traceability/validation.md"
+    ],
+    "limitations": "#18の台帳検査ケースに限定。T18-02の廃止設計への残存参照は既知差異として報告し、Apple Musicは復活させない。TEST-GOV-01全体、製品完成、用途別許可、実機音声・配備・復旧、外部PR承認の合格ではない。"
+  }
+]

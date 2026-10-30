@@ -30,6 +30,10 @@ jobs:
         run: |
           python3 -m unittest discover -s scripts/audio -p 'test_*.py'
           python3 -m scripts.audio.evidence tests/audio/result-template.json
+      - name: Check approved baseline, traceability and scoped results
+        run: |
+          python3 -m unittest discover -s scripts/traceability -p 'test_*.py'
+          python3 scripts/traceability/check.py
       - name: Validate PR requirements and evidence
         if: github.event_name == 'pull_request'
         run: python3 scripts/ci/check_pr.py
