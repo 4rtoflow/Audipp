@@ -22,7 +22,7 @@
 
 `Measured<T>`は値・6区分・出典・記録時刻・試験証跡IDを保持する。`UNKNOWN`は`value=null`を必須とし、既知区分には値を要求する。`EXTERNAL_VERIFIED`には空でない試験証跡IDを要求する。AudioFormatおよび経路のHz/bit/chは、未知なら`null`、既知なら正数とする。`dspEnabled`も観測不能なら`null`である。
 
-`AudioRouteSnapshot`は音源の形式と分離する。44.1kHzのSOURCE、48kHzのOS_REPORTED、外部未測定のUNKNOWNを同時に保持できる。値の一致でBit-perfect状態を昇格させない。`VERIFIED`には外部の成功証拠と機器・経路revision・形式・設定条件が必要で、経路や形式の異なる証拠を添付できない。証跡の真正性や実測内容の評価自体は #69 / #145 の責務である。
+`AudioRouteSnapshot`は音源の形式と分離する。44.1kHzのSOURCE、48kHzのOS_REPORTED、外部未測定のUNKNOWNを同時に保持できる。値の一致でBit-perfect状態を昇格させない。`VERIFIED`には外部の成功証拠と機器・経路revision・形式・設定条件が必要で、経路や形式の異なる証拠を添付できない。`FAILED`にも同じ条件を持つ外部の不成立証拠を必須とし、未測定と区別する。証跡の真正性や実測内容の評価自体は #69 / #145 の責務である。
 
 保存・受渡しでは`ModelJson.encode<T>` / `decode<T>`を使用する。JSONの外側は`{"value":...,"schemaVersion":1}`、IDは文字列、enumは宣言した大文字名、数値は整数、未知値は明示的な`null`とする。既定値も出力し、時刻・証跡IDを落とさない。版欠落・未対応版・未知enum・未知フィールド・必須フィールド欠落・型や不変条件の違反は復元失敗とする。失敗を0や確認済みへ補正しない。将来の移行処理は版ごとに別途追加する。
 
@@ -39,4 +39,4 @@ JSON契約の実際の往復検証のため、既存Kotlin 2.3.10と同版のser
 | FR-AUD-01 / NFR-AUD-01 → DD-MODEL-02 → TEST-AUD-01 | 6区分、異なるレート、未知値、外部証拠条件 | EvidenceContractTest |
 | NFR-MAINT-01 → DD-PKG-01 / DD-ERROR → 上記3試験の契約部分 | Androidに依存しない公開型、分類エラー、版付きJSON | 両ContractTest |
 
-2026-10-30: 対象の契約試験17件がローカルで成功。引き渡しのDebug/Release・全Unit・Lint結果と対象commit/CI URLは対応PRの証跡へ記録する。API23/36実行、実Service接続、実機・DAC・音声測定は未実施であり、上記の試験ファミリー全体の合格や製品完成を表さない。
+2026-10-30: 対象の契約試験18件がローカルで成功。引き渡しのDebug/Release・全Unit・Lint結果と対象commit/CI URLは対応PRの証跡へ記録する。API23/36実行、実Service接続、実機・DAC・音声測定は未実施であり、上記の試験ファミリー全体の合格や製品完成を表さない。

@@ -37,7 +37,7 @@ data class BitPerfectVerification(
     val settingsDescription: String,
 ) {
     init {
-        require(result.level == EvidenceLevel.EXTERNAL_VERIFIED && result.value == true)
+        require(result.level == EvidenceLevel.EXTERNAL_VERIFIED)
         require(deviceName.isNotBlank() && routeId.isNotBlank())
         require(routeRevision >= 0)
         require(format.sampleRateHz != null && format.bitDepth != null && format.channelCount != null)
@@ -64,14 +64,16 @@ data class AudioRouteSnapshot(
         require(sampleRateHz.value == null || sampleRateHz.value > 0)
         require(bitDepth.value == null || bitDepth.value > 0)
         require(channelCount.value == null || channelCount.value > 0)
-        require((bitPerfectState == BitPerfectState.VERIFIED) == (verification != null))
+        val hasResult = bitPerfectState == BitPerfectState.VERIFIED || bitPerfectState == BitPerfectState.FAILED
+        require(hasResult == (verification != null))
         if (verification != null) {
+            require(verification.result.value == (bitPerfectState == BitPerfectState.VERIFIED))
             require(verification.routeId == routeId && verification.routeRevision == routeRevision)
             require(verification.deviceName == deviceName.value)
             require(verification.format.sampleRateHz == sampleRateHz.value)
             require(verification.format.bitDepth == bitDepth.value)
             require(verification.format.channelCount == channelCount.value)
-            require(dspEnabled == false)
+            require(bitPerfectState != BitPerfectState.VERIFIED || dspEnabled == false)
         }
     }
 }

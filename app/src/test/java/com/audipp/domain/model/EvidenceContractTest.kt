@@ -87,6 +87,26 @@ class EvidenceContractTest {
     }
 
     @Test
+    fun failedRequiresExplicitFailureEvidenceAndCannotReuseSuccessfulVerification() {
+        assertThrows(IllegalArgumentException::class.java) {
+            route.copy(bitPerfectState = BitPerfectState.FAILED)
+        }
+        val proof = BitPerfectVerification(Measured(false, EvidenceLevel.EXTERNAL_VERIFIED,
+            "fixture bench", time, "bench-failed"), "Fixture DAC", "usb:fixture", 4,
+            AudioFormat("PCM", 48_000, 24, 2), "DSP enabled")
+        val failed = route.copy(bitDepth = Measured(24, EvidenceLevel.APP_OBSERVED, "sink", time),
+            channelCount = Measured(2, EvidenceLevel.APP_OBSERVED, "sink", time),
+            dspEnabled = true, bitPerfectState = BitPerfectState.FAILED, verification = proof)
+        assertEquals(failed, ModelJson.decode<AudioRouteSnapshot>(ModelJson.encode(failed)))
+        assertThrows(IllegalArgumentException::class.java) {
+            failed.copy(verification = proof.copy(result = proof.result.copy(value = true)))
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            failed.copy(bitPerfectState = BitPerfectState.VERIFIED, dspEnabled = false)
+        }
+    }
+
+    @Test
     fun versionedJsonKeepsExplicitNullAndRejectsMissingOrUnsupportedVersions() {
         val encoded = ModelJson.encode(unknown)
         assertTrue(encoded.contains("\"schemaVersion\":1"))
