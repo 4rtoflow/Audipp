@@ -236,6 +236,8 @@ flowchart TD
 - **Accessibility**：主要アクションはTalkBackラベル／状態読み上げ、文字拡大、非色情報で区別。
 - **段階差**：PoCのトップレベルは`docs/design.md`のLibrary中心案を用い、ここで示すHomeは完成版の案とする。FR-UI-03のテーマ3モードとFR-UI-06の共通ミニプレイヤーは両段階に適用する。
 
+完成版の比較・到達表・状態遷移は[#19のUIレビュー案](12_navigation_proposal.md)を参照する。Home起動・Visualizer独立項目・幅の候補は未承認のImplementation Proposalであり、この図を採用確定へ変更しない。
+
 ## 9. 動作シーケンス（基本）
 
 ### 9.1 ローカル再生
