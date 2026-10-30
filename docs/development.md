@@ -112,6 +112,8 @@ Issue #31のアダプター登録、出力先ごとのPlan、許諾・経路・�
 
 ## ADBでインストールする
 
+Issue #30のMediaLibraryService、MediaController接続、content URIの権限・取消と共通エラー、検証範囲は [標準ローカル再生 v1](contracts/local-playback-v1.md) を参照してください。実機の音声・画面OFF操作の成功はホストのService試験から推定しません。
+
 SDKの `platform-tools` をPATHに追加します。`adb devices -l` で接続・認証状態を確認し、以下の `SERIAL` を対象のシリアルに置き換えます。
 
 ```sh
