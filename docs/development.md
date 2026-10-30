@@ -120,6 +120,10 @@ adb -s SERIAL shell am start -W -n com.audipp/.MainActivity
 adb -s SERIAL logcat -b crash -d
 ```
 
+## 業務APIと所有権の検証
+
+Issue #34の独立した`server/`ビルド、HTTPS/JSON・本人所有権、SQL/migration、起動条件と試験範囲は[業務API v1](contracts/backend-v1.md)を参照してください。`./gradlew -p server test installDist distTar`はSDK・Docker・実配備を使わず、一時PostgreSQLで拒否動作と復旧を検証します。Androidの引き渡し検証は従来どおり必要です。
+
 ## Linux x86_64向けの補助手順
 
 Android Studioを使わずに構築する場合の任意の手順です。Bash、curl、tar、unzip、sha256sumが必要です。
