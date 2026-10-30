@@ -110,6 +110,10 @@ Issue #28のAndroid Keystore / AES-GCM、アカウント別の秘密と失効・
 
 Issue #31のアダプター登録、出力先ごとのPlan、許諾・経路・期限の再検査と後続接続の責務は [再生計画の解決 v1](contracts/source-resolution-v1.md) を参照してください。
 
+## LAN LibraryとRenderer
+
+Issue #49のLibrary/Renderer分離、資格のスコープ、有限timeout・取消、ACKと観測状態、Fakeと実プロトコルの検証範囲は [LAN契約 v1](contracts/network-v1.md) を参照してください。
+
 ## ADBでインストールする
 
 SDKの `platform-tools` をPATHに追加します。`adb devices -l` で接続・認証状態を確認し、以下の `SERIAL` を対象のシリアルに置き換えます。
