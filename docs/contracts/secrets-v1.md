@@ -25,11 +25,13 @@ store.use(session, SecretKind.REFRESH_TOKEN) { refreshToken ->
     val updated = provider.refresh(refreshToken)
     store.update(session, SecretKind.REFRESH_TOKEN, updated)
 }
-// logout / refresh資格の失効・取消時。access tokenの期限だけではrefresh資格を消さない。
-store.requireAuthentication(accountId)
+// refresh資格の失効・取消時。古い応答から新しい本人認証を削除しない。
+store.requireAuthentication(session)
 ```
 
 認可方式・tokenの有効期限・providerへのlogout要求は後続Adapterが所有する。`authorize`は明示的な本人再認可の入口であり、古いrefresh callbackから呼び直さない。通常のrefresh保存は元のsessionによる `update` を使う。複数種別が必要な場合も当該sessionで追加保存する。
+
+Issue #49で接続した認証エラーの入口には `requireAuthentication(session)` を使う。現在のsessionと一致する場合だけ失効・削除し、古い応答から新しい本人再認証を削除しない。既存の `requireAuthentication(accountId)` は利用者による当該アカウント全体のlogoutに使える。同じsessionの削除失敗後は再試行できる。
 
 再起動後は `resume(accountId)` でhandleを得て `use` する。`READY` は失効していないhandleの状態であり、認証成功・復号成功の証拠ではない。実際の秘密が必要な操作は必ず `use` から行う。同じプロセスでAUTH_REQUIREDになったhandleはresumeで再有効化されず、明示的なauthorizeだけで置換できる。
 
