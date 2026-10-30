@@ -90,6 +90,10 @@ python3 -m unittest discover -s scripts/ci -p 'test_*.py'
 - `7ed4f6b`: [一時的な3ケースの障害注入](https://github.com/4rtoflow/Audipp/actions/runs/40828233303)。未定義の型でcompileDebugKotlin、失敗するJUnitでtestDebugUnitTest、重複View IDでlintDebugがそれぞれ失敗。全ケースでAPK保存をスキップし、Unit/Lintの失敗レポートだけを保存。障害注入は検証後に削除。
 - ローカル: Debug/Release・Unit/Lint、PR本文検査9件、actionlint 1.7.12が成功。Release APKのminSdk 23 / targetSdk 36を確認し、Release lock追加前後で依存座標・版に変更がないことを比較。
 
+## 共通domain契約
+
+Source・Variant・再生Snapshot・Evidenceの公開型、版付きJSON、後続Issueとの責務分担と契約試験の対応は [共通domain契約 v1](contracts/domain-model-v1.md) を参照してください。
+
 ## ADBでインストールする
 
 SDKの `platform-tools` をPATHに追加します。`adb devices -l` で接続・認証状態を確認し、以下の `SERIAL` を対象のシリアルに置き換えます。
