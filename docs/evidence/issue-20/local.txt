@@ -1,0 +1,65 @@
+Issue #20 local research evidence — 2026-10-31 JST
+Audipp baseline: ba0628b212a1ad736622f8fdb7be8d194c2eaf94
+qobine source: 81d574b86957b79133a913c197c6a99618cd8dcb
+Host: Linux x86_64
+
+Command:
+python3 scripts/research/test_qobuz_source.py --source /tmp/audipp-issue20-qobine -v
+
+Observed output:
+test_callback_has_reviewed_adoption_blockers (__main__.QobuzSourceReview.test_callback_has_reviewed_adoption_blockers) ... ok
+test_changed_file_is_rejected (__main__.QobuzSourceReview.test_changed_file_is_rejected) ... ok
+test_file_path_has_persistent_cache_blocker (__main__.QobuzSourceReview.test_file_path_has_persistent_cache_blocker) ... ok
+test_license_and_edition_match_review (__main__.QobuzSourceReview.test_license_and_edition_match_review) ... ok
+test_player_identity_is_not_an_audipp_grant (__main__.QobuzSourceReview.test_player_identity_is_not_an_audipp_grant) ... ok
+test_reports_and_session_expiry_exist_only_as_source_evidence (__main__.QobuzSourceReview.test_reports_and_session_expiry_exist_only_as_source_evidence) ... ok
+test_resolution_paths_remain_distinct (__main__.QobuzSourceReview.test_resolution_paths_remain_distinct) ... ok
+test_wrong_revision_is_rejected (__main__.QobuzSourceReview.test_wrong_revision_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.011s
+
+OK
+
+Interpretation: PASS for reproducing the fixed source review only.
+Callback/log/cache findings remain FAIL for unmodified adoption.
+No candidate Rust code, browser login, secret retrieval, media request,
+protected-stream processing, Qobuz report, or search was executed.
+No user credentials or service response fixtures were created.
+
+Build environment:
+source scripts/linux/android-env.sh
+JAVA_HOME / ANDROID_HOME / GRADLE_USER_HOME explicitly pointed to the
+existing original checkout's .tools directories (JDK17 / Android SDK).
+No system settings, dependencies, lockfiles or existing tool configurations
+were changed.
+
+Command:
+./gradlew --no-daemon --console=plain :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+
+Observed output (bounded summary):
+BUILD SUCCESSFUL in 50s
+53 actionable tasks: 53 executed
+JUnit XML: 6 suites, 72 tests, 0 failures, 0 errors, 0 skipped
+Lint XML: 9 Warning issues, 0 errors
+
+Interpretation: PASS for existing Audipp host build/unit/lint only.
+NOT_RUN: qobine compilation, JNI/APK integration, API23/API36 execution,
+device/emulator/DAC/audio/performance measurements.
+BLOCKED: identity, subscriber qualification, permitted sample and each
+Audipp data-use permission. No application/contact/purchase was made.
+
+Tool availability observations:
+command -v cargo: no executable found
+command -v rustc: no executable found
+command -v rustup: no executable found
+Existing Android SDK ndk directory: absent
+Semble: ModuleNotFoundError: No module named 'semble'
+
+Public official API terms retrieval (documentation only):
+HTTP 200, 102452 bytes
+SHA-256 af8db59e3fc742bccc1484f06806d9ab8a7bc76915068253305b122b2b41985c
+Apps Guidelines V1.0 via browsing tool: HTTP 403; not retried elsewhere.
+
+Resume conditions and requirement/test trace: docs/specifications/12_qobuz_spike.md
+Evidence commit and CI URL: research PR's evidence section.
