@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/SofusA/qobine",
+  "commit": "81d574b86957b79133a913c197c6a99618cd8dcb",
+  "sha256": {
+    "qobuz-client/src/client.rs": "115e84a1ec3d187aaf40452287da11ae777bfa9e9d60093dcb7c50aae4936bd7",
+    "qobuz-client/src/stream/file_based.rs": "180145abecb59af85522ded3a34eb69de72a33037b693a8ee3830dea3dd2a511",
+    "qobuz-client/Cargo.toml": "12ae28d9b91e0c04db147fcc6dd2ed4b7d3dbc27cddd46f4a18637b5316b71e2",
+    "Cargo.toml": "ec3a9125c817f338584be8ce6373094dd28276aa18e41037b7df52ea22f75112",
+    "Cargo.lock": "2af642b6344891a4efcebeb13b8cd16bee97916cd373cdf5ea89e08f82a219ec",
+    "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "player-module/src/client.rs": "f284bca023a9bd8ef261581e689d38a917222a4b8ed599cffd3f98eafc5d323e",
+    "player-module/src/downloader.rs": "473007ebf4c1cbba181068d9ca0f4a201b626282da8f208b27d38e745ecf4318",
+    "player-module/src/report.rs": "a0f180f0f4078dddb7f52a442a1dff8a8155bdad4ed17e35cee432f282e97cd2"
+  }
+}
