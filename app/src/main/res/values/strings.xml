@@ -3,4 +3,16 @@
     <string name="app_name">Audipp</string>
     <string name="welcome_title">音楽を聴く、その前に。</string>
     <string name="welcome_body">Audippへようこそ。\n音楽の再生機能は、これから追加していきます。</string>
+    <string name="settings">設定</string>
+    <string name="appearance">外観</string>
+    <string name="theme">テーマ</string>
+    <string name="theme_system">デバイスの設定に合わせる</string>
+    <string name="theme_dark">ダーク</string>
+    <string name="theme_light">ライト</string>
+    <string name="theme_loading">設定を読み込み中…</string>
+    <string name="theme_saving">保存中…</string>
+    <string name="theme_read_failed">設定を読み込めません。保存先を確認して再試行してください。</string>
+    <string name="theme_write_failed">テーマを保存できません。選択は変更されていません。再試行してください。</string>
+    <string name="retry">再試行</string>
+    <string name="back">戻る</string>
 </resources>
