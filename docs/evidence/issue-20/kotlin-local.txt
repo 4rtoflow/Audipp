@@ -1,0 +1,80 @@
+Issue #20 reconsideration — 2026-11-10 JST
+Initial origin/main baseline: 89695a7e22e312e8394959d12eaa9df99b2311c6
+Final rebase baseline: 6376cb8e0f0e989aa68bc9b7ce01db114a0f8378
+Main's LAN/Media3 changes were preserved; the Manifest permission conflict
+was resolved by keeping both playback service permissions and INTERNET.
+qobine protocol reference: 81d574b86957b79133a913c197c6a99618cd8dcb
+Host: Linux x86_64 / existing JDK17 and Android SDK
+
+User-confirmed prerequisites:
+- Qobuz direct playback is a mandatory implementation requirement.
+- The user has a Qobuz subscription and permits using it for verification.
+- An application identity usable by Audipp has not been obtained.
+No subscriber credentials were received, searched for, or extracted.
+
+Implementation under test:
+app/src/main/java/com/audipp/integrations/streaming/qobuz/QobuzAuthorization.kt
+app/src/main/java/com/audipp/integrations/streaming/qobuz/QobuzFileClient.kt
+Tests: app/src/test/java/com/audipp/integrations/streaming/qobuz/QobuzClientTest.kt
+INTERNET permission added. No dependency/catalog/lockfile/schema changes.
+
+Targeted command (existing Linux helper sourced; existing original checkout's
+JDK17/SDK/Gradle cache explicitly selected):
+./gradlew --no-daemon --console=plain :app:testDebugUnitTest --tests 'com.audipp.integrations.streaming.qobuz.QobuzClientTest'
+Recorded application-source commit: 8ecadadcdfb6e4797beb9bcc1291e640404f9d67
+Recorded targeted run: BUILD SUCCESSFUL in 10s
+JUnit XML: 17 tests, 0 failures, 0 errors, 0 skipped, 3.402 seconds
+
+Required regression command:
+./gradlew --no-daemon --console=plain :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+After final rebase: BUILD SUCCESSFUL in 1m 59s
+JUnit XML: 18 suites, 187 tests, 0 failures, 0 errors, 0 skipped
+Qobuz suite within full run: 17 tests, 0 failures, 0 errors, 0 skipped
+Lint XML: 13 warnings, 0 errors
+
+Observed local behavior (real TCP/HTTP, 127.0.0.1 only):
+- Exact, single-use callback; state/redirect/expiry/duplicate/denial/cancel checks.
+- A playback grant does not permit search; no HTTP until the search grant exists.
+- FileBased signature for fixed time/fixture credentials matches an independently
+  calculated MD5 value. Returned format/rate/depth remain separate from requested quality.
+- Entire generated WAV fetched in bounded Range requests. A seek to byte 100
+  returns exactly bytes 100..119. API headers absent from media requests.
+- Start/end reports are explicit POSTs. Missing blob is UNSUPPORTED; a non-success
+  status is not a successful report, even when HTTP status is 200.
+- API 401 invalidates that client's token. 403 persists DENIED in the existing gate.
+  429 returns without retry. No alternative/session endpoint is requested.
+- Expired media returns an error; re-resolution requires an explicit client call.
+- Redirects, untrusted media hosts, invalid/mismatched responses, range mismatches,
+  oversized bodies, invalid inputs and another client's descriptor are rejected.
+- Revoked policy and cancellation discard a delayed response; socket timeout fails
+  without retry. Blocking IO and disconnect stay on the owning IO worker.
+
+Owned audio fixture:
+926-byte mono PCM16 / 44.1 kHz WAV, 441 samples (10 ms), generated in test code.
+SHA-256 53f89b885f3d54331cc8cf95f4841611cd59d05f176d603e59b1d4cce131fb06
+No Qobuz recording is included. Received media is not persisted to disk.
+
+Limits and remaining work:
+PASS means the Kotlin candidate worked against a controlled local fixture.
+NOT_RUN: live Qobuz login/code exchange/search/media/report acceptance, SessionBased
+Kotlin implementation, Player registration/decode/full real-time playback,
+API23/API36 runtime, hardware/DAC/audio quality measurements.
+Application identity, registered redirect/state exchange and permitted data uses
+remain to be confirmed. No live Qobuz API request was made; no application,
+purchase, protection bypass or secret extraction was performed.
+The user's subscription is confirmed separately from application credentials.
+
+Android build/lint verifies compilation with minSdk23/compileSdk36; it does not
+prove API23 execution or Rust/native ABI portability. This Kotlin path requires
+no Rust/NDK installation and does not import qobine source/binaries.
+
+Current evidence commit, CI run and remaining Issue #20 work: PR #175 body.
+
+Traceability follow-up:
+The approved-source guard rejected research notes in four frozen source documents.
+Those notes were removed from the baseline sources; baseline.json/inventory.tsv
+were not changed. docs/traceability/results.json records the failed CI, the local
+contract PASS and the live-service BLOCKED case separately.
+python3 -m unittest discover -s scripts/traceability -p 'test_*.py': 17 tests OK
+python3 scripts/traceability/check.py: Approved inventory OK
+The known T18-02 retired-reference notice remains OPEN, without reviving Apple Music.
