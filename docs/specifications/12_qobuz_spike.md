@@ -38,7 +38,7 @@
 
 fixture音源は試験コードで生成したmono PCM16/44.1kHz、10msのWAVであり、Qobuz音源ではない。SHA-256：`53f89b885f3d54331cc8cf95f4841611cd59d05f176d603e59b1d4cce131fb06`。候補目標24bit/192kHz、API応答の音源情報、decoderの取得値、OS経路、DAC実測を別々に扱う。
 
-実行コマンド・17件のUnit結果・回帰確認は[kotlin-local.txt](../evidence/issue-20/kotlin-local.txt)に保存した。最終rebase後のDebug/Unit/Lintは成功し、全Unit187件、Lintエラー0件/警告13件。既存PRのhead commitとCIはPR本文で追跡する。ローカル試験は通常の`:app:testDebugUnitTest`に含まれるため、CIでも毎回実行される。Range単位で再要求する候補の連続転送性能・電力は未測定で、Player接続時に検証する。
+実行コマンド・17件のUnit結果・回帰確認は[kotlin-local.txt](../evidence/issue-20/kotlin-local.txt)に保存した。最終rebase後のDebug/Unit/Lintは成功し、全Unit187件、Lintエラー0件/警告13件。要求・試験への部分ケースと検証commitは[実施結果台帳](../traceability/results.json)に追加した。承認済みの固定仕様は変更せず、研究結果を本書と同台帳へ記録する。既存PRのhead commitとCIはPR本文で追跡する。ローカル試験は通常の`:app:testDebugUnitTest`に含まれるため、CIでも毎回実行される。Range単位で再要求する候補の連続転送性能・電力は未測定で、Player接続時に検証する。
 
 ### Issue #20の再開箇所
 

@@ -27,8 +27,6 @@ Apple Music・Amazon Music・SoundCloudは必須機能・API資格取得・問�
 
 ## Qobuz：qobine参考の非公式接続候補
 
-2026-11-10：[#20の再検討](12_qobuz_spike.md)では、必須のQobuz実装に向け、qobine原本の照合に加えてKotlinで認可callback・FileBasedクライアントを記述し、ローカルHTTPで検索・取得・Range/seek・報告を検証した。本人の加入契約は確認済みで、アプリ資格は未取得。原本のcallback/ログ/キャッシュをそのまま採用せず、Qobuz自体の実装は進める。
-
 添付はqobine commit `81d574b86957b79133a913c197c6a99618cd8dcb`を基準とする。一次ソースのclient.rsでbrowser_oauth_login/exchange_oauth_codeと再生報告関数、LICENSEでGPLv3を確認した。これはAndroidで同じcallbackや取得方式が使える証拠ではない。
 
 採り入れる設計は、ブラウザーによる本人認証、Provider内での音源解決、期限付き記述子、デコード/出力と取得の分離、再生報告、失効/通信断の回復、永続保存なしのストリーミングである。最大24-bit/192 kHzは候補経路の目標として記録し、取得音源・要求・実出力を別表示する。提供元の実際の音質/契約を推測しない。

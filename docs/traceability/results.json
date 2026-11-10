@@ -18,5 +18,72 @@
       "docs/traceability/validation.md"
     ],
     "limitations": "#18の台帳検査ケースに限定。T18-02の廃止設計への残存参照は既知差異として報告し、Apple Musicは復活させない。TEST-GOV-01全体、製品完成、用途別許可、実機音声・配備・復旧、外部PR承認の合格ではない。"
+  },
+  {
+    "case_id": "E06-02-ci-baseline-notes-2026-11-10",
+    "requirement_ids": [
+      "NFR-MAINT-01",
+      "NFR-TEST-01"
+    ],
+    "test_ids": [
+      "TEST-GOV-01"
+    ],
+    "commit": "8ecadadcdfb6e4797beb9bcc1291e640404f9d67",
+    "stage": "CURRENT",
+    "outcome": "FAIL",
+    "execution": "EXECUTED",
+    "permission": "NOT_REQUIRED",
+    "reason": "Qobuz研究メモを承認ベースラインの固定対象4文書へ追記したため、CIの原文hashと行番号の検査が失敗した。仕様変更は必要ないので固定原文への追記を戻し、結果を研究報告書と本台帳へ記録する。",
+    "evidence": [
+      "https://github.com/4rtoflow/Audipp/actions/runs/42823972590/job/129856296394"
+    ],
+    "limitations": "この記録は失敗の保存であり、修正後の成功へ上書きしない。アプリの動作やサービス資格の判定ではない。"
+  },
+  {
+    "case_id": "E06-02-kotlin-filebased-loopback-2026-11-10",
+    "requirement_ids": [
+      "FR-SRC-08",
+      "FR-SRC-09",
+      "FR-SRC-10"
+    ],
+    "test_ids": [
+      "TEST-PROV-01",
+      "TEST-RESEARCH-01"
+    ],
+    "commit": "8ecadadcdfb6e4797beb9bcc1291e640404f9d67",
+    "stage": "CURRENT",
+    "outcome": "PASS",
+    "execution": "EXECUTED",
+    "permission": "NOT_REQUIRED",
+    "reason": "Kotlinのcallback照合とFileBased候補を、架空資格・試験専用許諾・自作WAVのローカルHTTPで検査。17件で署名、検索、全byteの逐次取得/seek、開始/終了報告、拒否/失効/取消と漏洩防止を確認した。",
+    "evidence": [
+      "app/src/test/java/com/audipp/integrations/streaming/qobuz/QobuzClientTest.kt",
+      "docs/evidence/issue-20/kotlin-local.txt",
+      "docs/specifications/12_qobuz_spike.md"
+    ],
+    "limitations": "ループバック上の候補契約に限る部分ケース。実Qobuzの利用許可、認証交換、実音源のフル直接再生、Player/UI登録、SessionBased、実機/DAC試験、各TESTファミリー全体の合格ではない。"
+  },
+  {
+    "case_id": "E06-02-qobuz-live-2026-11-10",
+    "requirement_ids": [
+      "FR-SRC-08",
+      "FR-SRC-09",
+      "FR-SRC-10"
+    ],
+    "test_ids": [
+      "TEST-PROV-01",
+      "TEST-RESEARCH-01"
+    ],
+    "commit": "8ecadadcdfb6e4797beb9bcc1291e640404f9d67",
+    "stage": "CURRENT",
+    "outcome": "BLOCKED",
+    "execution": "NOT_RUN",
+    "permission": "UNKNOWN",
+    "reason": "利用者は本人のQobuz加入契約を検証に使えると回答し、Audipp用アプリ資格は未取得と回答した。アプリidentity/交換方式と用途条件を確認していないため実サービスへの要求は実施していない。",
+    "evidence": [
+      "docs/specifications/12_qobuz_spike.md",
+      "docs/evidence/issue-20/kotlin-local.txt"
+    ],
+    "limitations": "加入契約は確認済みで、アプリ資格とは別に保持する。実サービス試験の前提不足をQobuz必須要件の削除やKotlin実装全体の停止理由にはしない。資格取得後に実応答・報告受理・失効を検証し、Playerへ接続する。"
   }
 ]

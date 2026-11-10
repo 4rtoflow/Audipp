@@ -623,8 +623,6 @@ Apple Music/Amazon Music/SoundCloudは実装しない。Adapter/ログイン/検
 
 Qobuzはcommit固定qobineを参考にブラウザー認証、FileBased/SessionBased、報告と回復を分離して検証する。Spotifyはlibrespot v0.8.0のSamples(Vec<f64>)だけをPCM候補とし、Rawと区別して共通bufferへ渡す。callback生存期間・Stop/seek世代・cancel可能なbackpressure・正規化の二重適用を検査する。正規のメディア/DRM条件とPCMアクセスを確認できなければ共通DSPへ接続しない。
 
-2026-11-10のQobuz必須実装方針に基づく、認可callback照合・FileBasedのKotlin内部実装とローカルHTTP試験は[#20検証記録](12_qobuz_spike.md)を参照。加入契約は利用者確認済み、アプリ資格は未取得。ローカル取得/seekの成功を実サービス直接再生や用途許諾の成功とせず、残る実サービス試験・Player接続・SessionBasedを追跡する。
-
 TEST-PROV-01/RESEARCH-01は現行対象だけで、版/ABI・認証/契約・取得失敗・報告・callback・秘密漏洩・用途別拒否を確認する。TEST-QUEUE-01/TAP-01/SEC-01も候補導入時に適用する。生の添付コード・Rust/Gradleモジュール・新たな依存を先に取り込まない。未実装のcrossfade/AutomixやConnectの採否は今回の製品変更に追加しない。
 
 ### DD-PROV-08 利用者選択による端末保存

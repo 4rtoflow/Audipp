@@ -21,8 +21,9 @@ INTERNET permission added. No dependency/catalog/lockfile/schema changes.
 Targeted command (existing Linux helper sourced; existing original checkout's
 JDK17/SDK/Gradle cache explicitly selected):
 ./gradlew --no-daemon --console=plain :app:testDebugUnitTest --tests 'com.audipp.integrations.streaming.qobuz.QobuzClientTest'
-Initial-baseline targeted run: BUILD SUCCESSFUL in 19s
-JUnit XML: 17 tests, 0 failures, 0 errors, 0 skipped, 3.411 seconds
+Recorded application-source commit: 8ecadadcdfb6e4797beb9bcc1291e640404f9d67
+Recorded targeted run: BUILD SUCCESSFUL in 10s
+JUnit XML: 17 tests, 0 failures, 0 errors, 0 skipped, 3.402 seconds
 
 Required regression command:
 ./gradlew --no-daemon --console=plain :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
@@ -68,3 +69,12 @@ prove API23 execution or Rust/native ABI portability. This Kotlin path requires
 no Rust/NDK installation and does not import qobine source/binaries.
 
 Current evidence commit, CI run and remaining Issue #20 work: PR #175 body.
+
+Traceability follow-up:
+The approved-source guard rejected research notes in four frozen source documents.
+Those notes were removed from the baseline sources; baseline.json/inventory.tsv
+were not changed. docs/traceability/results.json records the failed CI, the local
+contract PASS and the live-service BLOCKED case separately.
+python3 -m unittest discover -s scripts/traceability -p 'test_*.py': 17 tests OK
+python3 scripts/traceability/check.py: Approved inventory OK
+The known T18-02 retired-reference notice remains OPEN, without reviving Apple Music.
