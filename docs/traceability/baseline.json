@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/4rtoflow/Audipp",
+  "approved_history": [
+    {
+      "version": "1.0.0",
+      "commit": "cc095bf0d62fb39de197299c1755b5b49c22f239",
+      "date": "2026-10-28",
+      "decision_maker": "利用者",
+      "scope": "全レビューComplete・正式版承認。導入・実機・許諾は未確認のまま引継ぎ",
+      "evidence": "docs/specifications/01_requirements.md#L322"
+    },
+    {
+      "version": "1.0.1",
+      "commit": "2adc27605793e9934b1efa7f1bcfac3192a80b19",
+      "date": "2026-10-29",
+      "decision_maker": "利用者",
+      "scope": "Apple Music除外。直接再生など現行対象の承認済み条件は維持",
+      "evidence": "docs/specifications/01_requirements.md#L323"
+    }
+  ],
+  "active_commit": "2adc27605793e9934b1efa7f1bcfac3192a80b19",
+  "counts": {
+    "REQ": 90,
+    "F": 229,
+    "TEST": 43,
+    "DD": 81,
+    "QLT": 14,
+    "ADR": 8,
+    "Q": 13,
+    "R": 7,
+    "P": 5,
+    "IMP": 7,
+    "UAT": 14
+  },
+  "source_sha256": {
+    "docs/audio_app_feature_list.md": "33a34f321df7ad58ee996419da6ec5a20f1919744f3246c386504d03a3a35502",
+    "docs/specifications/00_review_status.md": "02974cba490ada66180d049775e90f69d6bb95dac295e771ece8341584f8d007",
+    "docs/specifications/01_requirements.md": "37555a780871e933f581a9c0a9689ebe67a091d1c194e555543f6cd98071d161",
+    "docs/specifications/02_basic_design.md": "28d0abb2367b1511477b7c27ed0ea2eede5b883ffeaf624899922999e5dde721",
+    "docs/specifications/03_detailed_design.md": "f352000ad60e77454c6bc48e12435806f63d70400e75c81428ef0ebe51ddaf2e",
+    "docs/specifications/04_review_2026-10-27.md": "7e317a02b40b3e136c782d3769cf2451784c65f1b5fb1580ad8a6e58fe9deac7",
+    "docs/specifications/05_feature_coverage.md": "3ec2668530364aeae38a8961e2dde1dcb8173b8df7ce78c559488f88c7c3fe62",
+    "docs/specifications/06_decisions.md": "e24ab82aef767a96d46b0ddc44c06c56b6405cc0e38f9895abb7b9d5a4d6d0f7",
+    "docs/specifications/07_service_feasibility.md": "0ec38316fc1041867585cbf78a7b4e97f3f5cbb4391c7b56d59753e924310e56",
+    "docs/specifications/08_design_decisions.md": "d91b0d5b05786d91e9b872e0ccb7d50cf1a24df25e610a9fdf305390f826fd43",
+    "docs/specifications/09_private_completion_review.md": "e690d59aba6a6fe4d9de4f16faf22066eb6cdec3ab9bc3e5c10bc09ec2a2f299",
+    "docs/specifications/10_provider_proposal_review.md": "757b1faa38c3576a0a1106ab26cb404d42508c305afe8768c1ece2d95f9807a8",
+    "docs/specifications/11_ytdlp_delivery.md": "2443081afdc71b6e9280c9d76b465b88ca1d1f39f5e714a5a732fc5b634a48a2",
+    "docs/design.md": "d78708fb46e424e20548ccc7c017fc0470bd0e3c194ec405078fa5a5d9e57dbe"
+  }
+}

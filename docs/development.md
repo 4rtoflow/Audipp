@@ -90,6 +90,10 @@ python3 -m unittest discover -s scripts/ci -p 'test_*.py'
 - `7ed4f6b`: [一時的な3ケースの障害注入](https://github.com/4rtoflow/Audipp/actions/runs/40828233303)。未定義の型でcompileDebugKotlin、失敗するJUnitでtestDebugUnitTest、重複View IDでlintDebugがそれぞれ失敗。全ケースでAPK保存をスキップし、Unit/Lintの失敗レポートだけを保存。障害注入は検証後に削除。
 - ローカル: Debug/Release・Unit/Lint、PR本文検査9件、actionlint 1.7.12が成功。Release APKのminSdk 23 / targetSdk 36を確認し、Release lock追加前後で依存座標・版に変更がないことを比較。
 
+## 承認ベースラインと追跡台帳
+
+Issue #18の固定版・ID対応・個別試験結果とcommit、既知差異・更新手順は[追跡台帳](traceability/README.md)を参照してください。CIで件数・参照・結果の整合を検査します。台帳検査の成功は製品や試験ファミリー全体の完成を意味しません。
+
 ## 共通domain契約
 
 Source・Variant・再生Snapshot・Evidenceの公開型、版付きJSON、後続Issueとの責務分担と契約試験の対応は [共通domain契約 v1](contracts/domain-model-v1.md) を参照してください。
