@@ -110,6 +110,10 @@ Issue #28のAndroid Keystore / AES-GCM、アカウント別の秘密と失効・
 
 Issue #31のアダプター登録、出力先ごとのPlan、許諾・経路・期限の再検査と後続接続の責務は [再生計画の解決 v1](contracts/source-resolution-v1.md) を参照してください。
 
+## ライブラリDB
+
+Issue #29のRoom v1 schema・DAO、保存/消失/rollback、採用依存と検証の追跡は [ライブラリDB v1](contracts/library-db-v1.md) を参照してください。走査・UI・キューとの接続は担当Issueで行います。
+
 ## ADBでインストールする
 
 SDKの `platform-tools` をPATHに追加します。`adb devices -l` で接続・認証状態を確認し、以下の `SERIAL` を対象のシリアルに置き換えます。
