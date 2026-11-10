@@ -114,9 +114,9 @@ Issue #28のAndroid Keystore / AES-GCM、アカウント別の秘密と失効・
 
 Issue #31のアダプター登録、出力先ごとのPlan、許諾・経路・期限の再検査と後続接続の責務は [再生計画の解決 v1](contracts/source-resolution-v1.md) を参照してください。
 
-## LAN LibraryとRenderer
+## USB機器の取得
 
-Issue #49のLibrary/Renderer分離、資格のスコープ、有限timeout・取消、ACKと観測状態、Fakeと実プロトコルの検証範囲は [LAN契約 v1](contracts/network-v1.md) を参照してください。
+Issue #32の明示許可・接続寿命・公開属性・UAC descriptor解析の範囲と検証の追跡は [USB機器の取得 v1](contracts/usb-devices-v1.md) を参照してください。実際の再生経路、機器プロファイル、画面、native USB出力との接続は各担当Issueで行います。
 
 ## ライブラリDB
 
@@ -157,3 +157,7 @@ GUIのエミュレーターはDevice Managerで作成するか、SDKの `emulato
 2026-10-23時点：Linux x86_64でDebugビルド、ユニットテスト3件、Lintが成功しています。Lintはエラー0、固定した依存に対する更新通知6件です。API 36エミュレーターではGUI起動と初期画面の表示を確認しました。
 
 macOS / Windows、API 23、スマートフォン・DAP実機では未検証です。音声再生・USB DAC・音質の検証結果はまだありません。エミュレーターでの起動成功を実機の音声動作の根拠にはしません。
+
+## LAN LibraryとRenderer
+
+Issue #49のLibrary/Renderer分離、資格のスコープ、有限timeout・取消、ACKと観測状態、Fakeと実プロトコルの検証範囲は [LAN契約 v1](contracts/network-v1.md) を参照してください。
