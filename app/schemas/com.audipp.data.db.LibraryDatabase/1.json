@@ -1,0 +1,423 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "6dc76bff2d8e6a3e7462e194014e067c",
+    "entities": [
+      {
+        "tableName": "sources",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`source_id` TEXT NOT NULL, `kind` TEXT NOT NULL, `provider_key` TEXT, `provider_item_id` TEXT, `local_uri` TEXT, `availability` TEXT NOT NULL, `grant_mode` TEXT, `updated_at` INTEGER NOT NULL, PRIMARY KEY(`source_id`))",
+        "fields": [
+          {
+            "fieldPath": "sourceId",
+            "columnName": "source_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kind",
+            "columnName": "kind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "providerKey",
+            "columnName": "provider_key",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "providerItemId",
+            "columnName": "provider_item_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "localUri",
+            "columnName": "local_uri",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "availability",
+            "columnName": "availability",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "grantMode",
+            "columnName": "grant_mode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updated_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "source_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_sources_provider_key_provider_item_id",
+            "unique": true,
+            "columnNames": [
+              "provider_key",
+              "provider_item_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_sources_provider_key_provider_item_id` ON `${TABLE_NAME}` (`provider_key`, `provider_item_id`)"
+          }
+        ]
+      },
+      {
+        "tableName": "tracks",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`track_id` TEXT NOT NULL, `title` TEXT, `artist_display` TEXT, `year` INTEGER, `genre` TEXT, `artwork_ref` TEXT, PRIMARY KEY(`track_id`))",
+        "fields": [
+          {
+            "fieldPath": "trackId",
+            "columnName": "track_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "artistDisplay",
+            "columnName": "artist_display",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "year",
+            "columnName": "year",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "genre",
+            "columnName": "genre",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "artworkRef",
+            "columnName": "artwork_ref",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "track_id"
+          ]
+        }
+      },
+      {
+        "tableName": "track_variants",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`variant_id` TEXT NOT NULL, `track_id` TEXT NOT NULL, `source_id` TEXT NOT NULL, `album_id` TEXT, `disc_no` INTEGER, `track_no` INTEGER, `duration_ms` INTEGER, `codec` TEXT, `sample_rate` INTEGER, `bit_depth` INTEGER, `channels` INTEGER, `mastering_label` TEXT, PRIMARY KEY(`variant_id`), FOREIGN KEY(`track_id`) REFERENCES `tracks`(`track_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`source_id`) REFERENCES `sources`(`source_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`album_id`) REFERENCES `albums`(`album_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "variantId",
+            "columnName": "variant_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trackId",
+            "columnName": "track_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceId",
+            "columnName": "source_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "albumId",
+            "columnName": "album_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "discNo",
+            "columnName": "disc_no",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "trackNo",
+            "columnName": "track_no",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "durationMs",
+            "columnName": "duration_ms",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "codec",
+            "columnName": "codec",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "sampleRate",
+            "columnName": "sample_rate",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "bitDepth",
+            "columnName": "bit_depth",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "channels",
+            "columnName": "channels",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "masteringLabel",
+            "columnName": "mastering_label",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "variant_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_track_variants_track_id",
+            "unique": false,
+            "columnNames": [
+              "track_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_track_variants_track_id` ON `${TABLE_NAME}` (`track_id`)"
+          },
+          {
+            "name": "index_track_variants_source_id",
+            "unique": false,
+            "columnNames": [
+              "source_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_track_variants_source_id` ON `${TABLE_NAME}` (`source_id`)"
+          },
+          {
+            "name": "index_track_variants_album_id",
+            "unique": false,
+            "columnNames": [
+              "album_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_track_variants_album_id` ON `${TABLE_NAME}` (`album_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "tracks",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "track_id"
+            ],
+            "referencedColumns": [
+              "track_id"
+            ]
+          },
+          {
+            "table": "sources",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "source_id"
+            ],
+            "referencedColumns": [
+              "source_id"
+            ]
+          },
+          {
+            "table": "albums",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "album_id"
+            ],
+            "referencedColumns": [
+              "album_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "albums",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`album_id` TEXT NOT NULL, `title` TEXT, `album_artist` TEXT, `release_namespace` TEXT, `release_id` TEXT, `year` INTEGER, `artwork_ref` TEXT, PRIMARY KEY(`album_id`))",
+        "fields": [
+          {
+            "fieldPath": "albumId",
+            "columnName": "album_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "albumArtist",
+            "columnName": "album_artist",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "releaseNamespace",
+            "columnName": "release_namespace",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "releaseId",
+            "columnName": "release_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "year",
+            "columnName": "year",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "artworkRef",
+            "columnName": "artwork_ref",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "album_id"
+          ]
+        }
+      },
+      {
+        "tableName": "artists",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`artist_id` TEXT NOT NULL, `name` TEXT, `external_id` TEXT, PRIMARY KEY(`artist_id`))",
+        "fields": [
+          {
+            "fieldPath": "artistId",
+            "columnName": "artist_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "externalId",
+            "columnName": "external_id",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "artist_id"
+          ]
+        }
+      },
+      {
+        "tableName": "track_artists",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`track_id` TEXT NOT NULL, `artist_id` TEXT NOT NULL, `role` TEXT NOT NULL, `ordinal` INTEGER NOT NULL, PRIMARY KEY(`track_id`, `artist_id`, `role`), FOREIGN KEY(`track_id`) REFERENCES `tracks`(`track_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`artist_id`) REFERENCES `artists`(`artist_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "trackId",
+            "columnName": "track_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artistId",
+            "columnName": "artist_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "role",
+            "columnName": "role",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ordinal",
+            "columnName": "ordinal",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "track_id",
+            "artist_id",
+            "role"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_track_artists_artist_id",
+            "unique": false,
+            "columnNames": [
+              "artist_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_track_artists_artist_id` ON `${TABLE_NAME}` (`artist_id`)"
+          },
+          {
+            "name": "index_track_artists_track_id_role_ordinal",
+            "unique": true,
+            "columnNames": [
+              "track_id",
+              "role",
+              "ordinal"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_track_artists_track_id_role_ordinal` ON `${TABLE_NAME}` (`track_id`, `role`, `ordinal`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "tracks",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "track_id"
+            ],
+            "referencedColumns": [
+              "track_id"
+            ]
+          },
+          {
+            "table": "artists",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "artist_id"
+            ],
+            "referencedColumns": [
+              "artist_id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6dc76bff2d8e6a3e7462e194014e067c')"
+    ]
+  }
+}
