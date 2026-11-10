@@ -114,6 +114,10 @@ Issue #28のAndroid Keystore / AES-GCM、アカウント別の秘密と失効・
 
 Issue #31のアダプター登録、出力先ごとのPlan、許諾・経路・期限の再検査と後続接続の責務は [再生計画の解決 v1](contracts/source-resolution-v1.md) を参照してください。
 
+## USB機器の取得
+
+Issue #32の明示許可・接続寿命・公開属性・UAC descriptor解析の範囲と検証の追跡は [USB機器の取得 v1](contracts/usb-devices-v1.md) を参照してください。実際の再生経路、機器プロファイル、画面、native USB出力との接続は各担当Issueで行います。
+
 ## ライブラリDB
 
 Issue #29のRoom v1 schema・DAO、保存/消失/rollback、採用依存と検証の追跡は [ライブラリDB v1](contracts/library-db-v1.md) を参照してください。走査・UI・キューとの接続は担当Issueで行います。
