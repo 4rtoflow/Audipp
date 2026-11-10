@@ -1,0 +1,519 @@
+id	source	links	scope
+ADR-001	docs/specifications/02_basic_design.md#L363		CURRENT
+ADR-002	docs/specifications/02_basic_design.md#L364		CURRENT
+ADR-003	docs/specifications/02_basic_design.md#L365		CURRENT
+ADR-004	docs/specifications/02_basic_design.md#L366		CURRENT
+ADR-005	docs/specifications/02_basic_design.md#L367		CURRENT
+ADR-006	docs/specifications/02_basic_design.md#L368		CURRENT
+ADR-007	docs/specifications/02_basic_design.md#L369		CURRENT
+ADR-008	docs/specifications/02_basic_design.md#L370		CURRENT
+DD-AUD	docs/specifications/03_detailed_design.md#L382		CURRENT
+DD-AUD-01	docs/specifications/03_detailed_design.md#L384		CURRENT
+DD-AUD-02	docs/specifications/03_detailed_design.md#L410		CURRENT
+DD-AUD-03	docs/specifications/03_detailed_design.md#L420		CURRENT
+DD-AUD-04	docs/specifications/03_detailed_design.md#L430		CURRENT
+DD-AUD-05	docs/specifications/03_detailed_design.md#L446		CURRENT
+DD-CLOUD	docs/specifications/03_detailed_design.md#L744		CURRENT
+DD-CLOUD-01	docs/specifications/03_detailed_design.md#L746		CURRENT
+DD-CLOUD-02	docs/specifications/03_detailed_design.md#L760		CURRENT
+DD-CLOUD-03	docs/specifications/03_detailed_design.md#L774		CURRENT
+DD-CLOUD-04	docs/specifications/03_detailed_design.md#L784		CURRENT
+DD-DB	docs/specifications/03_detailed_design.md#L157		CURRENT
+DD-DB-01	docs/specifications/03_detailed_design.md#L159		CURRENT
+DD-DB-02	docs/specifications/03_detailed_design.md#L192		CURRENT
+DD-DB-03	docs/specifications/03_detailed_design.md#L201		CURRENT
+DD-DECISIONS	docs/specifications/03_detailed_design.md#L979		CURRENT
+DD-DEV	docs/specifications/03_detailed_design.md#L491		CURRENT
+DD-DEV-01	docs/specifications/03_detailed_design.md#L493		CURRENT
+DD-DEV-02	docs/specifications/03_detailed_design.md#L502		CURRENT
+DD-DEV-03	docs/specifications/03_detailed_design.md#L521		CURRENT
+DD-DSP	docs/specifications/03_detailed_design.md#L458		CURRENT
+DD-DSP-01	docs/specifications/03_detailed_design.md#L460		CURRENT
+DD-DSP-02	docs/specifications/03_detailed_design.md#L470		CURRENT
+DD-DSP-03	docs/specifications/03_detailed_design.md#L483		CURRENT
+DD-DSP-04	docs/specifications/03_detailed_design.md#L487		CURRENT
+DD-ERROR	docs/specifications/03_detailed_design.md#L835		CURRENT
+DD-HIST	docs/specifications/03_detailed_design.md#L658		CURRENT
+DD-HIST-01	docs/specifications/03_detailed_design.md#L660		CURRENT
+DD-HIST-02	docs/specifications/03_detailed_design.md#L670		CURRENT
+DD-HIST-03	docs/specifications/03_detailed_design.md#L677		CURRENT
+DD-HIST-04	docs/specifications/03_detailed_design.md#L681		CURRENT
+DD-HIST-05	docs/specifications/03_detailed_design.md#L689		CURRENT
+DD-MODEL	docs/specifications/03_detailed_design.md#L74		CURRENT
+DD-MODEL-01	docs/specifications/03_detailed_design.md#L76		CURRENT
+DD-MODEL-02	docs/specifications/03_detailed_design.md#L125		CURRENT
+DD-NET	docs/specifications/03_detailed_design.md#L634		CURRENT
+DD-NET-01	docs/specifications/03_detailed_design.md#L636		CURRENT
+DD-NET-02	docs/specifications/03_detailed_design.md#L644		CURRENT
+DD-NET-03	docs/specifications/03_detailed_design.md#L648		CURRENT
+DD-OBS	docs/specifications/03_detailed_design.md#L697		CURRENT
+DD-OBS-01	docs/specifications/03_detailed_design.md#L699		CURRENT
+DD-OBS-02	docs/specifications/03_detailed_design.md#L713		CURRENT
+DD-OBS-03	docs/specifications/03_detailed_design.md#L730		CURRENT
+DD-PKG	docs/specifications/03_detailed_design.md#L24		CURRENT
+DD-PKG-01	docs/specifications/03_detailed_design.md#L26		CURRENT
+DD-PKG-02	docs/specifications/03_detailed_design.md#L67		CURRENT
+DD-PLY	docs/specifications/03_detailed_design.md#L249		CURRENT
+DD-PLY-01	docs/specifications/03_detailed_design.md#L251		CURRENT
+DD-PLY-02	docs/specifications/03_detailed_design.md#L270		CURRENT
+DD-PLY-03	docs/specifications/03_detailed_design.md#L299		CURRENT
+DD-PROV	docs/specifications/03_detailed_design.md#L527		CURRENT
+DD-PROV-01	docs/specifications/03_detailed_design.md#L529		CURRENT
+DD-PROV-02	docs/specifications/03_detailed_design.md#L576		CURRENT
+DD-PROV-03	docs/specifications/03_detailed_design.md#L588		CURRENT
+DD-PROV-04	docs/specifications/03_detailed_design.md#L600		CURRENT
+DD-PROV-05	docs/specifications/03_detailed_design.md#L606		CURRENT
+DD-PROV-06	docs/specifications/03_detailed_design.md#L614		RETIRED
+DD-PROV-07	docs/specifications/03_detailed_design.md#L618		CURRENT
+DD-PROV-08	docs/specifications/03_detailed_design.md#L628		CURRENT
+DD-QUEUE	docs/specifications/03_detailed_design.md#L308		CURRENT
+DD-QUEUE-01	docs/specifications/03_detailed_design.md#L310		CURRENT
+DD-QUEUE-02	docs/specifications/03_detailed_design.md#L318		CURRENT
+DD-QUEUE-03	docs/specifications/03_detailed_design.md#L345		CURRENT
+DD-QUEUE-04	docs/specifications/03_detailed_design.md#L366		CURRENT
+DD-QUEUE-05	docs/specifications/03_detailed_design.md#L376		CURRENT
+DD-RELEASE	docs/specifications/03_detailed_design.md#L950		CURRENT
+DD-RELEASE-01	docs/specifications/03_detailed_design.md#L952		CURRENT
+DD-RELEASE-02	docs/specifications/03_detailed_design.md#L962		CURRENT
+DD-SRC	docs/specifications/03_detailed_design.md#L208		CURRENT
+DD-SRC-01	docs/specifications/03_detailed_design.md#L210		CURRENT
+DD-SRC-02	docs/specifications/03_detailed_design.md#L225		CURRENT
+DD-SRC-03	docs/specifications/03_detailed_design.md#L233		CURRENT
+DD-SRC-04	docs/specifications/03_detailed_design.md#L237		CURRENT
+DD-TEST	docs/specifications/03_detailed_design.md#L864		CURRENT
+DD-TEST-01	docs/specifications/03_detailed_design.md#L866		CURRENT
+DD-TEST-02	docs/specifications/03_detailed_design.md#L880		CURRENT
+DD-TEST-03	docs/specifications/03_detailed_design.md#L932		CURRENT
+DD-TEST-04	docs/specifications/03_detailed_design.md#L940		CURRENT
+DD-TRACE	docs/specifications/03_detailed_design.md#L991		CURRENT
+DD-UI	docs/specifications/03_detailed_design.md#L800		CURRENT
+DD-UI-02	docs/specifications/03_detailed_design.md#L817		CURRENT
+DD-UI-03	docs/specifications/03_detailed_design.md#L825		CURRENT
+F-01-01	docs/specifications/05_feature_coverage.md#L26	DD-AUD-04,DD-SRC,FR-SRC-04,TEST-FORMAT-01	CURRENT
+F-01-01.01	docs/specifications/05_feature_coverage.md#L27	DD-AUD-04,DD-SRC,FR-SRC-04,TEST-FORMAT-01	CURRENT
+F-01-02	docs/specifications/05_feature_coverage.md#L28	DD-PROV-01,DD-PROV-02,DD-PROV-04,FR-SRC-09,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-01-02.01	docs/specifications/05_feature_coverage.md#L29	DD-PROV-01,DD-PROV-02,DD-PROV-04,FR-SRC-09,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-01-02.02	docs/specifications/05_feature_coverage.md#L374		RETIRED
+F-01-02.03	docs/specifications/05_feature_coverage.md#L30	DD-PROV-01,DD-PROV-02,DD-PROV-04,FR-SRC-09,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-01-02.04	docs/specifications/05_feature_coverage.md#L375		RETIRED
+F-01-02.05	docs/specifications/05_feature_coverage.md#L31	DD-PROV-01,DD-PROV-02,DD-PROV-04,FR-SRC-09,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-01-02.06	docs/specifications/05_feature_coverage.md#L378		RETIRED
+F-01-03	docs/specifications/05_feature_coverage.md#L32	DD-PROV,DD-QUEUE,FR-SRC-08,TEST-PROV-01	CURRENT
+F-01-03.01	docs/specifications/05_feature_coverage.md#L33	DD-PROV,DD-QUEUE,FR-SRC-08,TEST-PROV-01	CURRENT
+F-01-03.02	docs/specifications/05_feature_coverage.md#L34	DD-PROV,DD-QUEUE,FR-SRC-08,TEST-PROV-01	CURRENT
+F-01-03.03	docs/specifications/05_feature_coverage.md#L35	DD-PROV,DD-QUEUE,FR-SRC-08,TEST-PROV-01	CURRENT
+F-01-04	docs/specifications/05_feature_coverage.md#L36	DD-PROV-04,DD-PROV-05,FR-SRC-11,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-01-04.01	docs/specifications/05_feature_coverage.md#L37	DD-PROV-04,DD-PROV-05,FR-SRC-11,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-01-04.02	docs/specifications/05_feature_coverage.md#L38	DD-PROV-04,DD-PROV-05,FR-SRC-11,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-01-04.03	docs/specifications/05_feature_coverage.md#L39	DD-PROV-04,DD-PROV-05,FR-SRC-11,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-01-04.04	docs/specifications/05_feature_coverage.md#L40	DD-PROV-04,DD-PROV-05,FR-SRC-11,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-01-04.05	docs/specifications/05_feature_coverage.md#L41	DD-PROV-05,FR-SRC-11,TEST-RESEARCH-01,TEST-YTDLP-01	CURRENT
+F-01-04.06	docs/specifications/05_feature_coverage.md#L42	DD-PROV-08,FR-SRC-12,TEST-SAVE-01	CURRENT
+F-01-05	docs/specifications/05_feature_coverage.md#L43	DD-PROV-01,DD-PROV-04,FR-SRC-10,TEST-PROV-01	CURRENT
+F-01-06	docs/specifications/05_feature_coverage.md#L44	DD-MODEL,DD-PROV,DD-QUEUE,DD-SRC,DD-UI,FR-SRC-01,FR-SRC-08,TEST-FORMAT-01,TEST-PROV-01,TEST-UI-01	CURRENT
+F-02-01	docs/specifications/05_feature_coverage.md#L52	DD-PROV,DD-QUEUE-04,FR-PLY-07,TEST-PROV-01,TEST-QUEUE-01	CURRENT
+F-02-02	docs/specifications/05_feature_coverage.md#L53	DD-PLY,DD-PROV,DD-QUEUE,DD-QUEUE-04,FR-PLY-01,FR-PLY-07,TEST-PLY-01,TEST-PLY-02,TEST-PROV-01,TEST-QUEUE-01	CURRENT
+F-02-03	docs/specifications/05_feature_coverage.md#L54	DD-PROV,DD-QUEUE-04,FR-PLY-07,TEST-PROV-01,TEST-QUEUE-01	CURRENT
+F-02-04	docs/specifications/05_feature_coverage.md#L55	DD-QUEUE-05,FR-PLY-08,TEST-GAPLESS-01	CURRENT
+F-02-05	docs/specifications/05_feature_coverage.md#L56	DD-DB-01,DD-QUEUE-03,FR-PLY-06,TEST-SCHEDULE-01	CURRENT
+F-02-06	docs/specifications/05_feature_coverage.md#L57	DD-DB-01,DD-QUEUE-03,FR-PLY-06,TEST-SCHEDULE-01	CURRENT
+F-02-07	docs/specifications/05_feature_coverage.md#L58	DD-DB-01,DD-QUEUE-03,FR-PLY-06,TEST-SCHEDULE-01	CURRENT
+F-02-08	docs/specifications/05_feature_coverage.md#L59	DD-QUEUE-03,DD-UI,FR-PLY-09,TEST-QUEUE-01,TEST-SCHEDULE-01	CURRENT
+F-02-09	docs/specifications/05_feature_coverage.md#L60	DD-DB-01,DD-DB-02,FR-PLY-05,TEST-PLAYLIST-01	CURRENT
+F-02-10	docs/specifications/05_feature_coverage.md#L61	DD-PLY,DD-QUEUE,FR-PLY-01,TEST-PLY-01,TEST-PLY-02	CURRENT
+F-02-11	docs/specifications/05_feature_coverage.md#L62	DD-QUEUE-05,FR-PLY-08,TEST-GAPLESS-01	CURRENT
+F-02-12	docs/specifications/05_feature_coverage.md#L63	DD-PROV,DD-QUEUE-04,DD-QUEUE-05,FR-PLY-07,FR-PLY-08,TEST-GAPLESS-01,TEST-PROV-01,TEST-QUEUE-01	CURRENT
+F-03-01	docs/specifications/05_feature_coverage.md#L71	DD-DB,DD-SRC,FR-SRC-02,TEST-LIB-01,TEST-LIB-02	CURRENT
+F-03-02	docs/specifications/05_feature_coverage.md#L72	DD-DB,DD-SRC,FR-SRC-02,TEST-LIB-01,TEST-LIB-02	CURRENT
+F-03-03	docs/specifications/05_feature_coverage.md#L73	DD-DB,DD-SRC,FR-SRC-05,TEST-LIB-01,TEST-LIB-02	CURRENT
+F-03-04	docs/specifications/05_feature_coverage.md#L74	DD-DB,DD-SRC,FR-SRC-03,TEST-LIB-01,TEST-LIB-02	CURRENT
+F-03-05	docs/specifications/05_feature_coverage.md#L75	DD-SRC-04,FR-SRC-06,TEST-META-01	CURRENT
+F-03-06	docs/specifications/05_feature_coverage.md#L76	DD-SRC-04,FR-SRC-06,TEST-META-01	CURRENT
+F-03-07	docs/specifications/05_feature_coverage.md#L77	DD-SRC-04,FR-SRC-06,TEST-META-01	CURRENT
+F-03-08	docs/specifications/05_feature_coverage.md#L78	DD-DB,DD-SRC,FR-SRC-05,TEST-LIB-01,TEST-LIB-02	CURRENT
+F-03-09	docs/specifications/05_feature_coverage.md#L79	DD-DB-01,DD-SRC-03,DD-SRC-04,FR-SRC-07,TEST-META-01,TEST-SCHEDULE-01	CURRENT
+F-03-10	docs/specifications/05_feature_coverage.md#L80	DD-DB-01,DD-SRC-03,DD-SRC-04,FR-SRC-07,TEST-META-01,TEST-SCHEDULE-01	CURRENT
+F-03-11	docs/specifications/05_feature_coverage.md#L81	DD-DB-01,DD-SRC-03,DD-SRC-04,FR-SRC-07,TEST-META-01,TEST-SCHEDULE-01	CURRENT
+F-03-12	docs/specifications/05_feature_coverage.md#L82	DD-DB-01,DD-PROV-01,DD-PROV-04,DD-SRC-03,DD-SRC-04,FR-SRC-07,FR-SRC-10,TEST-META-01,TEST-PROV-01,TEST-SCHEDULE-01	CURRENT
+F-03-13	docs/specifications/05_feature_coverage.md#L83	DD-AUD,DD-DSP,FR-AUD-01,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-04-01	docs/specifications/05_feature_coverage.md#L91	DD-AUD,DD-DSP,FR-AUD-03,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-04-02	docs/specifications/05_feature_coverage.md#L92	DD-AUD,DD-DSP,DD-OBS,FR-AUD-03,FR-OBS-01,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03,TEST-VIS-01	CURRENT
+F-04-03	docs/specifications/05_feature_coverage.md#L93	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-03.01	docs/specifications/05_feature_coverage.md#L94	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-03.02	docs/specifications/05_feature_coverage.md#L95	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-04	docs/specifications/05_feature_coverage.md#L96	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-04.01	docs/specifications/05_feature_coverage.md#L97	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-05	docs/specifications/05_feature_coverage.md#L98	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-06	docs/specifications/05_feature_coverage.md#L99	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-07	docs/specifications/05_feature_coverage.md#L100	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-07.01	docs/specifications/05_feature_coverage.md#L101	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-07.02	docs/specifications/05_feature_coverage.md#L102	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-07.03	docs/specifications/05_feature_coverage.md#L103	DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-04,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-08	docs/specifications/05_feature_coverage.md#L104	DD-AUD-04,DD-AUD-05,FR-AUD-05,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-08.01	docs/specifications/05_feature_coverage.md#L105	DD-AUD-04,DD-AUD-05,FR-AUD-05,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-09	docs/specifications/05_feature_coverage.md#L106	DD-AUD-04,DD-AUD-05,FR-AUD-05,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-10	docs/specifications/05_feature_coverage.md#L107	DD-AUD-04,DD-AUD-05,FR-AUD-05,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-11	docs/specifications/05_feature_coverage.md#L108	DD-AUD-04,DD-AUD-05,FR-AUD-05,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+F-04-12	docs/specifications/05_feature_coverage.md#L109	DD-AUD,DD-AUD-04,DD-AUD-05,DD-DSP,FR-AUD-02,FR-AUD-05,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03,TEST-FORMAT-02	CURRENT
+F-04-13	docs/specifications/05_feature_coverage.md#L110	DD-AUD,DD-DSP,FR-AUD-01,FR-AUD-07,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-01	docs/specifications/05_feature_coverage.md#L118	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-01.01	docs/specifications/05_feature_coverage.md#L119	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-01.02	docs/specifications/05_feature_coverage.md#L120	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-01.03	docs/specifications/05_feature_coverage.md#L121	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-02	docs/specifications/05_feature_coverage.md#L122	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-03	docs/specifications/05_feature_coverage.md#L123	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-03.01	docs/specifications/05_feature_coverage.md#L124	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-04	docs/specifications/05_feature_coverage.md#L125	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-04.01	docs/specifications/05_feature_coverage.md#L126	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-04.02	docs/specifications/05_feature_coverage.md#L127	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-05	docs/specifications/05_feature_coverage.md#L128	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-06	docs/specifications/05_feature_coverage.md#L129	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-07	docs/specifications/05_feature_coverage.md#L130	DD-AUD,DD-DSP,FR-AUD-06,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-08	docs/specifications/05_feature_coverage.md#L131	DD-AUD,DD-DSP,FR-AUD-07,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-09	docs/specifications/05_feature_coverage.md#L132	DD-AUD,DD-DSP,FR-AUD-07,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-10	docs/specifications/05_feature_coverage.md#L133	DD-AUD,DD-DSP,FR-AUD-01,FR-AUD-07,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-05-11	docs/specifications/05_feature_coverage.md#L134	DD-AUD,DD-DSP,FR-AUD-07,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-06-01	docs/specifications/05_feature_coverage.md#L142	DD-AUD-04,DD-DEV-03,DD-NET,FR-DEV-03,FR-NET-03,TEST-AUD-02,TEST-DEVICE-01,TEST-NET-01	CURRENT
+F-06-01.01	docs/specifications/05_feature_coverage.md#L143	DD-AUD-04,DD-DEV-03,DD-NET,FR-DEV-03,FR-NET-03,TEST-AUD-02,TEST-DEVICE-01,TEST-NET-01	CURRENT
+F-06-01.02	docs/specifications/05_feature_coverage.md#L144	DD-AUD-04,DD-DEV-03,DD-NET,FR-DEV-03,FR-NET-03,TEST-AUD-02,TEST-DEVICE-01,TEST-NET-01	CURRENT
+F-06-01.03	docs/specifications/05_feature_coverage.md#L145	DD-AUD-04,DD-DEV-03,DD-NET,FR-DEV-03,FR-NET-03,TEST-AUD-02,TEST-DEVICE-01,TEST-NET-01	CURRENT
+F-06-01.04	docs/specifications/05_feature_coverage.md#L146	DD-AUD-04,DD-DEV-03,DD-NET,FR-DEV-03,FR-NET-03,TEST-AUD-02,TEST-DEVICE-01,TEST-NET-01	CURRENT
+F-06-01.05	docs/specifications/05_feature_coverage.md#L147	DD-AUD-04,DD-DEV-03,DD-NET,FR-DEV-03,FR-NET-03,TEST-AUD-02,TEST-DEVICE-01,TEST-NET-01	CURRENT
+F-06-02	docs/specifications/05_feature_coverage.md#L148	DD-AUD,DD-DSP,FR-AUD-02,FR-AUD-03,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-06-02.01	docs/specifications/05_feature_coverage.md#L149	DD-AUD,DD-DSP,FR-AUD-02,FR-AUD-03,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-06-02.02	docs/specifications/05_feature_coverage.md#L150	DD-AUD,DD-DSP,FR-AUD-02,FR-AUD-03,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-06-02.03	docs/specifications/05_feature_coverage.md#L151	DD-AUD,DD-DSP,FR-AUD-02,FR-AUD-03,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-06-03	docs/specifications/05_feature_coverage.md#L152	DD-AUD-04,DD-DEV-03,FR-DEV-03,TEST-AUD-02,TEST-DEVICE-01	CURRENT
+F-06-04	docs/specifications/05_feature_coverage.md#L153	DD-AUD-04,DD-AUD-05,DD-DEV-03,FR-AUD-05,FR-DEV-03,TEST-AUD-02,TEST-DEVICE-01,TEST-FORMAT-02	CURRENT
+F-06-05	docs/specifications/05_feature_coverage.md#L154	DD-AUD-04,DD-DEV-03,FR-DEV-03,TEST-AUD-02,TEST-DEVICE-01	CURRENT
+F-06-05.01	docs/specifications/05_feature_coverage.md#L155	DD-AUD-04,DD-DEV-03,FR-DEV-03,TEST-AUD-02,TEST-DEVICE-01	CURRENT
+F-06-05.02	docs/specifications/05_feature_coverage.md#L156	DD-AUD-04,DD-DEV-03,FR-DEV-03,TEST-AUD-02,TEST-DEVICE-01	CURRENT
+F-06-05.03	docs/specifications/05_feature_coverage.md#L157	DD-AUD-04,DD-DEV-03,FR-DEV-03,TEST-AUD-02,TEST-DEVICE-01	CURRENT
+F-06-06	docs/specifications/05_feature_coverage.md#L158	DD-OBS,FR-OBS-04,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-06-07	docs/specifications/05_feature_coverage.md#L159	DD-AUD,DD-AUD-04,DD-DEV-03,DD-DSP,FR-AUD-08,FR-DEV-03,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03,TEST-DEVICE-01	CURRENT
+F-06-08	docs/specifications/05_feature_coverage.md#L160	DD-DEV-02,DD-DEV-03,DD-PLY,DD-QUEUE,FR-DEV-05,FR-PLY-03,TEST-AUD-03,TEST-DEVICE-01,TEST-PLY-01,TEST-PLY-02	CURRENT
+F-06-09	docs/specifications/05_feature_coverage.md#L161	DD-DEV-02,DD-DEV-03,FR-DEV-05,TEST-AUD-03,TEST-DEVICE-01	CURRENT
+F-06-10	docs/specifications/05_feature_coverage.md#L162	DD-DEV-01,DD-DEV-03,FR-DEV-02,TEST-DEVICE-01	CURRENT
+F-06-11	docs/specifications/05_feature_coverage.md#L163	DD-DEV-01,DD-DEV-03,FR-DEV-02,TEST-DEVICE-01	CURRENT
+F-06-11.01	docs/specifications/05_feature_coverage.md#L164	DD-DEV-01,DD-DEV-03,FR-DEV-02,TEST-DEVICE-01	CURRENT
+F-06-11.02	docs/specifications/05_feature_coverage.md#L165	DD-DEV-01,DD-DEV-03,FR-DEV-02,TEST-DEVICE-01	CURRENT
+F-06-11.03	docs/specifications/05_feature_coverage.md#L166	DD-DEV-01,DD-DEV-03,FR-DEV-02,TEST-DEVICE-01	CURRENT
+F-06-11.04	docs/specifications/05_feature_coverage.md#L167	DD-DEV-01,DD-DEV-03,FR-DEV-02,TEST-DEVICE-01	CURRENT
+F-06-11.05	docs/specifications/05_feature_coverage.md#L168	DD-DEV-01,DD-DEV-03,FR-DEV-02,TEST-DEVICE-01	CURRENT
+F-06-12	docs/specifications/05_feature_coverage.md#L169	DD-AUD,DD-DEV-01,DD-DEV-02,DD-DSP,FR-AUD-01,FR-DEV-01,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03,TEST-DEVICE-01	CURRENT
+F-06-13	docs/specifications/05_feature_coverage.md#L170	DD-OBS-03,FR-OBS-06,TEST-DIAG-01,TEST-SEC-01	CURRENT
+F-07-01	docs/specifications/05_feature_coverage.md#L178	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-02	docs/specifications/05_feature_coverage.md#L179	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-03	docs/specifications/05_feature_coverage.md#L180	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-04	docs/specifications/05_feature_coverage.md#L181	DD-DEV-02,DD-DEV-03,FR-DEV-05,TEST-AUD-03,TEST-DEVICE-01	CURRENT
+F-07-05	docs/specifications/05_feature_coverage.md#L182	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-05.01	docs/specifications/05_feature_coverage.md#L183	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-05.02	docs/specifications/05_feature_coverage.md#L184	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-05.03	docs/specifications/05_feature_coverage.md#L185	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-05.04	docs/specifications/05_feature_coverage.md#L186	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-05.05	docs/specifications/05_feature_coverage.md#L187	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-05.06	docs/specifications/05_feature_coverage.md#L188	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-06	docs/specifications/05_feature_coverage.md#L189	DD-AUD,DD-DSP,FR-AUD-08,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+F-07-07	docs/specifications/05_feature_coverage.md#L190	DD-DEV-02,DD-DEV-03,FR-DEV-05,TEST-AUD-03,TEST-DEVICE-01	CURRENT
+F-07-08	docs/specifications/05_feature_coverage.md#L191	DD-AUD,DD-DB,DD-DEV-03,DD-DSP,FR-AUD-08,FR-DEV-04,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03,TEST-DEVICE-01	CURRENT
+F-07-09	docs/specifications/05_feature_coverage.md#L192	DD-TEST-03,DD-TEST-04,FR-PLT-01,TEST-COMP-01,TEST-FORMAT-02	CURRENT
+F-07-10	docs/specifications/05_feature_coverage.md#L193	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-07-11	docs/specifications/05_feature_coverage.md#L194	DD-CLOUD-03,DD-DEV-03,FR-DEV-06,TEST-SHARE-01	CURRENT
+F-07-12	docs/specifications/05_feature_coverage.md#L195	DD-CLOUD-03,DD-DEV-03,FR-DEV-06,TEST-SHARE-01	CURRENT
+F-07-13	docs/specifications/05_feature_coverage.md#L196	DD-CLOUD-03,DD-DEV-03,FR-DEV-06,TEST-SHARE-01	CURRENT
+F-08-01	docs/specifications/05_feature_coverage.md#L204	DD-NET,FR-NET-01,TEST-NET-01	CURRENT
+F-08-02	docs/specifications/05_feature_coverage.md#L205	DD-NET,FR-NET-01,TEST-NET-01	CURRENT
+F-08-03	docs/specifications/05_feature_coverage.md#L206	DD-NET,FR-NET-01,FR-NET-02,TEST-NET-01	CURRENT
+F-08-04	docs/specifications/05_feature_coverage.md#L207	DD-NET,FR-NET-02,TEST-NET-01	CURRENT
+F-08-05	docs/specifications/05_feature_coverage.md#L208	DD-NET,FR-NET-02,TEST-NET-01	CURRENT
+F-08-06	docs/specifications/05_feature_coverage.md#L209	DD-NET,FR-NET-02,TEST-NET-01	CURRENT
+F-08-07	docs/specifications/05_feature_coverage.md#L210	DD-NET,FR-NET-03,TEST-NET-01	CURRENT
+F-08-08	docs/specifications/05_feature_coverage.md#L211	DD-NET,FR-NET-04,TEST-NET-01	CURRENT
+F-08-09	docs/specifications/05_feature_coverage.md#L212	DD-NET,FR-NET-03,TEST-NET-01	CURRENT
+F-09-01	docs/specifications/05_feature_coverage.md#L220	DD-CLOUD-01,DD-CLOUD-02,DD-CLOUD-04,FR-USE-03,TEST-ACC-01,TEST-DATA-01,TEST-SYNC-01	CURRENT
+F-09-02	docs/specifications/05_feature_coverage.md#L221	DD-CLOUD-01,DD-CLOUD-02,DD-CLOUD-04,FR-USE-03,TEST-ACC-01,TEST-DATA-01,TEST-SYNC-01	CURRENT
+F-09-03	docs/specifications/05_feature_coverage.md#L222	DD-HIST-01,DD-HIST-02,FR-USE-01,TEST-HIST-01	CURRENT
+F-09-04	docs/specifications/05_feature_coverage.md#L223	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-04.01	docs/specifications/05_feature_coverage.md#L224	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-04.02	docs/specifications/05_feature_coverage.md#L225	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-04.03	docs/specifications/05_feature_coverage.md#L226	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-04.04	docs/specifications/05_feature_coverage.md#L227	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-04.05	docs/specifications/05_feature_coverage.md#L228	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-05	docs/specifications/05_feature_coverage.md#L229	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-05.01	docs/specifications/05_feature_coverage.md#L230	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-05.02	docs/specifications/05_feature_coverage.md#L231	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-05.03	docs/specifications/05_feature_coverage.md#L232	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-05.04	docs/specifications/05_feature_coverage.md#L233	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-05.05	docs/specifications/05_feature_coverage.md#L234	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-06	docs/specifications/05_feature_coverage.md#L235	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-07	docs/specifications/05_feature_coverage.md#L236	DD-HIST-05,FR-USE-02,TEST-STATS-01	CURRENT
+F-09-08	docs/specifications/05_feature_coverage.md#L237	DD-CLOUD-03,DD-CLOUD-04,FR-USE-04,TEST-ACC-01,TEST-STATS-01	CURRENT
+F-09-09	docs/specifications/05_feature_coverage.md#L238	DD-CLOUD-03,DD-CLOUD-04,FR-USE-04,TEST-ACC-01,TEST-STATS-01	CURRENT
+F-09-10	docs/specifications/05_feature_coverage.md#L239	DD-CLOUD-03,DD-CLOUD-04,FR-USE-04,TEST-ACC-01,TEST-STATS-01	CURRENT
+F-09-11	docs/specifications/05_feature_coverage.md#L240	DD-CLOUD-03,DD-CLOUD-04,FR-USE-04,TEST-ACC-01,TEST-STATS-01	CURRENT
+F-09-12	docs/specifications/05_feature_coverage.md#L241	DD-HIST-04,DD-PROV-01,FR-USE-05,TEST-LASTFM-01	CURRENT
+F-09-12.01	docs/specifications/05_feature_coverage.md#L242	DD-HIST-04,DD-PROV-01,FR-USE-05,TEST-LASTFM-01	CURRENT
+F-09-12.02	docs/specifications/05_feature_coverage.md#L243	DD-HIST-04,DD-PROV-01,FR-USE-05,TEST-LASTFM-01	CURRENT
+F-09-12.03	docs/specifications/05_feature_coverage.md#L244	DD-HIST-04,DD-PROV-01,FR-USE-05,TEST-LASTFM-01	CURRENT
+F-10-01	docs/specifications/05_feature_coverage.md#L252	DD-HIST-05,FR-USE-06,TEST-REC-01	CURRENT
+F-10-02	docs/specifications/05_feature_coverage.md#L253	DD-HIST-05,FR-USE-06,TEST-REC-01	CURRENT
+F-10-03	docs/specifications/05_feature_coverage.md#L254	DD-HIST-05,FR-USE-06,TEST-REC-01	CURRENT
+F-10-04	docs/specifications/05_feature_coverage.md#L255	DD-HIST-05,FR-USE-06,TEST-REC-01	CURRENT
+F-10-05	docs/specifications/05_feature_coverage.md#L256	DD-HIST-05,FR-USE-06,TEST-REC-01	CURRENT
+F-10-06	docs/specifications/05_feature_coverage.md#L257	DD-HIST-05,FR-USE-06,TEST-REC-01	CURRENT
+F-11-01	docs/specifications/05_feature_coverage.md#L265	DD-OBS,FR-OBS-01,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-01.01	docs/specifications/05_feature_coverage.md#L266	DD-OBS,FR-OBS-01,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-01.02	docs/specifications/05_feature_coverage.md#L267	DD-OBS,FR-OBS-01,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-01.03	docs/specifications/05_feature_coverage.md#L268	DD-OBS,FR-OBS-01,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-01.04	docs/specifications/05_feature_coverage.md#L269	DD-OBS,FR-OBS-01,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-02	docs/specifications/05_feature_coverage.md#L270	DD-OBS,FR-OBS-02,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-03	docs/specifications/05_feature_coverage.md#L271	DD-OBS,FR-OBS-02,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-04	docs/specifications/05_feature_coverage.md#L272	DD-OBS,FR-OBS-02,FR-OBS-03,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-04.01	docs/specifications/05_feature_coverage.md#L273	DD-OBS,FR-OBS-02,FR-OBS-03,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-04.02	docs/specifications/05_feature_coverage.md#L274	DD-OBS,FR-OBS-02,FR-OBS-03,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-04.03	docs/specifications/05_feature_coverage.md#L275	DD-OBS,FR-OBS-02,FR-OBS-03,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-04.04	docs/specifications/05_feature_coverage.md#L276	DD-OBS,FR-OBS-02,FR-OBS-03,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-04.05	docs/specifications/05_feature_coverage.md#L277	DD-OBS,FR-OBS-02,FR-OBS-03,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-04.06	docs/specifications/05_feature_coverage.md#L278	DD-OBS,FR-OBS-02,FR-OBS-03,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-04.07	docs/specifications/05_feature_coverage.md#L279	DD-OBS,FR-OBS-02,FR-OBS-03,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-04.08	docs/specifications/05_feature_coverage.md#L280	DD-OBS,FR-OBS-02,FR-OBS-03,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-05	docs/specifications/05_feature_coverage.md#L281	DD-OBS,FR-OBS-04,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-06	docs/specifications/05_feature_coverage.md#L282	DD-OBS-02,FR-OBS-07,TEST-TAP-01	CURRENT
+F-11-07	docs/specifications/05_feature_coverage.md#L283	DD-HIST-03,FR-OBS-05,TEST-ABX-01	CURRENT
+F-11-07.01	docs/specifications/05_feature_coverage.md#L284	DD-HIST-03,FR-OBS-05,TEST-ABX-01	CURRENT
+F-11-07.02	docs/specifications/05_feature_coverage.md#L285	DD-HIST-03,FR-OBS-05,TEST-ABX-01	CURRENT
+F-11-07.03	docs/specifications/05_feature_coverage.md#L286	DD-HIST-03,FR-OBS-05,TEST-ABX-01	CURRENT
+F-11-08	docs/specifications/05_feature_coverage.md#L287	DD-OBS,FR-OBS-04,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-09	docs/specifications/05_feature_coverage.md#L288	DD-OBS,FR-OBS-04,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-10	docs/specifications/05_feature_coverage.md#L289	DD-OBS,FR-OBS-04,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-11-11	docs/specifications/05_feature_coverage.md#L290	DD-OBS-03,FR-OBS-06,TEST-DIAG-01,TEST-SEC-01	CURRENT
+F-11-12	docs/specifications/05_feature_coverage.md#L291	DD-DSP-04,FR-AUD-10,TEST-PRESET-01	CURRENT
+F-12-01	docs/specifications/05_feature_coverage.md#L299	DD-UI,FR-UI-03,TEST-UI-01	CURRENT
+F-12-02	docs/specifications/05_feature_coverage.md#L300	DD-UI-03,FR-UI-04,TEST-THEME-01,TEST-UI-01,TEST-WIDGET-01	CURRENT
+F-12-03	docs/specifications/05_feature_coverage.md#L301	DD-UI-03,FR-UI-04,TEST-THEME-01,TEST-UI-01,TEST-WIDGET-01	CURRENT
+F-12-04	docs/specifications/05_feature_coverage.md#L302	DD-PLY,DD-QUEUE,FR-PLY-02,TEST-PLY-01,TEST-PLY-02	CURRENT
+F-12-05	docs/specifications/05_feature_coverage.md#L303	DD-AUD-04,DD-DEV-03,DD-UI,FR-DEV-03,FR-UI-01,TEST-AUD-02,TEST-DEVICE-01,TEST-UI-01	CURRENT
+F-12-06	docs/specifications/05_feature_coverage.md#L304	DD-UI-03,FR-UI-04,TEST-THEME-01,TEST-UI-01,TEST-WIDGET-01	CURRENT
+F-12-07	docs/specifications/05_feature_coverage.md#L305	DD-AUD,DD-DSP,DD-UI,FR-AUD-01,FR-UI-01,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03,TEST-UI-01	CURRENT
+F-12-08	docs/specifications/05_feature_coverage.md#L306	DD-DB-01,DD-QUEUE-03,DD-UI,FR-PLY-06,FR-PLY-09,TEST-QUEUE-01,TEST-SCHEDULE-01	CURRENT
+F-12-09	docs/specifications/05_feature_coverage.md#L307	DD-DB,DD-DEV-03,FR-DEV-04,TEST-DEVICE-01	CURRENT
+F-12-10	docs/specifications/05_feature_coverage.md#L308	DD-UI,FR-UI-02,TEST-UI-01	CURRENT
+F-12-11	docs/specifications/05_feature_coverage.md#L309	DD-OBS,FR-OBS-03,TEST-AUD-01,TEST-VIS-01	CURRENT
+F-12-12	docs/specifications/05_feature_coverage.md#L310	DD-DEV-01,DD-DEV-03,FR-DEV-02,TEST-DEVICE-01	CURRENT
+F-13-01	docs/specifications/05_feature_coverage.md#L318	DD-TEST-03,DD-TEST-04,FR-PLT-01,NFR-COMP-01,TEST-COMP-01,TEST-FORMAT-02	CURRENT
+F-13-01.01	docs/specifications/05_feature_coverage.md#L319	DD-TEST-03,DD-TEST-04,FR-PLT-01,NFR-COMP-01,TEST-COMP-01,TEST-FORMAT-02	CURRENT
+F-13-01.02	docs/specifications/05_feature_coverage.md#L320	DD-TEST-03,DD-TEST-04,FR-PLT-01,NFR-COMP-01,TEST-COMP-01,TEST-FORMAT-02	CURRENT
+F-13-01.03	docs/specifications/05_feature_coverage.md#L321	DD-TEST-03,DD-TEST-04,FR-PLT-01,NFR-COMP-01,TEST-COMP-01,TEST-FORMAT-02	CURRENT
+F-13-02	docs/specifications/05_feature_coverage.md#L322	FR-PLT-02	EXCLUDED
+F-13-03	docs/specifications/05_feature_coverage.md#L323	FR-PLT-02	EXCLUDED
+F-13-03.01	docs/specifications/05_feature_coverage.md#L324	FR-PLT-02	EXCLUDED
+F-13-03.02	docs/specifications/05_feature_coverage.md#L325	FR-PLT-02	EXCLUDED
+F-13-04	docs/specifications/05_feature_coverage.md#L326	FR-PLT-02	EXCLUDED
+F-13-05	docs/specifications/05_feature_coverage.md#L327	DD-PKG,DD-TEST,NFR-MAINT-01,TEST-GOV-01	CURRENT
+F-13-06	docs/specifications/05_feature_coverage.md#L328	DD-CLOUD-01,DD-CLOUD-02,DD-CLOUD-04,FR-USE-03,TEST-ACC-01,TEST-DATA-01,TEST-SYNC-01	CURRENT
+F-14-01	docs/specifications/05_feature_coverage.md#L336	DD-PROV-01,DD-PROV-02,DD-PROV-04,FR-SRC-09,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-14-02	docs/specifications/05_feature_coverage.md#L376		RETIRED
+F-14-03	docs/specifications/05_feature_coverage.md#L337	DD-PROV,DD-PROV-01,DD-PROV-02,DD-PROV-04,DD-QUEUE,FR-SRC-08,FR-SRC-09,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-14-04	docs/specifications/05_feature_coverage.md#L377		RETIRED
+F-14-05	docs/specifications/05_feature_coverage.md#L338	DD-PROV-04,DD-PROV-05,FR-SRC-11,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+F-14-06	docs/specifications/05_feature_coverage.md#L339	DD-QUEUE-05,FR-PLY-08,TEST-GAPLESS-01,TEST-RESEARCH-01	CURRENT
+F-14-07	docs/specifications/05_feature_coverage.md#L340	DD-AUD,DD-AUD-04,DD-AUD-05,DD-DSP,DD-TEST-03,DD-TEST-04,FR-AUD-03,FR-AUD-05,FR-PLT-01,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03,TEST-COMP-01,TEST-FORMAT-02,TEST-RESEARCH-01	CURRENT
+F-14-08	docs/specifications/05_feature_coverage.md#L341	DD-DEV-01,DD-DEV-03,FR-DEV-02,TEST-DEVICE-01,TEST-RESEARCH-01	CURRENT
+F-14-09	docs/specifications/05_feature_coverage.md#L342	DD-DEV-01,DD-DEV-03,FR-DEV-02,TEST-DEVICE-01,TEST-RESEARCH-01	CURRENT
+F-14-10	docs/specifications/05_feature_coverage.md#L343	DD-OBS,FR-OBS-02,FR-OBS-03,TEST-AUD-01,TEST-RESEARCH-01,TEST-VIS-01	CURRENT
+F-14-11	docs/specifications/05_feature_coverage.md#L344	FR-PLT-02	EXCLUDED
+F-14-12	docs/specifications/05_feature_coverage.md#L345	DD-AUD,DD-DEV,DD-DSP,DD-ERROR,DD-PLY,DD-TEST,NFR-AUD-03,NFR-REL-02,TEST-AUD-02,TEST-AUD-03,TEST-REL-01,TEST-RESEARCH-01	CURRENT
+F-14-13	docs/specifications/05_feature_coverage.md#L379		RETIRED
+FR-AUD-01	docs/specifications/01_requirements.md#L130	DD-AUD,DD-DSP,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+FR-AUD-02	docs/specifications/01_requirements.md#L131	DD-AUD,DD-DSP,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+FR-AUD-03	docs/specifications/01_requirements.md#L132	DD-AUD,DD-DSP,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+FR-AUD-04	docs/specifications/01_requirements.md#L133	DD-AUD-04,DD-AUD-05,DD-DSP,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+FR-AUD-05	docs/specifications/01_requirements.md#L134	DD-AUD-04,DD-AUD-05,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+FR-AUD-06	docs/specifications/01_requirements.md#L135	DD-AUD,DD-DSP,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+FR-AUD-07	docs/specifications/01_requirements.md#L136	DD-AUD,DD-DSP,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+FR-AUD-08	docs/specifications/01_requirements.md#L137	DD-AUD,DD-DSP,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+FR-AUD-09	docs/specifications/01_requirements.md#L138	DD-AUD,DD-DSP,TEST-AUD-01,TEST-AUD-02,TEST-AUD-03	CURRENT
+FR-AUD-10	docs/specifications/01_requirements.md#L139	DD-DSP-04,TEST-PRESET-01	CURRENT
+FR-DEV-01	docs/specifications/01_requirements.md#L145	DD-DEV-01,DD-DEV-02,TEST-AUD-03,TEST-DEVICE-01	CURRENT
+FR-DEV-02	docs/specifications/01_requirements.md#L146	DD-DEV-01,DD-DEV-03,TEST-DEVICE-01	CURRENT
+FR-DEV-03	docs/specifications/01_requirements.md#L147	DD-AUD-04,DD-DEV-03,TEST-AUD-02,TEST-DEVICE-01	CURRENT
+FR-DEV-04	docs/specifications/01_requirements.md#L148	DD-DB,DD-DEV-03,TEST-DEVICE-01	CURRENT
+FR-DEV-05	docs/specifications/01_requirements.md#L149	DD-DEV-02,DD-DEV-03,TEST-AUD-03,TEST-DEVICE-01	CURRENT
+FR-DEV-06	docs/specifications/01_requirements.md#L150	DD-CLOUD-03,DD-DEV-03,TEST-SHARE-01	CURRENT
+FR-NET-01	docs/specifications/01_requirements.md#L156	DD-NET,TEST-NET-01	CURRENT
+FR-NET-02	docs/specifications/01_requirements.md#L157	DD-NET,TEST-NET-01	CURRENT
+FR-NET-03	docs/specifications/01_requirements.md#L158	DD-NET,TEST-NET-01	CURRENT
+FR-NET-04	docs/specifications/01_requirements.md#L159	DD-NET,TEST-NET-01	CURRENT
+FR-OBS-01	docs/specifications/01_requirements.md#L176	DD-OBS,TEST-AUD-01,TEST-VIS-01	CURRENT
+FR-OBS-02	docs/specifications/01_requirements.md#L177	DD-OBS,TEST-AUD-01,TEST-VIS-01	CURRENT
+FR-OBS-03	docs/specifications/01_requirements.md#L178	DD-OBS,TEST-AUD-01,TEST-VIS-01	CURRENT
+FR-OBS-04	docs/specifications/01_requirements.md#L179	DD-OBS,TEST-AUD-01,TEST-VIS-01	CURRENT
+FR-OBS-05	docs/specifications/01_requirements.md#L180	DD-HIST-03,TEST-ABX-01	CURRENT
+FR-OBS-06	docs/specifications/01_requirements.md#L181	DD-OBS-03,TEST-DIAG-01,TEST-SEC-01	CURRENT
+FR-OBS-07	docs/specifications/01_requirements.md#L182	DD-OBS-02,TEST-TAP-01	CURRENT
+FR-PLT-01	docs/specifications/01_requirements.md#L194	DD-TEST-03,DD-TEST-04,TEST-COMP-01,TEST-FORMAT-02	CURRENT
+FR-PLT-02	docs/specifications/01_requirements.md#L195		EXCLUDED
+FR-PLY-01	docs/specifications/01_requirements.md#L116	DD-PLY,DD-QUEUE,TEST-PLY-01,TEST-PLY-02	CURRENT
+FR-PLY-02	docs/specifications/01_requirements.md#L117	DD-PLY,DD-QUEUE,TEST-PLY-01,TEST-PLY-02	CURRENT
+FR-PLY-03	docs/specifications/01_requirements.md#L118	DD-PLY,DD-QUEUE,TEST-PLY-01,TEST-PLY-02	CURRENT
+FR-PLY-04	docs/specifications/01_requirements.md#L119	DD-DB-02,DD-PLY-03,DD-QUEUE,TEST-PLY-01,TEST-RESTORE-01	CURRENT
+FR-PLY-05	docs/specifications/01_requirements.md#L120	DD-DB-01,DD-DB-02,TEST-PLAYLIST-01	CURRENT
+FR-PLY-06	docs/specifications/01_requirements.md#L121	DD-DB-01,DD-QUEUE-03,TEST-SCHEDULE-01	CURRENT
+FR-PLY-07	docs/specifications/01_requirements.md#L122	DD-PROV,DD-QUEUE-04,TEST-PROV-01,TEST-QUEUE-01	CURRENT
+FR-PLY-08	docs/specifications/01_requirements.md#L123	DD-QUEUE-05,TEST-GAPLESS-01	CURRENT
+FR-PLY-09	docs/specifications/01_requirements.md#L124	DD-QUEUE-03,DD-UI,TEST-QUEUE-01,TEST-SCHEDULE-01	CURRENT
+FR-SRC-01	docs/specifications/01_requirements.md#L99	DD-MODEL,DD-SRC,DD-UI,TEST-FORMAT-01,TEST-PROV-01,TEST-UI-01	CURRENT
+FR-SRC-02	docs/specifications/01_requirements.md#L100	DD-DB,DD-SRC,TEST-LIB-01,TEST-LIB-02	CURRENT
+FR-SRC-03	docs/specifications/01_requirements.md#L101	DD-DB,DD-SRC,TEST-LIB-01,TEST-LIB-02	CURRENT
+FR-SRC-04	docs/specifications/01_requirements.md#L102	DD-AUD-04,DD-SRC,TEST-FORMAT-01	CURRENT
+FR-SRC-05	docs/specifications/01_requirements.md#L103	DD-DB,DD-SRC,TEST-LIB-01,TEST-LIB-02	CURRENT
+FR-SRC-06	docs/specifications/01_requirements.md#L104	DD-SRC-04,TEST-META-01	CURRENT
+FR-SRC-07	docs/specifications/01_requirements.md#L105	DD-DB-01,DD-SRC-03,DD-SRC-04,TEST-META-01,TEST-SCHEDULE-01	CURRENT
+FR-SRC-08	docs/specifications/01_requirements.md#L106	DD-PROV,DD-QUEUE,TEST-PROV-01	CURRENT
+FR-SRC-09	docs/specifications/01_requirements.md#L107	DD-PROV-01,DD-PROV-02,DD-PROV-04,DD-PROV-06,DD-PROV-07,TEST-PROV-01,TEST-RESEARCH-01	CURRENT
+FR-SRC-10	docs/specifications/01_requirements.md#L108	DD-PROV-01,DD-PROV-04,TEST-PROV-01	CURRENT
+FR-SRC-11	docs/specifications/01_requirements.md#L109	DD-PROV-04,DD-PROV-05,TEST-PROV-01,TEST-RESEARCH-01,TEST-YTDLP-01	CURRENT
+FR-SRC-12	docs/specifications/01_requirements.md#L110	DD-PROV-08,TEST-SAVE-01	CURRENT
+FR-UI-01	docs/specifications/01_requirements.md#L188	DD-UI,TEST-UI-01	CURRENT
+FR-UI-02	docs/specifications/01_requirements.md#L189	DD-UI,TEST-UI-01	CURRENT
+FR-UI-03	docs/specifications/01_requirements.md#L190	DD-UI,TEST-UI-01	CURRENT
+FR-UI-04	docs/specifications/01_requirements.md#L191	DD-UI-03,TEST-THEME-01,TEST-UI-01,TEST-WIDGET-01	CURRENT
+FR-UI-05	docs/specifications/01_requirements.md#L192	DD-UI,TEST-UI-01	CURRENT
+FR-UI-06	docs/specifications/01_requirements.md#L193	DD-UI-02,TEST-UI-01	CURRENT
+FR-USE-01	docs/specifications/01_requirements.md#L165	DD-HIST-01,DD-HIST-02,TEST-HIST-01	CURRENT
+FR-USE-02	docs/specifications/01_requirements.md#L166	DD-HIST-05,TEST-STATS-01	CURRENT
+FR-USE-03	docs/specifications/01_requirements.md#L167	DD-CLOUD-01,DD-CLOUD-02,DD-CLOUD-04,TEST-ACC-01,TEST-DATA-01,TEST-SYNC-01	CURRENT
+FR-USE-04	docs/specifications/01_requirements.md#L168	DD-CLOUD-03,DD-CLOUD-04,TEST-ACC-01,TEST-STATS-01	CURRENT
+FR-USE-05	docs/specifications/01_requirements.md#L169	DD-HIST-04,DD-PROV-01,TEST-LASTFM-01	CURRENT
+FR-USE-06	docs/specifications/01_requirements.md#L170	DD-HIST-05,TEST-REC-01	CURRENT
+IMP-01	docs/specifications/03_detailed_design.md#L983		CURRENT
+IMP-02	docs/specifications/03_detailed_design.md#L984		CURRENT
+IMP-03	docs/specifications/03_detailed_design.md#L985		CURRENT
+IMP-04	docs/specifications/03_detailed_design.md#L986		CURRENT
+IMP-05	docs/specifications/03_detailed_design.md#L987		CURRENT
+IMP-06	docs/specifications/03_detailed_design.md#L988		CURRENT
+IMP-07	docs/specifications/03_detailed_design.md#L989		CURRENT
+NFR-A11Y-01	docs/specifications/01_requirements.md#L223	DD-UI-02,TEST-UI-01	CURRENT
+NFR-AUD-01	docs/specifications/01_requirements.md#L209	DD-AUD-05,DD-OBS,TEST-AUD-01,TEST-FORMAT-02	CURRENT
+NFR-AUD-02	docs/specifications/01_requirements.md#L210	DD-AUD,DD-DEV,DD-DSP,TEST-AUD-02,TEST-AUD-03	CURRENT
+NFR-AUD-03	docs/specifications/01_requirements.md#L211	DD-AUD,DD-DEV,DD-DSP,TEST-AUD-02,TEST-AUD-03	CURRENT
+NFR-AUD-04	docs/specifications/01_requirements.md#L212	DD-AUD-05,DD-DSP,TEST-AUD-02,TEST-FORMAT-02	CURRENT
+NFR-COMP-01	docs/specifications/01_requirements.md#L213	DD-TEST-03,TEST-COMP-01	CURRENT
+NFR-COMP-02	docs/specifications/01_requirements.md#L214	DD-PLY-03,DD-TEST-03,TEST-COMP-01,TEST-SEC-01,TEST-STORE-01	CURRENT
+NFR-LEGAL-01	docs/specifications/01_requirements.md#L221	DD-PROV,DD-RELEASE,TEST-STORE-01	CURRENT
+NFR-LEGAL-02	docs/specifications/01_requirements.md#L222	DD-PROV,DD-RELEASE,TEST-STORE-01	CURRENT
+NFR-MAINT-01	docs/specifications/01_requirements.md#L227	DD-PKG,DD-TEST,TEST-GOV-01	CURRENT
+NFR-OBS-01	docs/specifications/01_requirements.md#L226	DD-OBS-03,TEST-DIAG-01	CURRENT
+NFR-OPS-01	docs/specifications/01_requirements.md#L230	DD-CLOUD-03,DD-RELEASE,TEST-GOV-01	CURRENT
+NFR-PERF-01	docs/specifications/01_requirements.md#L206	DD-OBS,DD-TEST,TEST-PERF-01	CURRENT
+NFR-PERF-02	docs/specifications/01_requirements.md#L207	DD-OBS,DD-TEST,TEST-PERF-01	CURRENT
+NFR-PERF-03	docs/specifications/01_requirements.md#L208	DD-OBS,DD-TEST,TEST-PERF-01	CURRENT
+NFR-PRIV-01	docs/specifications/01_requirements.md#L218	DD-CLOUD,DD-OBS,DD-RELEASE,TEST-ACC-01,TEST-SEC-01	CURRENT
+NFR-PRIV-02	docs/specifications/01_requirements.md#L219	DD-CLOUD-02,DD-CLOUD-03,DD-HIST,TEST-ACC-01,TEST-DATA-01,TEST-HIST-01,TEST-SYNC-01	CURRENT
+NFR-PRIV-03	docs/specifications/01_requirements.md#L220	DD-CLOUD,DD-OBS,DD-RELEASE,TEST-ACC-01,TEST-SEC-01	CURRENT
+NFR-REL-01	docs/specifications/01_requirements.md#L203	DD-ERROR,DD-QUEUE,DD-SRC,TEST-LIB-01,TEST-NET-01,TEST-PLY-02,TEST-QUEUE-01	CURRENT
+NFR-REL-02	docs/specifications/01_requirements.md#L204	DD-ERROR,DD-PLY,DD-TEST,TEST-REL-01	CURRENT
+NFR-REL-03	docs/specifications/01_requirements.md#L205	DD-DB-02,DD-PLY-03,TEST-RESTORE-01	CURRENT
+NFR-SEC-01	docs/specifications/01_requirements.md#L215	DD-CLOUD,DD-PROV,DD-RELEASE,TEST-SEC-01	CURRENT
+NFR-SEC-02	docs/specifications/01_requirements.md#L216	DD-CLOUD,DD-PROV,DD-RELEASE,TEST-SEC-01	CURRENT
+NFR-SEC-03	docs/specifications/01_requirements.md#L217	DD-CLOUD,DD-PROV,DD-RELEASE,TEST-SEC-01	CURRENT
+NFR-STORE-01	docs/specifications/01_requirements.md#L225	DD-RELEASE,TEST-STORE-01	CURRENT
+NFR-TEST-01	docs/specifications/01_requirements.md#L228	DD-TEST,DD-TRACE,TEST-GOV-01	CURRENT
+NFR-TEST-02	docs/specifications/01_requirements.md#L229	DD-RELEASE,DD-TEST,TEST-COMP-01,TEST-GOV-01	CURRENT
+NFR-UX-01	docs/specifications/01_requirements.md#L224	DD-UI-03,TEST-UI-01,TEST-WIDGET-01	CURRENT
+P-01	docs/specifications/06_decisions.md#L173		PUBLIC
+P-02	docs/specifications/06_decisions.md#L174		CURRENT
+P-03	docs/specifications/06_decisions.md#L175		CURRENT
+P-04	docs/specifications/06_decisions.md#L176		CURRENT
+P-05	docs/specifications/06_decisions.md#L177		CURRENT
+Q-01	docs/specifications/06_decisions.md#L17		CURRENT
+Q-02	docs/specifications/06_decisions.md#L29		CURRENT
+Q-03	docs/specifications/06_decisions.md#L41		CURRENT
+Q-04	docs/specifications/06_decisions.md#L51		CURRENT
+Q-05	docs/specifications/06_decisions.md#L61		CURRENT
+Q-06	docs/specifications/06_decisions.md#L69		CURRENT
+Q-07	docs/specifications/06_decisions.md#L77		CURRENT
+Q-08	docs/specifications/06_decisions.md#L85		CURRENT
+Q-09	docs/specifications/06_decisions.md#L93		CURRENT
+Q-10	docs/specifications/06_decisions.md#L101		CURRENT
+Q-11	docs/specifications/06_decisions.md#L109		CURRENT
+Q-12	docs/specifications/06_decisions.md#L117		CURRENT
+Q-13	docs/specifications/06_decisions.md#L125		CURRENT
+QLT-01	docs/specifications/09_private_completion_review.md#L74	TEST-AUD-01,TEST-TAP-01	CURRENT
+QLT-02	docs/specifications/09_private_completion_review.md#L75	TEST-AUD-02	CURRENT
+QLT-03	docs/specifications/09_private_completion_review.md#L76	TEST-AUD-02,TEST-FORMAT-02	CURRENT
+QLT-04	docs/specifications/09_private_completion_review.md#L77	TEST-TAP-01,TEST-VIS-01	CURRENT
+QLT-05	docs/specifications/09_private_completion_review.md#L78	TEST-ABX-01,TEST-VIS-01	CURRENT
+QLT-06	docs/specifications/09_private_completion_review.md#L79	TEST-ABX-01	CURRENT
+QLT-07	docs/specifications/09_private_completion_review.md#L80	TEST-GAPLESS-01	CURRENT
+QLT-08	docs/specifications/09_private_completion_review.md#L81	TEST-AUD-02,TEST-FORMAT-02	CURRENT
+QLT-09	docs/specifications/09_private_completion_review.md#L82	TEST-AUD-02,TEST-COMP-01	CURRENT
+QLT-10	docs/specifications/09_private_completion_review.md#L83	TEST-PERF-01	CURRENT
+QLT-11	docs/specifications/09_private_completion_review.md#L84	TEST-PERF-01,TEST-REL-01	CURRENT
+QLT-12	docs/specifications/09_private_completion_review.md#L85	TEST-PERF-01	CURRENT
+QLT-13	docs/specifications/09_private_completion_review.md#L86	TEST-AUD-03,TEST-DEVICE-01	CURRENT
+QLT-14	docs/specifications/09_private_completion_review.md#L87	TEST-AUD-02,TEST-PRESET-01	CURRENT
+R-01	docs/specifications/06_decisions.md#L139		CURRENT
+R-02	docs/specifications/06_decisions.md#L140		CURRENT
+R-03	docs/specifications/06_decisions.md#L141		CURRENT
+R-04	docs/specifications/06_decisions.md#L142		CURRENT
+R-05	docs/specifications/06_decisions.md#L143		CURRENT
+R-06	docs/specifications/06_decisions.md#L144		CURRENT
+R-07	docs/specifications/06_decisions.md#L145		CURRENT
+TEST-ABX-01	docs/specifications/03_detailed_design.md#L907		CURRENT
+TEST-ACC-01	docs/specifications/03_detailed_design.md#L898		CURRENT
+TEST-AUD-01	docs/specifications/03_detailed_design.md#L890		CURRENT
+TEST-AUD-02	docs/specifications/03_detailed_design.md#L891		CURRENT
+TEST-AUD-03	docs/specifications/03_detailed_design.md#L892		CURRENT
+TEST-COMP-01	docs/specifications/03_detailed_design.md#L925		CURRENT
+TEST-DATA-01	docs/specifications/03_detailed_design.md#L926		CURRENT
+TEST-DEVICE-01	docs/specifications/03_detailed_design.md#L916		CURRENT
+TEST-DIAG-01	docs/specifications/03_detailed_design.md#L911		CURRENT
+TEST-FORMAT-01	docs/specifications/03_detailed_design.md#L913		CURRENT
+TEST-FORMAT-02	docs/specifications/03_detailed_design.md#L914		CURRENT
+TEST-GAPLESS-01	docs/specifications/03_detailed_design.md#L915		CURRENT
+TEST-GOV-01	docs/specifications/03_detailed_design.md#L927		CURRENT
+TEST-HIST-01	docs/specifications/03_detailed_design.md#L897		CURRENT
+TEST-LASTFM-01	docs/specifications/03_detailed_design.md#L908		CURRENT
+TEST-LIB-01	docs/specifications/03_detailed_design.md#L886		CURRENT
+TEST-LIB-02	docs/specifications/03_detailed_design.md#L887		CURRENT
+TEST-META-01	docs/specifications/03_detailed_design.md#L912		CURRENT
+TEST-NET-01	docs/specifications/03_detailed_design.md#L895		CURRENT
+TEST-PERF-01	docs/specifications/03_detailed_design.md#L902		CURRENT
+TEST-PLAYLIST-01	docs/specifications/03_detailed_design.md#L904		CURRENT
+TEST-PLY-01	docs/specifications/03_detailed_design.md#L888		CURRENT
+TEST-PLY-02	docs/specifications/03_detailed_design.md#L889		CURRENT
+TEST-PRESET-01	docs/specifications/03_detailed_design.md#L910		CURRENT
+TEST-PROV-01	docs/specifications/03_detailed_design.md#L893		CURRENT
+TEST-QUEUE-01	docs/specifications/03_detailed_design.md#L894		CURRENT
+TEST-REC-01	docs/specifications/03_detailed_design.md#L919		CURRENT
+TEST-REL-01	docs/specifications/03_detailed_design.md#L899		CURRENT
+TEST-RESEARCH-01	docs/specifications/03_detailed_design.md#L922		CURRENT
+TEST-RESTORE-01	docs/specifications/03_detailed_design.md#L906		CURRENT
+TEST-SAVE-01	docs/specifications/03_detailed_design.md#L921		CURRENT
+TEST-SCHEDULE-01	docs/specifications/03_detailed_design.md#L905		CURRENT
+TEST-SEC-01	docs/specifications/03_detailed_design.md#L903		CURRENT
+TEST-SHARE-01	docs/specifications/03_detailed_design.md#L917		CURRENT
+TEST-STATS-01	docs/specifications/03_detailed_design.md#L918		CURRENT
+TEST-STORE-01	docs/specifications/03_detailed_design.md#L900		CURRENT
+TEST-SYNC-01	docs/specifications/03_detailed_design.md#L928		CURRENT
+TEST-TAP-01	docs/specifications/03_detailed_design.md#L909		CURRENT
+TEST-THEME-01	docs/specifications/03_detailed_design.md#L923		CURRENT
+TEST-UI-01	docs/specifications/03_detailed_design.md#L901		CURRENT
+TEST-VIS-01	docs/specifications/03_detailed_design.md#L896		CURRENT
+TEST-WIDGET-01	docs/specifications/03_detailed_design.md#L924		CURRENT
+TEST-YTDLP-01	docs/specifications/03_detailed_design.md#L920		CURRENT
+UAT-01	docs/specifications/01_requirements.md#L259		CURRENT
+UAT-02	docs/specifications/01_requirements.md#L260		CURRENT
+UAT-03	docs/specifications/01_requirements.md#L261		CURRENT
+UAT-04	docs/specifications/01_requirements.md#L262		CURRENT
+UAT-05	docs/specifications/01_requirements.md#L263		CURRENT
+UAT-06	docs/specifications/01_requirements.md#L264		CURRENT
+UAT-07	docs/specifications/01_requirements.md#L265		CURRENT
+UAT-08	docs/specifications/01_requirements.md#L266		CURRENT
+UAT-09	docs/specifications/01_requirements.md#L267		CURRENT
+UAT-10	docs/specifications/01_requirements.md#L268		CURRENT
+UAT-11	docs/specifications/01_requirements.md#L274		CURRENT
+UAT-12	docs/specifications/01_requirements.md#L275		CURRENT
+UAT-13	docs/specifications/01_requirements.md#L276		CURRENT
+UAT-14	docs/specifications/01_requirements.md#L277		CURRENT
