@@ -13,7 +13,7 @@
 
 2026-10-29範囲更新：Apple Music/Amazon Music/SoundCloudは利用者判断で実装対象外。現在の調査・問い合わせ対象から除外する。以下の一次資料欄に残る過去の参照は再実装の予定ではない。qobine/librespotの追加調査と対象外Apple Musicの過去調査は[候補照合](10_provider_proposal_review.md)を参照。
 
-2026-10-31 Qobuz更新：[#20の固定ソース調査・ローカル検証](12_qobuz_spike.md)に原典・ハッシュ・8検査・用途別/ABI別の結果を保存した。callback/ログ/キャッシュはそのままの採用条件を満たさず、資格・許諾・実サービス再生・Android導入は未確認。Qobuz直接再生の実装採用はBLOCKEDを維持する。
+2026-11-10 Qobuz更新：[#20のKotlin候補・ローカル検証](12_qobuz_spike.md)に、初回の原典照合に加えて認可callbackとFileBasedの検索・取得・Range/seek・報告の実装結果を保存した。利用者の加入契約は確認済み、Audipp用アプリ資格は未取得。Qobuz直接再生は必須実装であり、実サービス試験・Player接続・SessionBasedを残作業として追跡する。
 
 ## サービス別の確認結果
 

@@ -1,8 +1,54 @@
-# Qobuz/qobine固定ソース調査・ローカル検証（E06-02 / #20）
+# Qobuz必須実装に向けたKotlin候補・ローカル検証（E06-02 / #20）
 
-調査日：2026-10-31 JST。対象：[Issue #20](https://github.com/4rtoflow/Audipp/issues/20)。Audipp基準commit：`ba0628b212a1ad736622f8fdb7be8d194c2eaf94`（取得時のorigin/main）。
+初回調査：2026-10-31 JST。再検討：2026-11-10 JST。対象：[Issue #20](https://github.com/4rtoflow/Audipp/issues/20)。初回基準commit：`ba0628b212a1ad736622f8fdb7be8d194c2eaf94`。再検討時のorigin/mainは`89695a7e22e312e8394959d12eaa9df99b2311c6`。作業中にmainへLAN/Media3基盤が入ったため、最終検証前に`6376cb8e0f0e989aa68bc9b7ce01db114a0f8378`へ再度rebaseし、Manifestの競合を解消した。
 
-**結論：Qobuz直接再生の製品実装はBLOCKEDを維持する。** 固定ソースの確認は再現できたが、Audipp用のapplication identity・本人の契約・用途別許諾・Android実行は未確認。qobineのcallback、ログ、ディスクキャッシュにはそのまま採用できない点がある。研究の検査成功を接続・再生・許諾の成功に読み替えない。必須の直接再生要求は削除しない。
+**Qobuz直接再生は必ず実装する。** 2026-11-10の利用者指示に従い、固定ソースの問題点を列挙したところで実装作業を止めず、Kotlinの候補クライアントと実HTTPによるローカル試験を追加した。qobine原本の採用保留と、Qobuz実装を進める方針は区別する。利用者から本人の加入契約を検証に使えること、Audipp用アプリ資格は未取得であることを確認した。実サービス試験はアプリ資格・交換方式・用途条件の確認待ち。ローカル試験の成功を実サービス再生や用途許諾の成功には読み替えない。
+
+## 2026-11-10：Kotlin実装と実HTTPによるローカル実証
+
+新しい依存やRust/NDKを必要としない経路を実装した。単一app内の[QobuzAuthorization](../../app/src/main/java/com/audipp/integrations/streaming/qobuz/QobuzAuthorization.kt)と[QobuzFileClient](../../app/src/main/java/com/audipp/integrations/streaming/qobuz/QobuzFileClient.kt)は内部実装であり、既存のProviderAccessGateを呼んで、本人・アプリ・地域・契約・用途に対応する許諾を通信前後に検査する。ManifestにはINTERNET権限を追加した。画面・Playerへの登録、認可codeの交換、資格の永続保管は未接続であり、ユーザーがQobuzを再生できる段階ではない。
+
+### 実装案と処理
+
+- ブラウザー認可：利用者が認可を開始するたびに256bit乱数のstateを生成する。callback受信時は登録予定のredirectのscheme/authority/path、state、期限、重複パラメーターを照合し、一度だけcodeを呼出元へ返す。拒否・取消・不一致・期限切れでは交換へ進まない。code/認可URLの文字列表現は伏せる。
+- FileBased：呼出元が正当に利用できるApp ID/secret、本人token、利用主体・期限を渡したときだけ、検索と`track/getFileUrl`の候補プロトコルを実行する。Webプレーヤーの資格抽出や埋込み定数の流用は実装していない。要求formatと応答に記載されたformat/rate/depthを別に保持し、応答rate/depthを実出力やBit-perfectと表示しない。URL寿命は原典で定義を確認できていないので推測しない。
+- 媒体取得：許可リスト内のHTTPSホストにRange要求を送り、206・Content-Range・実際のbyte数を照合して、最大64KiBずつ呼出元へ返す。媒体要求にはAPIのApp ID/tokenを付けない。HTTPキャッシュとredirectを無効にし、ディスクへ音源を書かない。
+- 再生報告：媒体取得を再生開始とみなさず、呼出元からの明示操作で開始/終了報告を送る。終了報告は取得応答にblobがある場合だけ実行し、なければUNSUPPORTEDを返す。HTTP 200でもstatusがsuccess以外なら成功としない。再生時間・Stop/seekに応じた報告区間の生成は#45のPlayer側で接続する。
+- 失効・拒否：APIの401後は同じclientの旧tokenを再送しない。403は既存ゲートがその用途をDENIEDとして保存する。429・通信失敗・失効媒体URLは呼出元へ返し、自動再試行もSessionBased等への切替もしない。媒体URLの401後に同じFileBased方式で再解決する場合も呼出元の明示操作が必要。
+- IO・取消：既存ゲートのIO dispatcherで通信・JSON解析を行う。メタデータは256KiB、検索は最大50件、connect/readの各timeoutは既定3秒に制限する。取消後や途中で許諾を撤回された応答は返さない。HttpURLConnectionはthread safeではないため、disconnectも所有workerが行い、進行中のblocking readはsocket timeoutまで待つ場合がある。[Android公式資料](https://developer.android.com/reference/java/net/HttpURLConnection)
+
+以上の上限、callbackの5分期限、`com.audipp` scheme、ブラウザー要求のstate往復は実装案。実サービスのredirect受理・state往復・code交換方式は未検証であり、実サービスで動く既知の仕様として固定していない。原典のendpoint/入出力を参照してKotlinで記述し、Rustのソースやバイナリーを導入していない。プロトコル利用条件・コード由来の権利確認は採用レビューで継続する。
+
+### 試験と実績の境界
+
+[QobuzClientTest](../../app/src/test/java/com/audipp/integrations/streaming/qobuz/QobuzClientTest.kt)は、127.0.0.1にTCP/HTTPサーバーを起動し、製品側clientから実際に通信させる。外部サービスをmockの成功値で置換して製品完成と判定する試験ではない。資格・許諾台帳はfixture専用の架空値で、本人の契約・許諾記録を偽造しない。
+
+| 項目 | ローカル結果 | 実サービス / 機器 |
+|---|---|---|
+| callback一致/不一致・重複・取消・期限・再利用 | PASS | redirect/state受理・交換は未検証 |
+| 検索 / 用途ごとの通信前拒否 | PASS：検索grantなしではHTTP要求0 | カタログ検索資格・用途は未確認 |
+| FileBased署名 / 応答検査 | PASS：固定時刻・架空secretのMD5を独立計算値と比較 | 本人token/App IDでの応答未取得 |
+| 全データ逐次取得 / byte位置seek | PASS：自作WAV 926 bytesを分割取得しSHA-256一致。seekの20 bytesも一致 | Qobuzフル音源のdecode/リアルタイム再生・音声出力は未実施 |
+| 開始/終了報告 / blob欠如 / 非success応答 | PASS：HTTP要求内容と失敗を確認 | 提供元による受理・重複報告・義務の充足は未検証 |
+| 401・403・429・失効URL | PASS：要求回数とpathを検査し、自動再試行/別方式要求なし | 実サービス由来の応答は未取得 |
+| redirect・範囲不一致・巨大応答・不明形式・異なるclientの記述子 | PASS：拒否し、遷移先へtokenを送らない | 実際のCDNホスト・Range対応は未確認 |
+| 許諾撤回中の応答・取消・socket timeout | PASS：遅い応答を成功として渡さない | API23/API36の通信・lifecycleは未実施 |
+| Kotlin / Android API23境界 | appのcompile/lintで検査。Rust/NDK不足はこの経路の阻害条件にしない | API23/API36実行・指定serial・DAC実測は未実施 |
+| SessionBased | Kotlin実装・ローカル実証はNOT_RUN | 正規のsession/署名・媒体処理条件が必要。FileBased拒否時のfallbackにはしない |
+
+fixture音源は試験コードで生成したmono PCM16/44.1kHz、10msのWAVであり、Qobuz音源ではない。SHA-256：`53f89b885f3d54331cc8cf95f4841611cd59d05f176d603e59b1d4cce131fb06`。候補目標24bit/192kHz、API応答の音源情報、decoderの取得値、OS経路、DAC実測を別々に扱う。
+
+実行コマンド・17件のUnit結果・回帰確認は[kotlin-local.txt](../evidence/issue-20/kotlin-local.txt)に保存した。最終rebase後のDebug/Unit/Lintは成功し、全Unit187件、Lintエラー0件/警告13件。既存PRのhead commitとCIはPR本文で追跡する。ローカル試験は通常の`:app:testDebugUnitTest`に含まれるため、CIでも毎回実行される。Range単位で再要求する候補の連続転送性能・電力は未測定で、Player接続時に検証する。
+
+### Issue #20の再開箇所
+
+必須の直接再生要求は維持し、実装全体を保留する記述を改める。次に必要なのはAudippで使用できるアプリ資格とcode交換仕様・用途条件の確認である。利用者が加入契約を持つことは確認済みで、アプリ資格と同じ未提示項目には戻さない。アプリ資格が用意できたら、秘密をチャット/ログへ出さない保管経路と接続し、指定serialで本人の実サービス試験へ進む。資格の申請・企業への連絡は今回実行していない。
+
+その後、実サービスの検索・FileBased取得/Range・報告受理と失効を確認し、#45でQobuzソースをPlayerへ接続してdecode・直接フル再生・Stop/seek時の報告を検証する。SessionBasedは独立して資格・方式を確認する。qobineそのもののGPL導入やRust移植の問題を、Kotlin候補の作業を止める理由にしない。Issue #20およびQobuz機能全体は未完了として追跡する。
+
+## 2026-10-31の調査記録
+
+以下は初回の固定ソース調査と、当時未実施だった実サービス試験の記録。上記のKotlin実装・ローカル実証は2026-11-10の追加結果であり、初回に実行したことにはしない。
 
 ## 環境と証拠の境界
 
@@ -89,7 +135,7 @@ Rust/NDKを今回インストールしていない。候補のビルドやtest�
 | PCM加工・DSP・解析・可視化 | 未提示 | BLOCKED：共通DSP/Tapへ接続しない |
 | オフライン保存・キャッシュ | 未提示。購入音源と加入ストリームを混同しない | BLOCKED：候補のディスク保存処理を導入しない |
 
-現行SourceResolverの未審査/拒否/失効時の契約試験は既存Unitで検証されるが、用途全体のProvider許諾機構の完成やQobuzの資格取得を意味しない。本PRは製品の許諾ゲートや新しいProvider APIを先行実装しない。
+初回のSourceResolverの未審査/拒否/失効時の契約試験は既存Unitで検証されたが、Qobuzの資格取得を意味しない。2026-11-10の候補実装は最新mainのProviderAccessGateへ接続し、用途別の未審査/拒否を通信前に検査する。
 
 ## 再現手順
 
@@ -107,7 +153,7 @@ Audipp側の`assembleDebug / testDebugUnitTest / lintDebug`も成功。これは
 
 ## 採用判断・要求追跡・再開箇所
 
-ADR-004はDIRECT必須を維持し、**qobineコード・認証方式の採用は保留**。別の正式方式を含めた比較は可能だが、認可拒否後の総当たりを採用案にしない。単一app、依存、Manifest、schema、公開APIには変更なし。新しい数値基準や製品仕様を確定していない。
+ADR-004はDIRECT必須を維持し、**qobine原本・認証方式のそのままの採用は保留**。別の許可された方式も比較するが、認可拒否後の総当たりを採用案にしない。初回調査は実行時コードを変更していない。2026-11-10は単一appにKotlin内部実装とINTERNET権限を追加し、依存・schema・共有公開型を変更せず検証を進めた。
 
 | 要求 / 設計 / 試験 | 今回の結果 | 後続への影響 |
 |---|---|---|
