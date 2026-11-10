@@ -165,3 +165,7 @@ GUIのエミュレーターはDevice Managerで作成するか、SDKの `emulato
 2026-10-23時点：Linux x86_64でDebugビルド、ユニットテスト3件、Lintが成功しています。Lintはエラー0、固定した依存に対する更新通知6件です。API 36エミュレーターではGUI起動と初期画面の表示を確認しました。
 
 macOS / Windows、API 23、スマートフォン・DAP実機では未検証です。音声再生・USB DAC・音質の検証結果はまだありません。エミュレーターでの起動成功を実機の音声動作の根拠にはしません。
+
+## LAN LibraryとRenderer
+
+Issue #49のLibrary/Renderer分離、資格のスコープ、有限timeout・取消、ACKと観測状態、Fakeと実プロトコルの検証範囲は [LAN契約 v1](contracts/network-v1.md) を参照してください。

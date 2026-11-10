@@ -106,12 +106,23 @@ class SecretStore internal constructor(private val files: SecretFiles, private v
         validateAccount(accountId)
         mutex.withLock {
             val session = sessions.getOrPut(accountId) { SecretSession(accountId) }
-            invalidate(session)
-            storage(session) {
-                val hash = SecretCipher.accountHash(accountId)
-                keys.delete(alias(hash))
-                files.delete(hash)
-            }
+            removeSecrets(session)
+        }
+    }
+
+    suspend fun requireAuthentication(session: SecretSession) = withContext(Dispatchers.IO) {
+        mutex.withLock {
+            if (sessions[session.accountId] !== session) throw SecretStorageException(SecretFailure.AUTH_REQUIRED)
+            removeSecrets(session)
+        }
+    }
+
+    private fun removeSecrets(session: SecretSession) {
+        invalidate(session)
+        storage(session) {
+            val hash = SecretCipher.accountHash(session.accountId)
+            keys.delete(alias(hash))
+            files.delete(hash)
         }
     }
 
